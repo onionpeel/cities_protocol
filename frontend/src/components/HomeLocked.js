@@ -1,4 +1,4 @@
-const Home = () => {
+const HomeLocked = () => {
   return (
     <div>
       ETHGlobal walks into a bar and the bartender says, "It's hacky hour, so everything is 2 for 1."
@@ -6,4 +6,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeLocked;

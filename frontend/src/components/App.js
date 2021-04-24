@@ -1,10 +1,10 @@
 import Header from './Header';
 import Footer from './Footer';
-import Home from './Home';
+import HomeLocked from './HomeLocked';
 import Quiz from './Quiz';
 import Proposal from './Proposal';
-import Education from './Education';
-import Metamask from './Metamask';
+import Signup from './Signup';
+import Governance from './Governance';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +21,7 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">HomeLocked</Link>
               </li>
               <li>
                 <Link to="/quiz">Quiz</Link>
@@ -30,10 +30,10 @@ function App() {
                 <Link to="/proposal">Proposal</Link>
               </li>
               <li>
-                <Link to="/education">Education</Link>
+                <Link to="/signup">Signup</Link>
               </li>
               <li>
-                <Link to="/metamask">Metamask</Link>
+                <Link to="/governance">Governance</Link>
               </li>
             </ul>
           </nav>
@@ -45,11 +45,11 @@ function App() {
             <Route path="/proposal">
               <Proposal />
             </Route>
-            <Route path="/education">
-              <Education />
+            <Route path="/signup">
+              <Signup />
             </Route>
-            <Route path="/metamask">
-              <Metamask />
+            <Route path="/goverance">
+              <Governance />
             </Route>
             <Route path="/">
               <Home />

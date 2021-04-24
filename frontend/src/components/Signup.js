@@ -1,4 +1,4 @@
-const Education = () => {
+const Signup = () => {
   return (
     <div>
       <div>
@@ -11,4 +11,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default Signup;
