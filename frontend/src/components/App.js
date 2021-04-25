@@ -1,18 +1,8 @@
 import { useEffect, useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
-// import Header from './Header';
-// import Footer from './Footer';
-// import Quiz from './Quiz';
-// import Proposal from './Proposal';
-// import Signup from './Signup';
-// import Governance from './Governance';
+import ConnectButton from './buttons/ConnectButton';
+import ConnectingButton from './buttons/ConnectingButton';
 
 import '../styles/App.css';
 import {Navbar, Nav, NavDropdown, Button, Card, ListGroup} from 'react-bootstrap';
@@ -21,18 +11,21 @@ import {Navbar, Nav, NavDropdown, Button, Card, ListGroup} from 'react-bootstrap
 function App() {
   let [provider, setProvider] = useState();
   let [ethersProvider, setEthersProvider] = useState();
+  let [ethersSigner, setEthersSigner] = useState();
   let [isConnected, setIsConnected] = useState();
+  let [isConnecting, setIsConnecting] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      setIsConnected(false);
+      setIsConnected(true);
       //detect whether the browser is connected to a provider
       let ethereumProvider = await detectEthereumProvider();
       if (ethereumProvider) {
         setProvider(ethereumProvider);
         startApp(ethereumProvider);
       } else {
+        setIsConnected(false);
         alert('Please install MetaMask!');
         return;
       };
@@ -41,6 +34,7 @@ function App() {
         //The provider detected by detectEthereumProvider() must be the same as window.ethereum
         if (_ethereumProvider !== window.ethereum) {
           alert('Do you have multiple wallets installed?');
+          setIsConnected(false);
           return;
         };
 
@@ -49,8 +43,9 @@ function App() {
         let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
           if (accounts.length > 0) {
             metamaskAccount = accounts[0];
-            setIsConnected(true);
             setCurrentMetaMaskAccount(accounts[0]);
+          } else {
+            setIsConnected(false);
           };
         console.log(`metamaskAccount ${metamaskAccount}`);
 
@@ -73,13 +68,18 @@ function App() {
       console.log('account[0]: ', accounts[0]);
       setCurrentMetaMaskAccount(accounts[0]);
       setIsConnected(true);
+      setIsConnecting(false);
       // window.location.reload();
     }
   };
   //Give a MetaMask account permission to interact with the app
   const handleOnConnect = async () => {
+    setIsConnecting(true);
     await getAccounts();
     provider.on('accountsChanged', handleAccountsChanged);
+
+    let signer = await ethersProvider.getSigner();
+    setEthersSigner(signer);
   };
 
   return (
@@ -98,7 +98,12 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
       <main className="m-4">
-      <Button className="mb-4" onClick={handleOnConnect}>Connect Wallet to Unlock</Button>
+      { isConnected
+        ? ''
+        : isConnecting
+          ? <ConnectingButton />
+          : <ConnectButton handleOnConnect={handleOnConnect}/>
+      }
       <Card className="gray mb-4">
         <Card.Body>
           <Card.Text>
