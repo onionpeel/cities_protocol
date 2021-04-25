@@ -41,6 +41,7 @@ function App() {
           return;
         };
 
+        //Check if a MetaMask account has permission to connect to app
         let metamaskAccount;
         let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
           if (accounts.length > 0) {
@@ -72,7 +73,7 @@ function App() {
       // window.location.reload();
     }
   };
-
+  //Give a MetaMask account permission to interact with the app
   const handleOnConnect = async () => {
     await getAccounts();
     provider.on('accountsChanged', handleAccountsChanged);
