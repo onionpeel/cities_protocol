@@ -5,7 +5,7 @@ import {Card} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
-import '../styles/App.css';
+import '../styles/Home.css';
 
 
 function Home() {
