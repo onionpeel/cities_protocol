@@ -66,7 +66,6 @@ function Home() {
           setEthersProvider(_ethersProvider);
 
           let signer = await _ethersProvider.getSigner();
-          console.log('signer from useEffect: ', signer);
           setEthersSigner(signer);
         } catch (error) {
           console.error(error);
