@@ -1,25 +1,22 @@
+import { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
+import Question from './Question';
+
 const Quiz = () => {
+
+let [a1, setA1] = useState();
+
   return (
-    <div>
-      <div>
-        This will be the quiz about Queretaro that allows people to get validated to make and vote on proposals
-      </div>
-      <div>
-        Knock Knock
-      </div>
-      <div>
-        Who's there?
-      </div>
-      <div>
-        App
-      </div>
-      <div>
-        App who?
-      </div>
-      <div>
-        Appooh named Winnie
-      </div>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the bulk of
+          the card's content.
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
