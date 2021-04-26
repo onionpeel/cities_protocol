@@ -5,6 +5,7 @@ import {Card} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
+import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 
 
@@ -89,14 +90,7 @@ function Home() {
 
         {!isMetamastInstalled
           ?
-            <Card className="gray mb-4">
-              <Card.Body>
-                <div>
-                  Are you new here?
-                  This will be an alert if the user does not have metamask installed.  It will have a link the the About page so they get it installed.  Otherwise, will be a 'get connected' type of button.  Or there will be nothing if they are already connected
-                </div>
-              </Card.Body>
-            </Card>
+            <InstallMetamaskAlert />
           :
             <Card className="gray mb-4">
               <div>
