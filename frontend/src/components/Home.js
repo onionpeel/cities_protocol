@@ -22,50 +22,62 @@ function Home() {
     const init = async () => {
       setIsMetamaskInstalled(true);
       setIsConnected(false);
-      //detect whether the browser is connected to a provider
-      let ethereumProvider = await detectEthereumProvider();
-      if (ethereumProvider) {
-        setProvider(ethereumProvider);
-        startApp(ethereumProvider);
-      } else {
-        setIsMetamaskInstalled(false);
-        return;
-      };
-
-      async function startApp(_ethereumProvider) {
-        //The provider detected by detectEthereumProvider() must be the same as window.ethereum
-        if (_ethereumProvider !== window.ethereum) {
+      try {
+        //detect whether the browser is connected to a provider
+        let ethereumProvider = await detectEthereumProvider();
+        if (ethereumProvider) {
+          setProvider(ethereumProvider);
+          startApp(ethereumProvider);
+        } else {
           setIsMetamaskInstalled(false);
           return;
         };
+      } catch (error) {
+        console.error(error);
+      };
 
-        //Check if a MetaMask account has permission to connect to app
-        let metamaskAccount;
-        let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
-          if (accounts.length > 0) {
-            metamaskAccount = accounts[0];
-            setCurrentMetaMaskAccount(accounts[0]);
-            setIsMetamaskInstalled(true);
-            setIsConnected(true);
-          } else {
+      async function startApp(_ethereumProvider) {
+        try {
+          //The provider detected by detectEthereumProvider() must be the same as window.ethereum
+          if (_ethereumProvider !== window.ethereum) {
+            setIsMetamaskInstalled(false);
+            return;
           };
-        console.log(`metamaskAccount ${metamaskAccount}`);
 
-        //Force the browser to refresh whenever the network chain is changed
-        let chainId = await _ethereumProvider.request({ method: 'eth_chainId' });
-        _ethereumProvider.on('chainChanged', handleChainChanged);
-        console.log('chainId: ', chainId);
-        //Create the Ethers.js provider and set it in state
-        let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
-        setEthersProvider(_ethersProvider);
+          //Check if a MetaMask account has permission to connect to app
+          let metamaskAccount;
+          let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
+            if (accounts.length > 0) {
+              metamaskAccount = accounts[0];
+              setCurrentMetaMaskAccount(accounts[0]);
+              setIsMetamaskInstalled(true);
+              setIsConnected(true);
+            } else {
+            };
+          console.log(`metamaskAccount ${metamaskAccount}`);
+
+          //Force the browser to refresh whenever the network chain is changed
+          let chainId = await _ethereumProvider.request({ method: 'eth_chainId' });
+          _ethereumProvider.on('chainChanged', handleChainChanged);
+          console.log('chainId: ', chainId);
+          //Create the Ethers.js provider and set it in state
+          let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
+          setEthersProvider(_ethersProvider);
+        } catch (error) {
+          console.error(error);
+        };
       };
     };
     init();
   }, []);
 
   const getAccounts = async () => {
-    const accounts = await provider.request({ method: 'eth_requestAccounts' });
-    await handleAccountsChanged(accounts);
+    try {
+      const accounts = await provider.request({ method: 'eth_requestAccounts' });
+      await handleAccountsChanged(accounts);
+    } catch (error) {
+      console.error(error);
+    };
   };
 
   function handleAccountsChanged(accounts) {
@@ -87,16 +99,16 @@ function Home() {
   //Give a MetaMask account permission to interact with the app
   const handleOnConnect = async () => {
     setIsConnecting(true);
-    await getAccounts();
+    try {
+      await getAccounts();
 
-    // let chainId = await provider.request({ method: 'eth_chainId' });
+      provider.on('accountsChanged', handleAccountsChanged);
 
-    // provider.on('chainChanged', handleChainChanged);
-
-    provider.on('accountsChanged', handleAccountsChanged);
-
-    let signer = await ethersProvider.getSigner();
-    setEthersSigner(signer);
+      let signer = await ethersProvider.getSigner();
+      setEthersSigner(signer);
+    } catch (error) {
+      console.error(error);
+    };
   };
 
   return (
