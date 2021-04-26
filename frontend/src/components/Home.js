@@ -36,7 +36,6 @@ function Home() {
         //The provider detected by detectEthereumProvider() must be the same as window.ethereum
         if (_ethereumProvider !== window.ethereum) {
           setIsMetamaskInstalled(false);
-          // alert('Do you have multiple wallets installed?');
           return;
         };
 
@@ -52,6 +51,11 @@ function Home() {
           };
         console.log(`metamaskAccount ${metamaskAccount}`);
 
+        //Force the browser to refresh whenever the network chain is changed
+        let chainId = await _ethereumProvider.request({ method: 'eth_chainId' });
+        _ethereumProvider.on('chainChanged', handleChainChanged);
+        console.log('chainId: ', chainId);
+        //Create the Ethers.js provider and set it in state
         let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
         setEthersProvider(_ethersProvider);
       };
@@ -73,13 +77,22 @@ function Home() {
       setIsConnected(true);
       setIsConnecting(false);
       setIsMetamaskInstalled(true);
-      // window.location.reload();
     }
   };
+
+  function handleChainChanged(_chainId) {
+    window.location.reload();
+  };
+
   //Give a MetaMask account permission to interact with the app
   const handleOnConnect = async () => {
     setIsConnecting(true);
     await getAccounts();
+
+    // let chainId = await provider.request({ method: 'eth_chainId' });
+
+    // provider.on('chainChanged', handleChainChanged);
+
     provider.on('accountsChanged', handleAccountsChanged);
 
     let signer = await ethersProvider.getSigner();
