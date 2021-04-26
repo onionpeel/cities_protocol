@@ -60,9 +60,14 @@ function Home() {
           let chainId = await _ethereumProvider.request({ method: 'eth_chainId' });
           _ethereumProvider.on('chainChanged', handleChainChanged);
           console.log('chainId: ', chainId);
+
           //Create the Ethers.js provider and set it in state
           let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
           setEthersProvider(_ethersProvider);
+
+          let signer = await _ethersProvider.getSigner();
+          console.log('signer from useEffect: ', signer);
+          setEthersSigner(signer);
         } catch (error) {
           console.error(error);
         };
