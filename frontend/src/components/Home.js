@@ -20,6 +20,7 @@ function Home() {
 
   useEffect(() => {
     const init = async () => {
+      setIsMetamaskInstalled(true);
       setIsConnected(false);
       //detect whether the browser is connected to a provider
       let ethereumProvider = await detectEthereumProvider();
@@ -92,19 +93,11 @@ function Home() {
           ?
             <InstallMetamaskAlert />
           :
-            <Card className="gray mb-4">
-              <div>
-                This will be a button to connect users who already have metamask.  It will disappear when they get connected
-              </div>
-              <Card.Body>
-                { isConnected
-                  ? ''
-                  : isConnecting
-                    ? <ConnectingButton />
-                    : <ConnectButton handleOnConnect={handleOnConnect}/>
-                }
-              </Card.Body>
-            </Card>
+            isConnected
+            ? ''
+            : isConnecting
+              ? <ConnectingButton />
+              : <ConnectButton handleOnConnect={handleOnConnect}/>
         }
 
         <Card className="gray mb-4">
