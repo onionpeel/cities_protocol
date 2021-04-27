@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Question from './Question';
 import { quizQuestions } from '../quizQuestions/quizQuestions';
@@ -17,7 +17,6 @@ const Quiz = () => {
   let [alreadySubmittedModal, setAlreadSubmittedModal] = useState(false);
   let [hasSubmitted, setHasSubmitted] = useState(false);
 
-
   const handleOnSubmitAnswers = async () => {
     if(!hasSubmitted) {
       setHasSubmitted(true);
@@ -25,7 +24,7 @@ const Quiz = () => {
       console.log(quizQuestions);
       for (let i = 0; i < quizQuestions.length; i++) {
         for (let j = 0; j < userAnswers.length; j++) {
-          if (quizQuestions[i].correctAnswer.toString().toLowerCase().trim() == userAnswers[j].toString().toLowerCase().trim()) {
+          if (quizQuestions[i].correctAnswer.toString().toLowerCase().trim() === userAnswers[j].toString().toLowerCase().trim()) {
             setCheckedAnswers(checkedAnswers.push(quizQuestions[i].correctAnswer));
           };
         };
@@ -37,36 +36,36 @@ const Quiz = () => {
 
       if(checkedAnswers.length === 10) {
         setLoadingModalShow(true);
+        //Make network call to receive 100 tokens
         await delay();
         handleOnLoadingModal();
 
-        console.log('length: ', checkedAnswers.length)
-        //Make network call to receive 100 tokens
+        console.log('length: ', checkedAnswers.length);
         setSuccessModalShow(true);
         setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 8) {
         setLoadingModalShow(true);
+        //Make network call to receive 80 tokens
         await delay();
         handleOnLoadingModal();
 
-        console.log('length: ', checkedAnswers.length)
-        //Make network call to receive 80 tokens
+        console.log('length: ', checkedAnswers.length);
         setSuccessModalShow(true);
         setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 6) {
         setLoadingModalShow(true);
+        //Make network call to receive 20 tokens
         await delay();
         handleOnLoadingModal();
 
         console.log('length: ', checkedAnswers.length)
         setSuccessModalShow(true);
         setCheckedAnswers([]);
-        //Make network call to receive 20 tokens
       } else {
         setLoadingModalShow(true);
         await delay();
         handleOnLoadingModal();
-        
+
         console.log('length: ', checkedAnswers.length)
         setFailureModalShow(true);
         setCheckedAnswers([]);
@@ -116,7 +115,6 @@ const Quiz = () => {
       <QuizSuccessModal
         show={successModalShow}
         onHide={handleOnSuccess}
-        tokens={checkedAnswers.length}
       />
       <QuizAlreadySubmittedModal
         show={alreadySubmittedModal}

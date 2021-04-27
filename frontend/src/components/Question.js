@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import { QuizContext } from '../contexts/QuizContext';
 
