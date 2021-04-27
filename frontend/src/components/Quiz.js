@@ -6,17 +6,19 @@ import { QuizContext } from '../contexts/QuizContext';
 import QuizFailureModal from '../modals/QuizFailureModal';
 import QuizSuccessModal from '../modals/QuizSuccessModal';
 import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
+import QuizIsLoadingModal from '../modals/QuizIsLoadingModal';
 
 const Quiz = () => {
   let [userAnswers, setUserAnswers] = useState([]);
   let [checkedAnswers, setCheckedAnswers] = useState([]);
   let [failureModalShow, setFailureModalShow] = useState(false);
   let [successModalShow, setSuccessModalShow] = useState(false);
+  let [loadingModalShow, setLoadingModalShow] = useState();
   let [alreadySubmittedModal, setAlreadSubmittedModal] = useState(false);
   let [hasSubmitted, setHasSubmitted] = useState(false);
 
 
-  const handleOnSubmitAnswers = () => {
+  const handleOnSubmitAnswers = async () => {
     if(!hasSubmitted) {
       setHasSubmitted(true);
       console.log(userAnswers);
@@ -30,22 +32,41 @@ const Quiz = () => {
       };
       console.log(checkedAnswers);
 
-      //Update the threshold number for production
+      //Timeout function is only for development
+      const delay = () => new Promise(res => setTimeout(res, 2000));
+
       if(checkedAnswers.length === 10) {
+        setLoadingModalShow(true);
+        await delay();
+        handleOnLoadingModal();
+
+        console.log('length: ', checkedAnswers.length)
         //Make network call to receive 100 tokens
         setSuccessModalShow(true);
         setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 8) {
+        setLoadingModalShow(true);
+        await delay();
+        handleOnLoadingModal();
+
         console.log('length: ', checkedAnswers.length)
         //Make network call to receive 80 tokens
         setSuccessModalShow(true);
         setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 6) {
+        setLoadingModalShow(true);
+        await delay();
+        handleOnLoadingModal();
+
         console.log('length: ', checkedAnswers.length)
         setSuccessModalShow(true);
         setCheckedAnswers([]);
         //Make network call to receive 20 tokens
       } else {
+        setLoadingModalShow(true);
+        await delay();
+        handleOnLoadingModal();
+        
         console.log('length: ', checkedAnswers.length)
         setFailureModalShow(true);
         setCheckedAnswers([]);
@@ -76,6 +97,10 @@ const Quiz = () => {
     setAlreadSubmittedModal(false);
   };
 
+  const handleOnLoadingModal = () => {
+    setLoadingModalShow(false);
+  };
+
   return (
     <div>
       <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
@@ -93,10 +118,14 @@ const Quiz = () => {
         onHide={handleOnSuccess}
         tokens={checkedAnswers.length}
       />
-    <QuizAlreadySubmittedModal
-      show={alreadySubmittedModal}
-      onHide={handleOnAlreadySubmitted}
-    />
+      <QuizAlreadySubmittedModal
+        show={alreadySubmittedModal}
+        onHide={handleOnAlreadySubmitted}
+      />
+      <QuizIsLoadingModal
+        show={loadingModalShow}
+        onHide={handleOnLoadingModal}
+      />
     </div>
   );
 };

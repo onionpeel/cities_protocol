@@ -26,4 +26,4 @@ const QuizSuccessModal = (props) => {
   );
 };
 
-export default QuizSuccessModal
+export default QuizSuccessModal;
