@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const About = () => {
   return (
     <div>
@@ -9,6 +11,12 @@ const About = () => {
 
         the link to install metamask
         https://metamask.io/download.html
+
+        <div>
+        The last step for the user to begin earning TARO is to validate their account.  This is done by taking a quiz about Queretaro.  This helps to keep the TARO tokens among people who care about their city.
+        </div>
+
+        <Link to="/quiz">Take the Queretaro quiz</Link>
       </div>
     </div>
   );
