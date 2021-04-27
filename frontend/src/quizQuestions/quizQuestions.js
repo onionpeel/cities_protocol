@@ -8,7 +8,7 @@ export const quizQuestions = [
       'To get to the other side',
       'This question makes no sense in the multi-verse in which Vitalik lives'
     ],
-    correctAnswer: 'He was bored'
+    correctAnswer: 'To get to the other side'
   },
   {
     number: 2,
