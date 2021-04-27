@@ -23,7 +23,7 @@ const Quiz = () => {
       console.log(quizQuestions);
       for (let i = 0; i < quizQuestions.length; i++) {
         for (let j = 0; j < userAnswers.length; j++) {
-          if (quizQuestions[i].correctAnswer == userAnswers[j]) {
+          if (quizQuestions[i].correctAnswer.toString().toLowerCase().trim() == userAnswers[j].toString().toLowerCase().trim()) {
             setCheckedAnswers(checkedAnswers.push(quizQuestions[i].correctAnswer));
           };
         };
