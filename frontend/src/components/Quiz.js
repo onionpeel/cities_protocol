@@ -49,7 +49,6 @@ const questions = quizQuestions.map((q, i) => (
 
 const handleOnFailure = () => {
   setFailureModalShow(false);
-  window.location.reload();
 };
 
 const handleOnSuccess = () => {

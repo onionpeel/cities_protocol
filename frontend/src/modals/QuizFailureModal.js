@@ -1,4 +1,5 @@
 import { Modal, Button } from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
 const QuizFailureModal = (props) => {
   return (
@@ -18,9 +19,7 @@ const QuizFailureModal = (props) => {
           Please learn more about Queretaro and take the quiz again.
         </p>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
+      <Link to="/home">TARO</Link>
     </Modal>
   );
 };
