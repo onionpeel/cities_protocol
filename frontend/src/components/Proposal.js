@@ -1,0 +1,25 @@
+import { Card, Button } from 'react-bootstrap';
+
+const Proposal = ({typeOfAction, neighborhood, personInCharge, description, expiration, budget, taroToVote}) => {
+  return (
+    <Card className="gray mb-4">
+      <Card.Body>
+        <Card.Text>
+          {typeOfAction}
+          Where: {neighborhood}
+          Person in charge: {personInCharge}
+        </Card.Text>
+        <Card.Title className="text-large">Locked</Card.Title>
+        <Card.Text>
+          {description}
+          expiration: {expiration}
+          cost: {budget}
+          Required TARO to vote: {taroToVote}
+        </Card.Text>
+        <Button disabled block>Claim Tokens</Button>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default Proposal;
