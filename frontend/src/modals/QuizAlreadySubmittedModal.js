@@ -1,7 +1,7 @@
 import { Modal, Button } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
-const QuizSuccessModal = (props) => {
+const QuizAlreadySubmittedModal = (props) => {
   return (
     <Modal
       {...props}
@@ -11,19 +11,16 @@ const QuizSuccessModal = (props) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          Congratulations!  You passed the quiz!
+          You have already submitted your quiz
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>
-          You have earned {props.tokens} tokens, and you can start participating in the community by making and voting on proposals.
-        </p>
-        <p>
-          Click <Link to="/home">TARO</Link> to start earning more!
+          Learn more about <Link to="/home">TARO</Link> tokens
         </p>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default QuizSuccessModal
+export default QuizAlreadySubmittedModal;
