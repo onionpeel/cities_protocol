@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {Button, Card, ListGroup} from 'react-bootstrap';
+import {ListGroup} from 'react-bootstrap';
 import Proposal from './Proposal';
 import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
 
@@ -7,6 +7,7 @@ const ProposalList = () => {
   const list = proposalArray.map((proposal, i) => (
     <div key={i}>
       <Proposal
+        title={proposal.title}
         typeOfAction={proposal.typeOfAction}
         neighborhood={proposal.neighborhood}
         personInCharge={proposal.personInCharge}

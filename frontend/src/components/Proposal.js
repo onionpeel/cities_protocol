@@ -1,10 +1,11 @@
 import { Card, Button } from 'react-bootstrap';
 
-const Proposal = ({typeOfAction, neighborhood, personInCharge, description, expiration, budget, taroToVote}) => {
+const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, taroToVote}) => {
   return (
     <Card className="gray mb-4">
       <Card.Body>
         <Card.Text>
+          {title}
           {typeOfAction}
           Where: {neighborhood}
           Person in charge: {personInCharge}

@@ -1,5 +1,6 @@
 export const proposalArray = [
   {
+    title: "No more dirty parks",
     typeOfAction: "Clean the park",
     neighborhood: "Central",
     personInCharge: "Miguel",
@@ -9,6 +10,7 @@ export const proposalArray = [
     taroToVote: 2
   },
   {
+    title: "Make music and meet friends",
     typeOfAction: "Host concert",
     neighborhood: "Downtown",
     personInCharge: "Maria",
@@ -21,6 +23,7 @@ export const proposalArray = [
 
 
 // {
+  // title
   // typeOfAction:
   // neighborhood:
   // personInCharge:
