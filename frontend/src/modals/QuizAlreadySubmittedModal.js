@@ -1,7 +1,7 @@
 import { Modal } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
-const QuizFailureModal = (props) => {
+const QuizAlreadySubmittedModal = (props) => {
   return (
     <Modal
       {...props}
@@ -11,17 +11,16 @@ const QuizFailureModal = (props) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          You didn't pass the quiz
+          You have already submitted your quiz
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>
-          Please learn more about Queretaro and take the quiz again.
+          Learn more about <Link to="/home">TARO</Link> tokens
         </p>
       </Modal.Body>
-      <Link to="/home">TARO</Link>
     </Modal>
   );
 };
 
-export default QuizFailureModal
+export default QuizAlreadySubmittedModal;

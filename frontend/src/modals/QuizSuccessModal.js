@@ -1,4 +1,4 @@
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 const QuizSuccessModal = (props) => {
@@ -16,11 +16,14 @@ const QuizSuccessModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <p>
-          You have earned your first <Link to="/home">TARO</Link> tokens, and you can start participating in the community by making and voting on proposals.
+          You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.
+        </p>
+        <p>
+          Click <Link to="/home">TARO</Link> to start earning more!
         </p>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default QuizSuccessModal
+export default QuizSuccessModal;
