@@ -7,7 +7,7 @@ export const proposalArray = [
     description: "Pick up trash and paint restroom",
     expiration: "3 days",
     budget: 0,
-    taroToVote: 2
+    requiredTaroToVote: 2
   },
   {
     title: "Make music and meet friends",
@@ -17,7 +17,7 @@ export const proposalArray = [
     description: "Set up and clean up after local band performance",
     expiration: "1 day",
     budget: 0,
-    taroToVote: 3
+    requiredTaroToVote: 3
   }
 ];
 

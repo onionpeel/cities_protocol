@@ -1,6 +1,6 @@
 import { Card, Button } from 'react-bootstrap';
 
-const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, taroToVote}) => {
+const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote}) => {
   return (
     <Card className="gray mb-4">
       <Card.Body>
@@ -15,7 +15,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
           {description}
           expiration: {expiration}
           cost: {budget}
-          Required TARO to vote: {taroToVote}
+          Required TARO to vote: {requiredTaroToVote}
         </Card.Text>
         <Button disabled block>Claim Tokens</Button>
       </Card.Body>

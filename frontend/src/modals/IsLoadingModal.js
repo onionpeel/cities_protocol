@@ -1,6 +1,6 @@
 import { Modal, Spinner } from 'react-bootstrap';
 
-const QuizIsLoadingModal = (props) => {
+const IsLoadingModal = (props) => {
   return (
     <Modal
       {...props}
@@ -22,4 +22,4 @@ const QuizIsLoadingModal = (props) => {
   );
 };
 
-export default QuizIsLoadingModal;
+export default IsLoadingModal;

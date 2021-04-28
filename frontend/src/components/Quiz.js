@@ -6,7 +6,7 @@ import { QuizContext } from '../contexts/QuizContext';
 import QuizFailureModal from '../modals/QuizFailureModal';
 import QuizSuccessModal from '../modals/QuizSuccessModal';
 import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
-import QuizIsLoadingModal from '../modals/QuizIsLoadingModal';
+import IsLoadingModal from '../modals/IsLoadingModal';
 
 const Quiz = () => {
   let [userAnswers, setUserAnswers] = useState([]);
@@ -17,7 +17,8 @@ const Quiz = () => {
   let [alreadySubmittedModal, setAlreadSubmittedModal] = useState(false);
   let [hasSubmitted, setHasSubmitted] = useState(false);
 
-  const handleOnSubmitAnswers = async () => {
+  const handleOnSubmitAnswers = async e => {
+    e.preventDefault();
     if(!hasSubmitted) {
       setHasSubmitted(true);
       console.log(userAnswers);
@@ -31,7 +32,7 @@ const Quiz = () => {
       };
       console.log(checkedAnswers);
 
-      //Timeout function is only for development
+      //Delay function is only for development
       const delay = () => new Promise(res => setTimeout(res, 2000));
 
       if(checkedAnswers.length === 10) {
@@ -107,7 +108,7 @@ const Quiz = () => {
           {questions}
         </div>
       </QuizContext.Provider>
-      <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
+      <Button onSubmit={handleOnSubmitAnswers}>Submit your answers</Button>
       <QuizFailureModal
         show={failureModalShow}
         onHide={handleOnFailure}
@@ -120,7 +121,7 @@ const Quiz = () => {
         show={alreadySubmittedModal}
         onHide={handleOnAlreadySubmitted}
       />
-      <QuizIsLoadingModal
+      <IsLoadingModal
         show={loadingModalShow}
         onHide={handleOnLoadingModal}
       />
