@@ -1,12 +1,39 @@
+const TaroSimple = require('../frontend/src/contracts/contracts/TaroSimple.sol/TaroSimple.json');
+
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  // const [deployer] = await ethers.getSigners();
+  //
+  // console.log(
+  //   "Deploying contracts with the account:",
+  //   deployer.address
+  // );
 
-  console.log(
-    "Deploying contracts with the account:",
-    deployer.address
-  );
 
-
+  // const TaroSimple = await ethers.getContractFactory('TaroSimple');
+  // const taroSimple = await TaroSimple.deploy();
+  // //
+  // console.log(`TaroSimple address: ${taroSimple.address}`);
+  //
+  // let expectedEvent = ethers.utils.keccak256(ethers.utils.toUtf8Bytes("this is the title"));
+  //
+  // let titleAddedEvent = new Promise((res, rej) => {
+  //   taroSimple.on('TitleAdded', (title, budget, event) => {
+  //     event.removeListener();
+  //     res({title, budget});
+  //   });
+  // });
+  //
+  // let tx = await taroSimple.addUser('this is the title', ethers.BigNumber.from(100));
+  // // await tx.wait(1);
+  // let titleEvent = await titleAddedEvent;
+  // console.log('titleEvent: ', titleEvent.title);
+  // console.log('expectedEvent: ', expectedEvent);
+  // let num = titleEvent.budget.toString();
+  // // let num = ethers.BigNumber(titleEvent.budget);
+  // // num = num.toString();
+  // console.log('budgetEvent: ', num);
+  //
+  // setAddressInCompiledContracts(taroSimple, 'TaroSimple');
 };
 
 main()
