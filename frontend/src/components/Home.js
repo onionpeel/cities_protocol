@@ -9,6 +9,7 @@ import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { TaroSimpleContext } from '../contexts/TaroSimpleContext';
 import TaroSimple from '../contracts/contracts/TaroSimple.sol/TaroSimple.json';
+import LeaderBoard from './LeaderBoard';
 
 function Home() {
   let [provider, setProvider] = useState();
@@ -156,6 +157,8 @@ function Home() {
             </div>
           </Card.Body>
         </Card>
+
+        <LeaderBoard />
       </div>
 
   );
