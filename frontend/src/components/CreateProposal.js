@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import IsLoadingModal from '../modals/IsLoadingModal';
+import { TaroSimpleContext } from '../contexts/TaroSimpleContext';
 
 const CreateProposal = () => {
   let [form, setForm] = useState();
   let [loadingModalShow, setLoadingModalShow] = useState();
+
+  let {taroSimple} = useContext(TaroSimpleContext);
 
   //Delay function is only for development
   const delay = () => new Promise(res => setTimeout(res, 2000));
@@ -12,8 +15,11 @@ const CreateProposal = () => {
   const handleOnSubmit = async e => {
     e.preventDefault();
     setLoadingModalShow(true);
-    await delay();
-    console.log(form)
+    // await delay();
+    console.log('form: ', form);
+    let tx = await taroSimple.addUser(form.title, form.budget);
+    await tx.wait(1);
+    console.log('tx: ', tx);
     handleOnLoadingModal();
   };
 

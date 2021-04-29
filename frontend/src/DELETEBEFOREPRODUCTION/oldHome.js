@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers';
 import {Card} from 'react-bootstrap';
@@ -8,8 +8,7 @@ import ConnectingButton from './buttons/ConnectingButton';
 import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { TaroSimpleContext } from '../contexts/TaroSimpleContext';
-import TaroSimple from '../contracts/contracts/TaroSimple.sol/TaroSimple.json';
-import LeaderBoard from './LeaderBoard';
+
 
 function Home() {
   let [provider, setProvider] = useState();
@@ -19,8 +18,6 @@ function Home() {
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
-
-  let {setTaroSimple} = useContext(TaroSimpleContext);
 
   useEffect(() => {
     const init = async () => {
@@ -71,15 +68,6 @@ function Home() {
 
           let signer = await _ethersProvider.getSigner();
           setEthersSigner(signer);
-
-          let taroSimple = new ethers.Contract(
-            '0xC7b3af5cfB93B9f7E669cB5a98B609645c3A6186',
-            TaroSimple.abi,
-            signer
-          );
-          setTaroSimple(taroSimple);
-
-          console.log(taroSimple);
         } catch (error) {
           console.error(error);
         };
@@ -157,8 +145,6 @@ function Home() {
             </div>
           </Card.Body>
         </Card>
-
-        <LeaderBoard />
       </div>
 
   );
