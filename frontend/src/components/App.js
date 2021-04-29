@@ -1,5 +1,5 @@
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,10 +15,11 @@ import Header from './Header';
 import CreateProposal from './CreateProposal';
 
 function App() {
-  
+  let [taroSimple, setTaroSimple] = useState();
+
   return (
     <div>
-      <TaroSimpleContext.Provider value={{}}>
+      <TaroSimpleContext.Provider value={{taroSimple, setTaroSimple}}>
         <Router>
           <Header />
 

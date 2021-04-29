@@ -19,7 +19,7 @@ function Home() {
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
 
-  let {} = useContext(TaroSimpleContext);
+  let {setTaroSimple} = useContext(TaroSimpleContext);
 
   useEffect(() => {
     const init = async () => {
@@ -76,6 +76,7 @@ function Home() {
             TaroSimple.abi,
             signer
           );
+          setTaroSimple(taroSimple);
 
           console.log(taroSimple);
         } catch (error) {
