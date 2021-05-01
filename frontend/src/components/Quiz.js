@@ -108,7 +108,7 @@ const Quiz = () => {
           {questions}
         </div>
       </QuizContext.Provider>
-      <Button onSubmit={handleOnSubmitAnswers}>Submit your answers</Button>
+      <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
       <QuizFailureModal
         show={failureModalShow}
         onHide={handleOnFailure}
