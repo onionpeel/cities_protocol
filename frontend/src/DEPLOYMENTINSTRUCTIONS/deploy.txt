@@ -6,3 +6,6 @@ In the root of the React project directory:
 2. cd build
 3. cp index.html 200.html
 4. surge
+
+
+cp index.html 200.html
