@@ -7,6 +7,7 @@ import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
 import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
+import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroSimpleContext } from '../contexts/TaroSimpleContext';
 import TaroSimple from '../contracts/contracts/TaroSimple.sol/TaroSimple.json';
 import LeaderBoard from './LeaderBoard';
@@ -21,6 +22,7 @@ function Home() {
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
 
   let {setTaroSimple} = useContext(TaroSimpleContext);
+  let {setIsValidated} = useContext(ValidationRequiredContext);
 
   useEffect(() => {
     const init = async () => {
@@ -71,6 +73,11 @@ function Home() {
 
           let signer = await _ethersProvider.getSigner();
           setEthersSigner(signer);
+
+          // make call to contract to check if current user is validated.
+          // this may need to be done inside handleOnConnect as well
+          // if user is validated, then set isValidated(true)
+
 
           let taroSimple = new ethers.Contract(
             '0xC7b3af5cfB93B9f7E669cB5a98B609645c3A6186',

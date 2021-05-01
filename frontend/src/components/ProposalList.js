@@ -1,9 +1,15 @@
+import { useContext } from 'react';
 import {Link} from "react-router-dom";
 import {ListGroup} from 'react-bootstrap';
 import Proposal from './Proposal';
+import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
+import ValidationRequired from '../alerts/ValidationRequired';
+
 import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
 
 const ProposalList = () => {
+  let {isValidated} = useContext(ValidationRequiredContext);
+
   const list = proposalArray.map((proposal, i) => (
     <div key={i}>
       <Proposal
@@ -21,6 +27,7 @@ const ProposalList = () => {
 
   return (
     <div>
+      {isValidated ? "" : <ValidationRequired />}
       <div>
         <Link to="/createproposal">Create a proposal</Link>
       </div>
