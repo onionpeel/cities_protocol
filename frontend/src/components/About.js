@@ -32,7 +32,7 @@ const About = () => {
       </div>
       <div>
         Who can participate?
-        The app is aimed for people who live in Queretaro, which is why participants must take a quiz about the city to get validated.
+        The app is aimed for people who live in Queretaro, which is why participants must take a quiz about the city to get validated. Validation lasts for six months.  After six months you can take another quiz about Queretaro to earn more TARO tokens and continue using the app.
       </div>
       <div>
         How can I join?
