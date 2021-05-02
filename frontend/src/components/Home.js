@@ -8,9 +8,13 @@ import ConnectingButton from './buttons/ConnectingButton';
 import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
-import { TaroSimpleContext } from '../contexts/TaroSimpleContext';
-import TaroSimple from '../contracts/contracts/TaroSimple.sol/TaroSimple.json';
+import { TaroContext } from '../contexts/TaroContext';
 import LeaderBoard from './LeaderBoard';
+
+//remove for production
+import Comp from '../contracts/contracts/Comp.sol/Comp.json';
+
+
 
 function Home() {
   let [provider, setProvider] = useState();
@@ -20,9 +24,13 @@ function Home() {
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
+  let [userBalance, setUserBalance] = useState();
 
-  let {setTaroSimple} = useContext(TaroSimpleContext);
   let {setIsValidated} = useContext(ValidationRequiredContext);
+  let {taro, setTaro} = useContext(TaroContext);
+
+  // remove for production
+  const Taro = Comp;
 
   useEffect(() => {
     const init = async () => {
@@ -79,14 +87,23 @@ function Home() {
           // if user is validated, then set isValidated(true)
 
 
-          let taroSimple = new ethers.Contract(
-            '0xC7b3af5cfB93B9f7E669cB5a98B609645c3A6186',
-            TaroSimple.abi,
+          const _taro = new ethers.Contract(
+            '0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f',
+            Taro.abi,
             signer
           );
-          setTaroSimple(taroSimple);
+          setTaro(_taro);
 
-          console.log(taroSimple);
+          let signerAddress = await signer.getAddress();
+          console.log("signerAddress: ", signerAddress);
+
+          let _userBalance = await _taro.balanceOf(signerAddress);
+          _userBalance = _userBalance.toString();
+          if(_userBalance) {
+            setUserBalance(_userBalance);
+          };
+
+
         } catch (error) {
           console.error(error);
         };
@@ -152,7 +169,7 @@ function Home() {
         <Card className="gray mb-4">
           <Card.Body>
             <div>
-              Your current TARO balance:
+              Your currently have {userBalance} TARO tokens
             </div>
           </Card.Body>
         </Card>
