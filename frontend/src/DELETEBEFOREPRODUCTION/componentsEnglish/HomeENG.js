@@ -9,7 +9,6 @@ import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroContext } from '../contexts/TaroContext';
-import { LanguageContext } from '../contexts/LanguageContext';
 import LeaderBoard from './LeaderBoard';
 
 //remove for production
@@ -29,7 +28,6 @@ function Home() {
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
-  let {isEnglish} = useContext(LanguageContext);
 
   // remove for production
   const Taro = Comp;
@@ -155,80 +153,38 @@ function Home() {
   };
 
   return (
-    <div>
-      {isEnglish
+      <div className="App">
 
-        ?
+        {!isMetamastInstalled
+          ?
+            <InstallMetamaskAlert />
+          :
+            isConnected
+            ? ''
+            : isConnecting
+              ? <ConnectingButton />
+              : <ConnectButton handleOnConnect={handleOnConnect}/>
+        }
 
-        <div className="App">
+        <Card className="gray mb-4">
+          <Card.Body>
+            <div>
+              Your currently have {userBalance} TARO tokens
+            </div>
+          </Card.Body>
+        </Card>
 
-          {!isMetamastInstalled
-            ?
-              <InstallMetamaskAlert />
-            :
-              isConnected
-              ? ''
-              : isConnecting
-                ? <ConnectingButton />
-                : <ConnectButton handleOnConnect={handleOnConnect}/>
-          }
+        <Card className="gray mb-4">
+          <Card.Body>
+            <div>
+              <Link to="/proposallist">See proposals</Link>
+            </div>
+          </Card.Body>
+        </Card>
 
-          <Card className="gray mb-4">
-            <Card.Body>
-              <div>
-                Your currently have {userBalance} TARO tokens
-              </div>
-            </Card.Body>
-          </Card>
+        <LeaderBoard />
+      </div>
 
-          <Card className="gray mb-4">
-            <Card.Body>
-              <div>
-                <Link to="/proposallist">See proposals</Link>
-              </div>
-            </Card.Body>
-          </Card>
-
-          <LeaderBoard />
-        </div>
-
-        :
-
-        <div className="App">
-          <div>
-            ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP This is App.js
-          </div>
-          {!isMetamastInstalled
-            ?
-              <InstallMetamaskAlert />
-            :
-              isConnected
-              ? ''
-              : isConnecting
-                ? <ConnectingButton />
-                : <ConnectButton handleOnConnect={handleOnConnect}/>
-          }
-
-          <Card className="gray mb-4">
-            <Card.Body>
-              <div>
-                Your currently have {userBalance} TARO tokens
-              </div>
-            </Card.Body>
-          </Card>
-
-          <Card className="gray mb-4">
-            <Card.Body>
-              <div>
-                <Link to="/proposallist">See proposals</Link>
-              </div>
-            </Card.Body>
-          </Card>
-
-          <LeaderBoard />
-        </div>
-      }
-    </div>
   );
 }
 
