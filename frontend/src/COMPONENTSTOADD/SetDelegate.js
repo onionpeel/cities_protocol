@@ -3,14 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import { TaroContext } from '../contexts/TaroContext';
 import { EthersContext } from '../contexts/EthersContext';
 
-const Delegate = () => {
+const SetDelegate = () => {
   let {taro} = useContext(TaroContext);
   let {ethersSigner} = useContext(EthersContext);
 
   useEffect(() => {
     const main = async () => {
       if(await ethersSigner.getAddress() !== 'undefined') {
-        
+
       };
     };
     main();
@@ -21,4 +21,4 @@ const Delegate = () => {
   );
 };
 
-export default Delegate;
+export default SetDelegate;
