@@ -9,18 +9,20 @@ import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroContext } from '../contexts/TaroContext';
+import { GAContext } from '../contexts/GAContext';
 import { LanguageContext } from '../contexts/LanguageContext';
+import { EthersContext } from '../contexts/EthersContext';
 import LeaderBoard from './LeaderBoard';
 
 //remove for production
 import Comp from '../contracts/contracts/Comp.sol/Comp.json';
+import GA from '../contracts/contracts/GA.sol/GA.json'
 
 
 
 function Home() {
   let [provider, setProvider] = useState();
   let [ethersProvider, setEthersProvider] = useState();
-  let [ethersSigner, setEthersSigner] = useState();
   let [isConnected, setIsConnected] = useState();
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
@@ -29,7 +31,10 @@ function Home() {
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
+  let {ga, setGA} = useContext(GAContext);
   let {isEnglish} = useContext(LanguageContext);
+  let {ethersSigner, setEthersSigner} = useContext(EthersContext);
+
 
   useEffect(() => {
     const init = async () => {
@@ -87,7 +92,7 @@ function Home() {
             setEthersSigner(signer);
 
             const _taro = new ethers.Contract(
-              '0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f',
+              '0x2B0d36FACD61B71CC05ab8F3D2355ec3631C0dd5',
               Comp.abi,
               signer
             );
@@ -101,6 +106,14 @@ function Home() {
             if(_userBalance) {
               setUserBalance(_userBalance);
             };
+
+            const _ga = new ethers.Contract(
+              '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
+              GA.abi,
+              signer
+            );
+            setGA(_ga);
+
           };
         } catch (error) {
           console.error(error);
@@ -160,6 +173,13 @@ function Home() {
       if(_userBalance) {
         setUserBalance(_userBalance);
       };
+
+      const _ga = new ethers.Contract(
+        '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
+        GA.abi,
+        signer
+      );
+      setGA(_ga);
     } catch (error) {
       console.error(error);
     };
