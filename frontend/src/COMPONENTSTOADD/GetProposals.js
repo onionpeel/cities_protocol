@@ -12,7 +12,7 @@ import ValidationRequired from '../alerts/ValidationRequired';
 
 import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
 
-const ProposalList = () => {
+const GetProposals = () => {
   let [proposalList, setProposalList] = useState(null);
 
   let {isValidated} = useContext(ValidationRequiredContext);
@@ -100,4 +100,4 @@ const ProposalList = () => {
   );
 };
 
-export default ProposalList;
+export default GetProposals;
