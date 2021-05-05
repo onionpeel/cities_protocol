@@ -8,6 +8,7 @@ import QuizSuccessModal from '../modals/QuizSuccessModal';
 import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
 import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
+import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 
 const Quiz = () => {
   let [userAnswers, setUserAnswers] = useState([]);
@@ -19,6 +20,7 @@ const Quiz = () => {
   let [hasSubmitted, setHasSubmitted] = useState(false);
 
   let {isEnglish} = useContext(LanguageContext);
+  let {governorAlpha} = useContext(GovernorAlphaContext);
 
   const handleOnSubmitAnswers = async e => {
     e.preventDefault();
