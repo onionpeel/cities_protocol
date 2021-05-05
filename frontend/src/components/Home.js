@@ -9,14 +9,14 @@ import InstallMetamaskAlert from './InstallMetamaskAlert';
 import '../styles/Home.css';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroContext } from '../contexts/TaroContext';
-import { GAContext } from '../contexts/GAContext';
+import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 import LeaderBoard from './LeaderBoard';
 
 //remove for production
 import Comp from '../contracts/contracts/Comp.sol/Comp.json';
-import GA from '../contracts/contracts/GA.sol/GA.json'
+import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
 
 
 
@@ -31,7 +31,7 @@ function Home() {
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
-  let {ga, setGA} = useContext(GAContext);
+  let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
   let {isEnglish} = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner} = useContext(EthersContext);
 
@@ -107,12 +107,12 @@ function Home() {
               setUserBalance(_userBalance);
             };
 
-            const _ga = new ethers.Contract(
+            const _governorAlpha = new ethers.Contract(
               '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
-              GA.abi,
+              GovernorAlpha.abi,
               signer
             );
-            setGA(_ga);
+            setGovernorAlpha(_governorAlpha);
 
           };
         } catch (error) {
@@ -174,12 +174,12 @@ function Home() {
         setUserBalance(_userBalance);
       };
 
-      const _ga = new ethers.Contract(
+      const _governorAlpha = new ethers.Contract(
         '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
-        GA.abi,
+        GovernorAlpha.abi,
         signer
       );
-      setGA(_ga);
+      setGovernorAlpha(_governorAlpha);
     } catch (error) {
       console.error(error);
     };

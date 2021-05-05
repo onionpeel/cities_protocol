@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroContext } from '../contexts/TaroContext';
-import { GAContext } from '../contexts/GAContext';
+import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 
@@ -22,13 +22,13 @@ function App() {
   let [isValidated, setIsValidated] = useState();
   let [taro, setTaro] = useState();
   let [isEnglish, setIsEnglish] = useState();
-  let [ga, setGA] = useState();
+  let [governorAlpha, setGovernorAlpha] = useState();
   let [ethersSigner, setEthersSigner] = useState();
 
   return (
     <div>
       <LanguageContext.Provider value={{isEnglish, setIsEnglish}}>
-        <GAContext.Provider value={{ga, setGA}}>
+        <GovernorAlphaContext.Provider value={{governorAlpha, setGovernorAlpha}}>
           <TaroContext.Provider value={{taro, setTaro}}>
             <EthersContext.Provider value={{ethersSigner, setEthersSigner}}>
               <ValidationRequiredContext.Provider value={{isValidated, setIsValidated}}>
@@ -56,7 +56,7 @@ function App() {
               </ValidationRequiredContext.Provider>
             </EthersContext.Provider>
           </TaroContext.Provider>
-        </GAContext.Provider>
+        </GovernorAlphaContext.Provider>
       </LanguageContext.Provider>
     </div>
   );

@@ -39,7 +39,7 @@ const SetDelegate = () => {
       };
     };
     main();
-  });
+  }, []);
 
   const handleChangeDelegate = async e => {
     e.preventDefault();
