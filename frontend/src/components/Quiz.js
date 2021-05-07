@@ -1,8 +1,9 @@
 import { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { ethers } from 'ethers';
+import {Link} from "react-router-dom";
 import Question from './Question';
-import { quizQuestions } from '../quizQuestions/quizQuestions';
+import { englishQuiz } from '../REALQUIZ/englishQuiz';
 import { QuizContext } from '../contexts/QuizContext';
 import QuizFailureModal from '../modals/QuizFailureModal';
 import QuizSuccessModal from '../modals/QuizSuccessModal';
@@ -10,6 +11,7 @@ import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
 import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
+import { ConnectedContext } from '../contexts/ConnectedContext';
 
 const Quiz = () => {
   let [userAnswers, setUserAnswers] = useState([]);
@@ -22,9 +24,14 @@ const Quiz = () => {
 
   let {isEnglish} = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
+  let {isConnected} = useContext(ConnectedContext);
 
   const handleOnSubmitAnswers = async e => {
     e.preventDefault();
+    let quizQuestions
+    if(isEnglish) {
+      quizQuestions = englishQuiz;
+    };
     if(!hasSubmitted) {
       setHasSubmitted(true);
       console.log(userAnswers);
@@ -87,7 +94,16 @@ const Quiz = () => {
     };
   };
 
-  const questions = quizQuestions.map((q, i) => (
+  const englishQuestions = englishQuiz.map((q, i) => (
+    <Question
+      key={q.question.toString()}
+      question={q.question}
+      answers={q.answers}
+      number={q.number}
+    />
+  ))
+
+  const spanishQuestions = englishQuiz.map((q, i) => (
     <Question
       key={q.question.toString()}
       question={q.question}
@@ -119,58 +135,93 @@ const Quiz = () => {
       ?
 
       <div>
-        <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
+        {isConnected
+
+        ?
+
+        <div>
+          <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
+            <div>
+              {englishQuestions}
+            </div>
+          </QuizContext.Provider>
+          <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
+          <QuizFailureModal
+            show={failureModalShow}
+            onHide={handleOnFailure}
+          />
+          <QuizSuccessModal
+            show={successModalShow}
+            onHide={handleOnSuccess}
+          />
+          <QuizAlreadySubmittedModal
+            show={alreadySubmittedModal}
+            onHide={handleOnAlreadySubmitted}
+          />
+          <IsLoadingModal
+            show={loadingModalShow}
+            onHide={handleOnLoadingModal}
+          />
+        </div>
+
+        :
+
+        <div>
           <div>
-            {questions}
+            To take the quiz and start earning Taro, you first need to get connected to the Ethereum network
           </div>
-        </QuizContext.Provider>
-        <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
-        <QuizFailureModal
-          show={failureModalShow}
-          onHide={handleOnFailure}
-        />
-        <QuizSuccessModal
-          show={successModalShow}
-          onHide={handleOnSuccess}
-        />
-        <QuizAlreadySubmittedModal
-          show={alreadySubmittedModal}
-          onHide={handleOnAlreadySubmitted}
-        />
-        <IsLoadingModal
-          show={loadingModalShow}
-          onHide={handleOnLoadingModal}
-        />
+          <Link to="/">Return home and click on "Connect Wallet to Unlock"</Link>
+        </div>
+        }
       </div>
 
       :
 
       <div>
+        {isConnected
+
+        ?
+
         <div>
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
-        </div>
-        <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
           <div>
-            {questions}
+            ESP ESP ESP
           </div>
-        </QuizContext.Provider>
-        <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
-        <QuizFailureModal
-          show={failureModalShow}
-          onHide={handleOnFailure}
-        />
-        <QuizSuccessModal
-          show={successModalShow}
-          onHide={handleOnSuccess}
-        />
-        <QuizAlreadySubmittedModal
-          show={alreadySubmittedModal}
-          onHide={handleOnAlreadySubmitted}
-        />
-        <IsLoadingModal
-          show={loadingModalShow}
-          onHide={handleOnLoadingModal}
-        />
+          <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
+            <div>
+              {englishQuestions}
+            </div>
+          </QuizContext.Provider>
+          <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
+          <QuizFailureModal
+            show={failureModalShow}
+            onHide={handleOnFailure}
+          />
+          <QuizSuccessModal
+            show={successModalShow}
+            onHide={handleOnSuccess}
+          />
+          <QuizAlreadySubmittedModal
+            show={alreadySubmittedModal}
+            onHide={handleOnAlreadySubmitted}
+          />
+          <IsLoadingModal
+            show={loadingModalShow}
+            onHide={handleOnLoadingModal}
+          />
+        </div>
+
+        :
+
+        <div>
+          <div>
+            ESP ESP ESP ESP
+          </div>
+          <div>
+            To take the quiz and start earning Taro, you first need to get connected to the Ethereum network
+          </div>
+          <Link to="/">Return home and click on "Connect Wallet to Unlock"</Link>
+        </div>
+        }
       </div>
     }
     </div>

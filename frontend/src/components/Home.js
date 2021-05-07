@@ -12,6 +12,7 @@ import { TaroContext } from '../contexts/TaroContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
+import { ConnectedContext } from '../contexts/ConnectedContext';
 import LeaderBoard from './LeaderBoard';
 
 import Taro from '../contracts/contracts/Taro.sol/Taro.json';
@@ -24,7 +25,6 @@ import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-
 function Home() {
   let [provider, setProvider] = useState();
   let [ethersProvider, setEthersProvider] = useState();
-  let [isConnected, setIsConnected] = useState();
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
@@ -35,6 +35,7 @@ function Home() {
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
   let {isEnglish} = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner} = useContext(EthersContext);
+  let {isConnected, setIsConnected} = useContext(ConnectedContext);
 
 
   useEffect(() => {
