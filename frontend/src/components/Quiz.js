@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import {Link} from "react-router-dom";
 import Question from './Question';
 import { englishQuiz } from '../REALQUIZ/englishQuiz';
+import { spanishQuiz } from '../REALQUIZ/spanishQuiz';
 import { QuizContext } from '../contexts/QuizContext';
 import QuizFailureModal from '../modals/QuizFailureModal';
 import QuizSuccessModal from '../modals/QuizSuccessModal';
@@ -31,6 +32,8 @@ const Quiz = () => {
     let quizQuestions
     if(isEnglish) {
       quizQuestions = englishQuiz;
+    } else {
+      quizQuestions = spanishQuiz;
     };
     if(!hasSubmitted) {
       setHasSubmitted(true);
@@ -53,7 +56,7 @@ const Quiz = () => {
         //Make network call to receive 100 tokens
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('100'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
-        console.log(submitAnswersReceipt);
+        console.log('submitAnswersReceipt: ', submitAnswersReceipt);
         // handleOnLoadingModal();
 
         // console.log('length: ', checkedAnswers.length);
@@ -103,7 +106,7 @@ const Quiz = () => {
     />
   ))
 
-  const spanishQuestions = englishQuiz.map((q, i) => (
+  const spanishQuestions = spanishQuiz.map((q, i) => (
     <Question
       key={q.question.toString()}
       question={q.question}
@@ -188,7 +191,7 @@ const Quiz = () => {
           </div>
           <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
             <div>
-              {englishQuestions}
+              {spanishQuestions}
             </div>
           </QuizContext.Provider>
           <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>

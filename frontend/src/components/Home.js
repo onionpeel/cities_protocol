@@ -104,9 +104,11 @@ function Home() {
             console.log("signerAddress: ", signerAddress);
 
             let _userBalance = await _taro.balanceOf(signerAddress);
-            _userBalance = _userBalance.toString();
-            if(_userBalance) {
-              setUserBalance(_userBalance);
+            let _userBalanceReceipt = await _userBalance.wait();
+            console.log(_userBalanceReceipt.toString())
+            _userBalanceReceipt = _userBalanceReceipt.toString();
+            if(_userBalanceReceipt) {
+              setUserBalance(_userBalanceReceipt);
             };
 
             const _governorAlpha = new ethers.Contract(
