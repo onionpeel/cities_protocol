@@ -231,7 +231,7 @@ contract GovernorAlpha {
     function validate(uint _rewardedTokens) public returns(uint) {
       if(validations[msg.sender].expirationTime == 0) {
         validations[msg.sender] = Validation({
-            expirationTime: block.timestamp + 2
+            expirationTime: block.timestamp + 10
         });
         bool transferred = taro.transferFrom(address(this), msg.sender, _rewardedTokens);
         require(transferred, "Tokens not transferred to msg.sender");

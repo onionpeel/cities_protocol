@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
+import { ethers } from 'ethers';
 import Question from './Question';
 import { quizQuestions } from '../quizQuestions/quizQuestions';
 import { QuizContext } from '../contexts/QuizContext';
@@ -38,43 +39,48 @@ const Quiz = () => {
       console.log(checkedAnswers);
 
       //Delay function is only for development
-      const delay = () => new Promise(res => setTimeout(res, 2000));
+      // const delay = () => new Promise(res => setTimeout(res, 2000));
 
       if(checkedAnswers.length === 10) {
-        setLoadingModalShow(true);
+        // setLoadingModalShow(true);
         //Make network call to receive 100 tokens
-        await delay();
-        handleOnLoadingModal();
+        let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('100'));
+        let submitAnswersReceipt = await submitAnswers.wait(1);
+        console.log(submitAnswersReceipt);
+        // handleOnLoadingModal();
 
-        console.log('length: ', checkedAnswers.length);
-        setSuccessModalShow(true);
-        setCheckedAnswers([]);
+        // console.log('length: ', checkedAnswers.length);
+        // setSuccessModalShow(true);
+        // setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 8) {
-        setLoadingModalShow(true);
-        //Make network call to receive 80 tokens
-        await delay();
-        handleOnLoadingModal();
-
-        console.log('length: ', checkedAnswers.length);
-        setSuccessModalShow(true);
-        setCheckedAnswers([]);
+        let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('80'));
+        let submitAnswersReceipt = await submitAnswers.wait(1);
+        console.log(submitAnswersReceipt);
+        // setLoadingModalShow(true);
+        // //Make network call to receive 80 tokens
+        // handleOnLoadingModal();
+        //
+        // console.log('length: ', checkedAnswers.length);
+        // setSuccessModalShow(true);
+        // setCheckedAnswers([]);
       } else if(checkedAnswers.length >= 6) {
-        setLoadingModalShow(true);
-        //Make network call to receive 20 tokens
-        await delay();
-        handleOnLoadingModal();
-
-        console.log('length: ', checkedAnswers.length)
-        setSuccessModalShow(true);
-        setCheckedAnswers([]);
+        let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('20'));
+        let submitAnswersReceipt = await submitAnswers.wait(1);
+        console.log(submitAnswersReceipt);
+        // setLoadingModalShow(true);
+        // //Make network call to receive 20 tokens
+        // handleOnLoadingModal();
+        //
+        // console.log('length: ', checkedAnswers.length)
+        // setSuccessModalShow(true);
+        // setCheckedAnswers([]);
       } else {
-        setLoadingModalShow(true);
-        await delay();
-        handleOnLoadingModal();
-
-        console.log('length: ', checkedAnswers.length)
-        setFailureModalShow(true);
-        setCheckedAnswers([]);
+        // setLoadingModalShow(true);
+        // handleOnLoadingModal();
+        //
+        // console.log('length: ', checkedAnswers.length)
+        // setFailureModalShow(true);
+        // setCheckedAnswers([]);
       };
     } else {
       setAlreadSubmittedModal(true);

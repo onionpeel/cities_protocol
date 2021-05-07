@@ -14,10 +14,11 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 import LeaderBoard from './LeaderBoard';
 
-//remove for production
-import Comp from '../contracts/contracts/Comp.sol/Comp.json';
-import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
+import Taro from '../contracts/contracts/Taro.sol/Taro.json';
+import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 
+import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
+import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
 
 function Home() {
@@ -92,8 +93,8 @@ function Home() {
             setEthersSigner(signer);
 
             const _taro = new ethers.Contract(
-              '0x2B0d36FACD61B71CC05ab8F3D2355ec3631C0dd5',
-              Comp.abi,
+              taroAddress,
+              Taro.abi,
               signer
             );
             setTaro(_taro);
@@ -108,7 +109,7 @@ function Home() {
             };
 
             const _governorAlpha = new ethers.Contract(
-              '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
+              governorAlphaAddress,
               GovernorAlpha.abi,
               signer
             );
@@ -161,7 +162,7 @@ function Home() {
 
       const _taro = new ethers.Contract(
         '0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f',
-        Comp.abi,
+        Taro.abi,
         signer
       );
       setTaro(_taro);
