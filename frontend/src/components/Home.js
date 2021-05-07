@@ -94,7 +94,7 @@ function Home() {
             setEthersSigner(signer);
 
             const _taro = new ethers.Contract(
-              taroAddress,
+              taroAddress.Taro,
               Taro.abi,
               signer
             );
@@ -110,7 +110,7 @@ function Home() {
             };
 
             const _governorAlpha = new ethers.Contract(
-              governorAlphaAddress,
+              governorAlphaAddress.GovernorAlpha,
               GovernorAlpha.abi,
               signer
             );
