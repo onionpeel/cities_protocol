@@ -1,5 +1,5 @@
 
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +10,7 @@ import { TaroContext } from '../contexts/TaroContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
+import { ConnectedContext } from '../contexts/ConnectedContext';
 
 import Home from './Home';
 import About from './About';
@@ -24,14 +25,17 @@ function App() {
   let [isEnglish, setIsEnglish] = useState();
   let [governorAlpha, setGovernorAlpha] = useState();
   let [ethersSigner, setEthersSigner] = useState();
+  let [isConnected, setIsConnected] = useState();
+  let [provider, setProvider] = useState();
 
   return (
     <div>
       <LanguageContext.Provider value={{isEnglish, setIsEnglish}}>
         <GovernorAlphaContext.Provider value={{governorAlpha, setGovernorAlpha}}>
           <TaroContext.Provider value={{taro, setTaro}}>
-            <EthersContext.Provider value={{ethersSigner, setEthersSigner}}>
+            <EthersContext.Provider value={{ethersSigner, setEthersSigner, provider, setProvider}}>
               <ValidationRequiredContext.Provider value={{isValidated, setIsValidated}}>
+                <ConnectedContext.Provider value={{isConnected, setIsConnected}}>
                   <Router>
                     <Header />
 
@@ -53,6 +57,7 @@ function App() {
                       </Route>
                     </Switch>
                   </Router>
+                </ConnectedContext.Provider>
               </ValidationRequiredContext.Provider>
             </EthersContext.Provider>
           </TaroContext.Provider>

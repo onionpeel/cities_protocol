@@ -12,18 +12,18 @@ import { TaroContext } from '../contexts/TaroContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
+import { ConnectedContext } from '../contexts/ConnectedContext';
 import LeaderBoard from './LeaderBoard';
 
-//remove for production
-import Comp from '../contracts/contracts/Comp.sol/Comp.json';
-import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
+import Taro from '../contracts/contracts/Taro.sol/Taro.json';
+import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 
+import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
+import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
 
 function Home() {
-  let [provider, setProvider] = useState();
   let [ethersProvider, setEthersProvider] = useState();
-  let [isConnected, setIsConnected] = useState();
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
@@ -33,7 +33,8 @@ function Home() {
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
   let {isEnglish} = useContext(LanguageContext);
-  let {ethersSigner, setEthersSigner} = useContext(EthersContext);
+  let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
+  let {isConnected, setIsConnected} = useContext(ConnectedContext);
 
 
   useEffect(() => {
@@ -82,7 +83,7 @@ function Home() {
           //Create the Ethers.js provider and set it in state
           let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
           setEthersProvider(_ethersProvider);
-
+          console.log('_ethersProvider: ', _ethersProvider)
           // make call to contract to check if current user is validated.
           // this may need to be done inside handleOnConnect as well
           // if user is validated, then set isValidated(true)
@@ -92,8 +93,8 @@ function Home() {
             setEthersSigner(signer);
 
             const _taro = new ethers.Contract(
-              '0x2B0d36FACD61B71CC05ab8F3D2355ec3631C0dd5',
-              Comp.abi,
+              taroAddress.Taro,
+              Taro.abi,
               signer
             );
             setTaro(_taro);
@@ -102,13 +103,13 @@ function Home() {
             console.log("signerAddress: ", signerAddress);
 
             let _userBalance = await _taro.balanceOf(signerAddress);
-            _userBalance = _userBalance.toString();
+            console.log('_userBalance in useEffect: ', _userBalance.toString());
             if(_userBalance) {
-              setUserBalance(_userBalance);
+              setUserBalance(_userBalance.toString());
             };
 
             const _governorAlpha = new ethers.Contract(
-              '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
+              governorAlphaAddress.GovernorAlpha,
               GovernorAlpha.abi,
               signer
             );
@@ -161,14 +162,15 @@ function Home() {
 
       const _taro = new ethers.Contract(
         '0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f',
-        Comp.abi,
+        Taro.abi,
         signer
       );
       setTaro(_taro);
 
       let signerAddress = await signer.getAddress();
+      console.log("signerAddress in handleOnConnect: ", signerAddress);
 
-      let _userBalance = await _taro.balanceOf(signerAddress);
+      let _userBalance = await _taro.balanceOf(signerAddress.toString());
       _userBalance = _userBalance.toString();
       if(_userBalance) {
         setUserBalance(_userBalance);
