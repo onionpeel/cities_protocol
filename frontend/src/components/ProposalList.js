@@ -156,6 +156,8 @@ const ProposalList = () => {
           expiration={proposal.expiration}
           budget={proposal.budget}
           taroToVote={proposal.taroToVote}
+          forVotes={proposal.forVotes}
+          againstVotes={proposal.againstVotes}
         />
       </div>
     )

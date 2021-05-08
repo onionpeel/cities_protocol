@@ -26,7 +26,6 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
             <div>
               Person in charge: {personInCharge}
             </div>
-          <Card.Title className="text-large">Locked</Card.Title>
             <div>
               description: {description}
             </div>
@@ -45,7 +44,8 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
             <div>
               Against: {againstVotes}
             </div>
-          <Button disabled block>Claim Tokens</Button>
+            <Button disabled block>Vote for this proposal</Button>
+            <Button disabled block>Vote against this proposal</Button>
         </Card.Body>
       </Card>
 
@@ -68,8 +68,6 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
             <div>
               Person in charge: {personInCharge}
             </div>
-
-          <Card.Title className="text-large">Locked</Card.Title>
             <div>
               description: {description}
             </div>
@@ -88,7 +86,8 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
             <div>
               Against: {againstVotes}
             </div>
-          <Button disabled block>Claim Tokens</Button>
+            <Button disabled block>Vote for this proposal</Button>
+            <Button disabled block>Vote against this proposal</Button>
         </Card.Body>
       </Card>
       }
