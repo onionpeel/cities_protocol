@@ -4,7 +4,6 @@ import { LanguageContext } from '../contexts/LanguageContext';
 
 const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote}) => {
   let {isEnglish} = useContext(LanguageContext);
-  console.log(neighborhood)
   return (
     <div>
       {isEnglish

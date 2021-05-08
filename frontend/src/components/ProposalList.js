@@ -113,14 +113,23 @@ const ProposalList = () => {
                 console.log('proposal:', proposal.endBlock.toNumber());
 
                 if(proposal.endBlock.toNumber() > currentBlockNumber) {
-                  activeProposals.push({title: proposal[9][0], typeOfAction: proposal[9][1]});
+                  activeProposals.push({
+                    title: proposal[9][0],
+                    typeOfAction: proposal[9][1],
+                    neighborhood: proposal[9][2],
+                    personInCharge: proposal[9][3],
+                    description: proposal[9][4],
+                    expiration: proposal[9][5].toString(),
+                    budget: proposal[9][6].toString(),
+                    requiredTaroToVote: proposal[9][7].toString()
+                  });
                 };
               };
-              console.log(activeProposals)
+              console.log('activeProposals: ', activeProposals)
               setRetrievedProposals(activeProposals);
             };
 
-            setRetrievedProposals([]);
+
           };
         } catch (error) {
           console.error(error);
@@ -130,17 +139,22 @@ const ProposalList = () => {
     main();
   }, []);
 
-
-
-  const list = retrievedProposals.map((proposal, i) => (
-    <div key={i}>
-      <Proposal
-        title={proposal.title}
-        typeOfAction={proposal.typeOfAction}
-
-      />
-    </div>
-  ));
+  const list = retrievedProposals.map((proposal, i) => {
+    return (
+      <div key={i}>
+        <Proposal
+          title={proposal.title}
+          typeOfAction={proposal.typeOfAction}
+          neighborhood={proposal.neighborhood}
+          personInCharge={proposal.personInCharge}
+          description={proposal.description}
+          expiration={proposal.expiration}
+          budget={proposal.budget}
+          taroToVote={proposal.taroToVote}
+        />
+      </div>
+    )
+  });
 
   return (
     <div>
@@ -155,24 +169,12 @@ const ProposalList = () => {
         </div>
 
         <div>
-          {retrievedProposals !== null
+          {list.length > 0
 
           ?
 
           <div>
-            {retrievedProposals.map((proposal, i) => (
-              <div key={i}>
-                <Proposal
-                  title={proposal[9][0]}
-                  typeOfAction={proposal[9][1]}
-                  neighborhood={proposal[9][2]}
-                  personInCharge={proposal[9][3]}
-                  description={proposal[9][4]}
-                  expiration={proposal[9][5].toString()}
-                  budget={proposal[9][6].toString()}
-                  taroToVote={proposal[9][1].toString()}
-                />
-            </div>))}
+            {list}
           </div>
 
           :
@@ -182,7 +184,7 @@ const ProposalList = () => {
               <Link to="/">Please return to the home page</Link>
             </div>
             <div>
-              *****There is a glitch right now.  If there are zero proposals or if someone refreshes this page, it will not show any proposals.  They can only see proposals if they come from the home page.  That is why this link is here--it is displayed to keep the whole page from breaking
+              There are no proposals right now.
             </div>
           </div>
           }
@@ -209,14 +211,13 @@ const ProposalList = () => {
         </div>
 
         <div>
-          {list
+          {list.length > 0
 
           ?
 
           <div>
             {list}
           </div>
-
 
           :
 
@@ -225,7 +226,7 @@ const ProposalList = () => {
               <Link to="/">Please return to the home page</Link>
             </div>
             <div>
-              *****There is a glitch right now.  If there are zero proposals or if someone refreshes this page, it will not show any proposals.  They can only see proposals if they come from the home page.  That is why this link is here--it is displayed to keep the whole page from breaking
+              There are no proposals right now.
             </div>
           </div>
           }
