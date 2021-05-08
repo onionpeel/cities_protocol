@@ -52,7 +52,7 @@ export const spanishQuiz = [
   },
   {
     number: 6,
-    question: 'The Peña of Bernal is located in:',
+    question: 'La Peña de Bernal se ubica en el municipio de',
     answers: [
       'Tequisquiapan',
       'Ezequiel Montes',
@@ -62,7 +62,7 @@ export const spanishQuiz = [
   },
   {
     number: 7,
-    question: 'Mark the underground Queretaro movement from 1800’s that detonated the independence of Mexico:',
+    question: 'Movimiento clandestino formado en la ciudad de Querétaro que detonó la Independencia de México',
     answers: [
       'Queretaro´s revolution',
       'Queretaro’s decentralization',
