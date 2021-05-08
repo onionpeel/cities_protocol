@@ -26,13 +26,14 @@ function App() {
   let [governorAlpha, setGovernorAlpha] = useState();
   let [ethersSigner, setEthersSigner] = useState();
   let [isConnected, setIsConnected] = useState();
+  let [provider, setProvider] = useState();
 
   return (
     <div>
       <LanguageContext.Provider value={{isEnglish, setIsEnglish}}>
         <GovernorAlphaContext.Provider value={{governorAlpha, setGovernorAlpha}}>
           <TaroContext.Provider value={{taro, setTaro}}>
-            <EthersContext.Provider value={{ethersSigner, setEthersSigner}}>
+            <EthersContext.Provider value={{ethersSigner, setEthersSigner, provider, setProvider}}>
               <ValidationRequiredContext.Provider value={{isValidated, setIsValidated}}>
                 <ConnectedContext.Provider value={{isConnected, setIsConnected}}>
                   <Router>

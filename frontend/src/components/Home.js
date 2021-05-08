@@ -23,7 +23,6 @@ import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-
 
 
 function Home() {
-  let [provider, setProvider] = useState();
   let [ethersProvider, setEthersProvider] = useState();
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
@@ -34,7 +33,7 @@ function Home() {
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
   let {isEnglish} = useContext(LanguageContext);
-  let {ethersSigner, setEthersSigner} = useContext(EthersContext);
+  let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
 
 
@@ -84,7 +83,7 @@ function Home() {
           //Create the Ethers.js provider and set it in state
           let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
           setEthersProvider(_ethersProvider);
-
+          console.log('_ethersProvider: ', _ethersProvider)
           // make call to contract to check if current user is validated.
           // this may need to be done inside handleOnConnect as well
           // if user is validated, then set isValidated(true)
