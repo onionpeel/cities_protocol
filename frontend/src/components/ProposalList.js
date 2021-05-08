@@ -109,8 +109,11 @@ const ProposalList = () => {
               for(let i = 1; i <= proposalCount; i++) {
                 proposal = await _governorAlpha.proposals(ethers.BigNumber.from(i));
                 currentBlockNumber = await _ethersProvider.getBlockNumber();
-                console.log('block number: ', currentBlockNumber)
-                console.log('proposal:', proposal.endBlock.toNumber());
+                // console.log('block number: ', currentBlockNumber)
+                // console.log('proposal:', proposal.endBlock.toNumber());
+                console.log('forVotes: ', proposal.forVotes.toString());
+                console.log('againstVotes: ', proposal.againstVotes.toString());
+                console.log('proposal: ', proposal);
 
                 if(proposal.endBlock.toNumber() > currentBlockNumber) {
                   activeProposals.push({
@@ -121,11 +124,13 @@ const ProposalList = () => {
                     description: proposal[9][4],
                     expiration: proposal[9][5].toString(),
                     budget: proposal[9][6].toString(),
-                    requiredTaroToVote: proposal[9][7].toString()
+                    requiredTaroToVote: proposal[9][7].toString(),
+                    forVotes: proposal.forVotes.toString(),
+                    againstVotes: proposal.againstVotes.toString()
                   });
                 };
               };
-              console.log('activeProposals: ', activeProposals)
+              // console.log('activeProposals: ', activeProposals)
               setRetrievedProposals(activeProposals);
             };
 

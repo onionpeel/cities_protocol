@@ -2,8 +2,10 @@ import { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { LanguageContext } from '../contexts/LanguageContext';
 
-const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote}) => {
+const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes}) => {
   let {isEnglish} = useContext(LanguageContext);
+  console.log('forVotes in Proposal: ', forVotes)
+
   return (
     <div>
       {isEnglish
@@ -12,19 +14,37 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
       <Card className="gray mb-4">
         <Card.Body>
-          <Card.Text>
-            {title}
-            {typeOfAction}
-            Where: {neighborhood}
-            Person in charge: {personInCharge}
-          </Card.Text>
+            <div>
+              title: {title}
+            </div>
+            <div>
+              type of action: {typeOfAction}
+            </div>
+            <div>
+              Where: {neighborhood}
+            </div>
+            <div>
+              Person in charge: {personInCharge}
+            </div>
           <Card.Title className="text-large">Locked</Card.Title>
-          <Card.Text>
-            {description}
-            expiration: {expiration}
-            cost: {budget}
-            Required TARO to vote: {requiredTaroToVote}
-          </Card.Text>
+            <div>
+              description: {description}
+            </div>
+            <div>
+              expiration: {expiration}
+            </div>
+            <div>
+              cost: {budget}
+            </div>
+            <div>
+              Required TARO to vote: {requiredTaroToVote}
+            </div>
+            <div>
+              For: {forVotes}
+            </div>
+            <div>
+              Against: {againstVotes}
+            </div>
           <Button disabled block>Claim Tokens</Button>
         </Card.Body>
       </Card>
@@ -33,21 +53,41 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
       <Card className="gray mb-4">
         <Card.Body>
-          <Card.Text>
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
+            <div>
+              ESP ESP ESP ESP
+            </div>
+            <div>
+              title: {title}
+            </div>
+            <div>
+              type of action: {typeOfAction}
+            </div>
+            <div>
+              Where: {neighborhood}
+            </div>
+            <div>
+              Person in charge: {personInCharge}
+            </div>
 
-            {title}
-            {typeOfAction}
-            Where: {neighborhood}
-            Person in charge: {personInCharge}
-          </Card.Text>
           <Card.Title className="text-large">Locked</Card.Title>
-          <Card.Text>
-            {description}
-            expiration: {expiration}
-            cost: {budget}
-            Required TARO to vote: {requiredTaroToVote}
-          </Card.Text>
+            <div>
+              description: {description}
+            </div>
+            <div>
+              expiration: {expiration}
+            </div>
+            <div>
+              cost: {budget}
+            </div>
+            <div>
+              Required TARO to vote: {requiredTaroToVote}
+            </div>
+            <div>
+              For: {forVotes}
+            </div>
+            <div>
+              Against: {againstVotes}
+            </div>
           <Button disabled block>Claim Tokens</Button>
         </Card.Body>
       </Card>
