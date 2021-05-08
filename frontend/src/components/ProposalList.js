@@ -18,28 +18,28 @@ const ProposalList = () => {
 
   useEffect(() => {
     const main = async () => {
-      console.log('governorAlpha: ', governorAlpha)
-      // const getActiveProposals = async () => {
-      //   let proposalCount = await governorAlpha.proposalCount();
-      //   proposalCount = proposalCount.toString();
-      //
-      //   let activeProposals = [];
-      //   let proposal, currentBlockNumber;
-      //   for(let i = 1; i <= proposalCount; i++) {
-      //     proposal = await governorAlpha.proposals(ethers.BigNumber.from(i));
-      //     currentBlockNumber = await ethers.provider.getBlockNumber();
-      //     console.log('block number: ', currentBlockNumber)
-      //     console.log('proposal:', proposal.endBlock.toNumber());
-      //
-      //     if(proposal.endBlock.toNumber() > currentBlockNumber) {
-      //       activeProposals.push(proposal);
-      //     };
-      //   };
-      //   return activeProposals;
-      // };
-      //
-      // let currentlyActiveProposals = await getActiveProposals();
-      // console.log(currentlyActiveProposals);
+
+      const getActiveProposals = async () => {
+        let proposalCount = await governorAlpha.proposalCount();
+        proposalCount = proposalCount.toString();
+
+        let activeProposals = [];
+        let proposal, currentBlockNumber;
+        for(let i = 1; i <= proposalCount; i++) {
+          proposal = await governorAlpha.proposals(ethers.BigNumber.from(i));
+          currentBlockNumber = await ethers.provider.getBlockNumber();
+          console.log('block number: ', currentBlockNumber)
+          console.log('proposal:', proposal.endBlock.toNumber());
+
+          if(proposal.endBlock.toNumber() > currentBlockNumber) {
+            activeProposals.push(proposal);
+          };
+        };
+        return activeProposals;
+      };
+
+      let currentlyActiveProposals = await getActiveProposals();
+      console.log(currentlyActiveProposals);
 
     };
     main();
