@@ -4,7 +4,7 @@ import { LanguageContext } from '../contexts/LanguageContext';
 
 const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote}) => {
   let {isEnglish} = useContext(LanguageContext);
-
+  console.log(neighborhood)
   return (
     <div>
       {isEnglish
@@ -29,7 +29,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
           <Button disabled block>Claim Tokens</Button>
         </Card.Body>
       </Card>
-      
+
       :
 
       <Card className="gray mb-4">
@@ -54,8 +54,6 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       </Card>
       }
     </div>
-
-
   );
 };
 
