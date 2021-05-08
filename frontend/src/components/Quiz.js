@@ -29,7 +29,8 @@ const Quiz = () => {
 
   const handleOnSubmitAnswers = async e => {
     e.preventDefault();
-    let quizQuestions
+    let quizQuestions;
+    let _checkedAnswers = [];
     if(isEnglish) {
       quizQuestions = englishQuiz;
     } else {
@@ -37,21 +38,20 @@ const Quiz = () => {
     };
     if(!hasSubmitted) {
       setHasSubmitted(true);
-      console.log(userAnswers);
-      console.log(quizQuestions);
+      console.log("userAnswers: ", userAnswers);
+      console.log('quizQuestions: ', quizQuestions);
       for (let i = 0; i < quizQuestions.length; i++) {
         for (let j = 0; j < userAnswers.length; j++) {
           if (quizQuestions[i].correctAnswer.toString().toLowerCase().trim() === userAnswers[j].toString().toLowerCase().trim()) {
-            setCheckedAnswers(checkedAnswers.push(quizQuestions[i].correctAnswer));
+            setCheckedAnswers(_checkedAnswers.push(quizQuestions[i].correctAnswer));
           };
         };
       };
-      console.log(checkedAnswers);
-
+      console.log('_checkedAnswers: ', _checkedAnswers);
       //Delay function is only for development
       // const delay = () => new Promise(res => setTimeout(res, 2000));
 
-      if(checkedAnswers.length === 10) {
+      if(_checkedAnswers.length === 10) {
         // setLoadingModalShow(true);
         //Make network call to receive 100 tokens
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('100'));
@@ -62,7 +62,7 @@ const Quiz = () => {
         // console.log('length: ', checkedAnswers.length);
         // setSuccessModalShow(true);
         // setCheckedAnswers([]);
-      } else if(checkedAnswers.length >= 8) {
+      } else if(_checkedAnswers.length >= 8) {
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('80'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log(submitAnswersReceipt);
@@ -73,7 +73,7 @@ const Quiz = () => {
         // console.log('length: ', checkedAnswers.length);
         // setSuccessModalShow(true);
         // setCheckedAnswers([]);
-      } else if(checkedAnswers.length >= 6) {
+      } else if(_checkedAnswers.length >= 6) {
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('20'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log(submitAnswersReceipt);
@@ -88,7 +88,7 @@ const Quiz = () => {
         // setLoadingModalShow(true);
         // handleOnLoadingModal();
         //
-        // console.log('length: ', checkedAnswers.length)
+        console.log('length: ', _checkedAnswers.length)
         // setFailureModalShow(true);
         // setCheckedAnswers([]);
       };

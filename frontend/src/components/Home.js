@@ -104,11 +104,9 @@ function Home() {
             console.log("signerAddress: ", signerAddress);
 
             let _userBalance = await _taro.balanceOf(signerAddress);
-            let _userBalanceReceipt = await _userBalance.wait();
-            console.log(_userBalanceReceipt.toString())
-            _userBalanceReceipt = _userBalanceReceipt.toString();
-            if(_userBalanceReceipt) {
-              setUserBalance(_userBalanceReceipt);
+            console.log('_userBalance in useEffect: ', _userBalance.toString());
+            if(_userBalance) {
+              setUserBalance(_userBalance.toString());
             };
 
             const _governorAlpha = new ethers.Contract(
@@ -171,8 +169,9 @@ function Home() {
       setTaro(_taro);
 
       let signerAddress = await signer.getAddress();
+      console.log("signerAddress in handleOnConnect: ", signerAddress);
 
-      let _userBalance = await _taro.balanceOf(signerAddress);
+      let _userBalance = await _taro.balanceOf(signerAddress.toString());
       _userBalance = _userBalance.toString();
       if(_userBalance) {
         setUserBalance(_userBalance);
