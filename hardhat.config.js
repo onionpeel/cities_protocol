@@ -26,7 +26,8 @@ module.exports = {
       url: "http://localhost:8545",
     },
     mySkaleChain: {
-      url: "http://eth-global-10.skalenodes.com:10323"
+      url: "http://eth-global-10.skalenodes.com:10323",
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/faefe1dcd6094fb388019173d2328d8f",
