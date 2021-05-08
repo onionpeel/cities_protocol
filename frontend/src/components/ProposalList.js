@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import {Link} from "react-router-dom";
 import {ListGroup} from 'react-bootstrap';
 import { ethers } from 'ethers';
-import detectEthereumProvider from '@metamask/detect-provider'
+import detectEthereumProvider from '@metamask/detect-provider';
 import Proposal from './Proposal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
@@ -10,10 +10,10 @@ import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import ValidationRequired from '../alerts/ValidationRequired';
 import { EthersContext } from '../contexts/EthersContext';
 
-import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json'
+import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
+// import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
 
 const ProposalList = () => {
   let [retrievedProposals, setRetrievedProposals] = useState([]);
@@ -111,9 +111,9 @@ const ProposalList = () => {
                 currentBlockNumber = await _ethersProvider.getBlockNumber();
                 // console.log('block number: ', currentBlockNumber)
                 // console.log('proposal:', proposal.endBlock.toNumber());
-                console.log('forVotes: ', proposal.forVotes.toString());
-                console.log('againstVotes: ', proposal.againstVotes.toString());
-                console.log('proposal: ', proposal);
+                // console.log('forVotes: ', proposal.forVotes.toString());
+                // console.log('againstVotes: ', proposal.againstVotes.toString());
+                // console.log('proposal: ', proposal);
 
                 if(proposal.endBlock.toNumber() > currentBlockNumber) {
                   activeProposals.push({
@@ -126,7 +126,8 @@ const ProposalList = () => {
                     budget: proposal[9][6].toString(),
                     requiredTaroToVote: proposal[9][7].toString(),
                     forVotes: proposal.forVotes.toString(),
-                    againstVotes: proposal.againstVotes.toString()
+                    againstVotes: proposal.againstVotes.toString(),
+                    id: proposal.id.toString()
                   });
                 };
               };
@@ -158,6 +159,7 @@ const ProposalList = () => {
           taroToVote={proposal.taroToVote}
           forVotes={proposal.forVotes}
           againstVotes={proposal.againstVotes}
+          id={proposal.id}
         />
       </div>
     )
