@@ -13,6 +13,8 @@ import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { ConnectedContext } from '../contexts/ConnectedContext';
+import { EthersContext } from '../contexts/EthersContext';
+import { TaroContext } from '../contexts/TaroContext';
 
 const Quiz = () => {
   let [userAnswers, setUserAnswers] = useState([]);
@@ -25,7 +27,9 @@ const Quiz = () => {
 
   let {isEnglish} = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
+  let {taro} = useContext(TaroContext);
   let {isConnected} = useContext(ConnectedContext);
+  let {ethersSigner} = useContext(EthersContext);
 
   const handleOnSubmitAnswers = async e => {
     e.preventDefault();
@@ -43,7 +47,7 @@ const Quiz = () => {
       for (let i = 0; i < quizQuestions.length; i++) {
         for (let j = 0; j < userAnswers.length; j++) {
           if (quizQuestions[i].correctAnswer.toString().toLowerCase().trim() === userAnswers[j].toString().toLowerCase().trim()) {
-            setCheckedAnswers(_checkedAnswers.push(quizQuestions[i].correctAnswer));
+            _checkedAnswers.push(quizQuestions[i].correctAnswer);
           };
         };
       };
@@ -58,6 +62,13 @@ const Quiz = () => {
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log('submitAnswersReceipt: ', submitAnswersReceipt);
         // handleOnLoadingModal();
+
+        let signerAddress = await ethersSigner.getAddress();
+        console.log("signerAddress in Quiz: ", signerAddress);
+
+        let _userBalance = await taro.balanceOf(signerAddress);
+        console.log('_userBalance in Quiz: ', _userBalance.toString());
+
 
         // console.log('length: ', checkedAnswers.length);
         // setSuccessModalShow(true);
