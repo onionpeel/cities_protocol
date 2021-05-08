@@ -1,25 +1,30 @@
 import { useState, useContext } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { ethers } from 'ethers';
 import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
+import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 
 const CreateProposal = () => {
   let [form, setForm] = useState();
   let [loadingModalShow, setLoadingModalShow] = useState();
 
   let {isEnglish} = useContext(LanguageContext);
-
+  let {governorAlpha} = useContext(GovernorAlphaContext);
 
   //Delay function is only for development
-  const delay = () => new Promise(res => setTimeout(res, 2000));
+  // const delay = () => new Promise(res => setTimeout(res, 2000));
 
   const handleOnSubmit = async e => {
     e.preventDefault();
-    setLoadingModalShow(true);
-    // await delay();
+    // setLoadingModalShow(true);
     console.log('form: ', form);
 
-    handleOnLoadingModal();
+    let tx = await governorAlpha.propose(form);
+    let txReceipt = await tx.wait(1);
+    console.log('form tx: ', txReceipt);
+
+    // handleOnLoadingModal();
   };
 
   const setField = (field, value) => {
@@ -30,35 +35,35 @@ const CreateProposal = () => {
   };
 
   const handleOnChangeTitle = e => {
-    setField('title', e.target.value);
+    setField('title', (e.target.value).toString());
   };
 
   const handleOnChangeTypeOfAction = e => {
-    setField('typeOfAction', e.target.value);
+    setField('typeOfAction', (e.target.value).toString());
   };
 
   const handleOnChangeNeighborhood = e => {
-    setField('neighborhood', e.target.value);
+    setField('neighborhood', (e.target.value).toString());
   };
 
   const handleOnChangePersonInCharge = e => {
-    setField('personInCharge', e.target.value);
+    setField('personInCharge', (e.target.value).toString());
   };
 
   const handleOnChangeDescription = e => {
-    setField('description', e.target.value);
+    setField('description', (e.target.value).toString());
   };
 
   const handleOnChangeExpiration = e => {
-    setField('expiration', e.target.value);
+    setField('expiration', ethers.BigNumber.from(e.target.value));
   };
 
   const handleOnChangeBudget = e => {
-    setField('budget', e.target.value);
+    setField('budget', ethers.BigNumber.from(e.target.value));
   };
 
   const handleOnChangeRequiredTaroToVote = e => {
-    setField('requiredTaroToVote', e.target.value);
+    setField('requiredTaroToVote', ethers.BigNumber.from(e.target.value));
   };
 
   const handleOnLoadingModal = () => {
