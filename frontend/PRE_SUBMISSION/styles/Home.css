@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+
+.App {
+  background-color: #ffffff;
+  font-family: 'Lexend Deca', sans-serif;
+  text-align: center;
+  color: #FF9400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a:link {color: #FFff!important;}
+a:active{color: #FAC91A!important;}
+a:visited {color: #FFff!important;}
+a:hover {color: #FF9400!important;}
+
+a.alt:link {color: #FFff!important;}
+a.alt:active{color: #FAC91A!important;}
+a.alt:visited {color: #FFff!important;}
+a.alt:hover {color: #3d386b!important;}
+
+.alt {
+  border-radius: 25px !important;
+  margin-bottom: 3%;
+  border: none !important;
+  justify-content: left !important;
+  background-color: #FF9400 !important;
+  color: #ffffff !important;
+}
+
+.submitbutton {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.TARO-button {
+  border-radius: 25px !important;
+  background-color: #3d386b;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+Nav {
+  background-color: #3d386b !important;
+  position: sticky !important;
+  font-family: 'Lexend Deca', sans-serif;
+  color: #FF9400;
+}
+
+.basic-nav-dropdown {
+  color: #FF9400 !important;
+}
+
+.main  {
+  text-align: justify;
+  text-justify: inter-word;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.main2 {
+  font-size: 18px !important;
+  text-align: left !important;
+}
+
+.Wallet {
+  border-radius: 25px !important;
+  margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+Button {
+  border-radius: 25px !important;
+  background-color: #FF9400 !important;
+  border: none !important;
+  color: #3d386b ;
+}
+
+button:disabled {
+  background-color: #5f5f5f !important;
+  color: #cac9c9 !important;
+}
+
+.text-medium-left {
+  font-size: 1rem !important;
+  text-align: center !important;
+  display: inline-block !important;
+  justify-content: center !important;
+  align-content: center !important;
+  position: relative !important;
+  margin-bottom: 5%;
+}
+
+.text-large {
+  font-size: 2rem !important;
+  margin-top: 5% !important;
+  margin-bottom: 5%;
+}
+
+.text-large-left {
+  font-size: 2rem !important;
+  text-align: left !important;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  padding: 15px;
+}
+
+.gray {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#eee, #ccc);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.orange-unlock {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#FF9400, #ffc16b);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.yellow-unlock {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#FAC91A, #fde17c);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.gray2 {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 720px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#3d386b, #3d386b);
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #ffffff !important;
+  text-align: left !important;
+}
+
+.gray3 {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-image: linear-gradient(#eee, #ccc);
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.leaderboard {
+border-radius: 25px;
+width:100%;
+max-width: 720px;
+margin: 3% auto;
+display: flex !important;
+justify-content: center !important;
+align-content: center !important;
+align-items: center !important;
+}
+
+.list-group-item {
+  color: white;
+  background-image: linear-gradient(#3d386b, #242044)!important;
+  width:100%;
+  max-width: 450px;
+  margin: 0% auto;
+}
+
+.title {
+  color: #3d386b;
+  font-size: 2rem !important;
+  background-image: linear-gradient(#FF9400, #FAC91A)!important;
+}
+
+.title2 {
+  color: #3d386b;
+  background-image: linear-gradient(#FAC91a, #FF9400)!important;
+}
+
+.space {
+  margin-top: 3%;
+}
+
+.item {
+  display: flex;
+  overflow: auto;
+  width:100%;
+}
+
+.item2 {
+  display: flex;
+  overflow: auto;
+  margin-top: 5% auto;
+  width:100%;
+  min-height: 150px;
+}
+
+.orange {
+  margin-top: 1% !important;
+  font-size: 2rem !important;
+  color: #FF9400;
+}
+
+.orange2 {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  font-size: 18px !important;
+  color: #FF9400 !important;
+}
+
+.purple-unlock {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  font-size: 18px !important;
+  color: #3d386b !important;
+}
+
+.big-icon {
+  font-size: 75px !important;
+  color: #3d386b;
+}
+
+.purple {
+  text-align: left !important;
+  margin-top: 3%;
+  font-size: 2rem !important;
+  color: #3d386b;
+}
+
+
+.purple2 {
+  margin-top: 1%;
+  color: #3d386b;
+}
+
+.purple3 {
+  text-align: left !important;
+  margin-top: 1%;
+  color: #3d386b;
+}
+
+.white {
+  color: #ffffff !important;
+  text-align: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
+
+.lan {
+  background-color: #3d386b !important;
+  border: none !important;
+}
+
+
+/* Proposal
+
+ <Card.Body>
+            <div className="proposal-table">
+              <div className="proposal-main">
+                <div className="proposal-title"> Clases de baile en el parque {}</div>
+                <div className="proposal-action">type of action: {}</div>
+              </div>
+            </div>
+
+*/
+
+.proposal-table {
+  width: 100%;
+  display: table !important;
+
+}
+
+.proposal-main {
+  display: table-row !important;
+}
+
+
+.proposal-title {
+  width: 75%;
+  display: table-cell;
+  text-align: left !important;
+  font-size: 20px !important;
+  color: #FF9400 !important;
+}
+
+.proposal-action {
+  display: table-cell;
+  text-align: right !important;
+  font-size: 15px !important;
+  color: #FF9400 !important;
+}

@@ -7,9 +7,7 @@ const IsLoadingModal = (props) => {
 
   return (
     <div>
-      {isEnglish
-
-      ?
+      {isEnglish?
 
       <Modal
         {...props}
@@ -39,14 +37,13 @@ const IsLoadingModal = (props) => {
       >
         <Modal.Body>
         <div>
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
         </div>
           <div>
-            Loading
+            Cargando
           </div>
           <div>
             <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
+              <span className="sr-only">Cargando...</span>
             </Spinner>
           </div>
         </Modal.Body>

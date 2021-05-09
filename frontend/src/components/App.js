@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,7 +27,8 @@ function App() {
   let [isConnected, setIsConnected] = useState();
   let [provider, setProvider] = useState();
 
-  return (
+
+    return (
     <div>
       <LanguageContext.Provider value={{isEnglish, setIsEnglish}}>
         <GovernorAlphaContext.Provider value={{governorAlpha, setGovernorAlpha}}>
@@ -38,23 +38,12 @@ function App() {
                 <ConnectedContext.Provider value={{isConnected, setIsConnected}}>
                   <Router>
                     <Header />
-
                     <Switch>
-                      <Route path="/about">
-                        <About />
-                      </Route>
-                      <Route path="/proposallist">
-                        <ProposalList />
-                      </Route>
-                      <Route path="/createproposal">
-                        <CreateProposal />
-                      </Route>
-                      <Route path="/quiz">
-                        <Quiz />
-                      </Route>
-                      <Route path="/">
-                        <Home />
-                      </Route>
+                      <Route path="/about"><About /></Route>
+                      <Route path="/proposallist"><ProposalList /></Route>
+                      <Route path="/createproposal"><CreateProposal /></Route>
+                      <Route path="/quiz"><Quiz /></Route>
+                      <Route path="/"><Home /></Route>
                     </Switch>
                   </Router>
                 </ConnectedContext.Provider>

@@ -178,104 +178,86 @@ const ProposalList = () => {
   };
 
   return (
-    <div>
+<div>
       {isEnglish
-
       ?
 
       <div>
-        {isValidated ? "" : <ValidationRequired />}
-        <div>
-          You click 'delegate' in order to vote on any proposals.  Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.
-        </div>
-        <div>
-          <Button block onClick={handleOnClickDelegate}>Delegate so you can vote</Button>
-        </div>
-        <div>
-          <Link to="/createproposal">Create a proposal</Link>
-        </div>
-
-        <div>
-          {list.length > 0
-
-          ?
-
-          <div>
-            {list}
+        <div className= "app">
+          <div className= "gray">
+            {isValidated ? "" : <ValidationRequired />}
           </div>
-
-          :
-
-          <div>
-            <div>
-              <Link to="/">Please return to the home page</Link>
-            </div>
-            <div>
-              There are no proposals right now.
-            </div>
-          </div>
+            <div className= "yellowB">
+              <div className="main">Delegate TARO to vote. Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.</div>
+               <div className ="floating">
+                <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
+              </div>
+              <div className="floating">
+                <Link className="alt" to="/createproposal">Create a proposal</Link>
+              </div>
+              </div >
+              <div>
+                {list.length > 0
+                ?
+                <div className = "app">
+                  {list}
+                </div>
+                :
+                <div>
+                  <div className ="floating">
+                   <div className="purple">There are no proposals right now.</div>
+                  </div>
+                  <div className ="floating">
+                    <Button className="alt2" to="/">Return to home</Button>
+                  </div>
+                </div>
           }
         </div>
 
-        <ListGroup>
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-          <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+      </div>
+
       </div>
 
       :
 
       <div>
-        <div>
-          ESP ESP ESP ESP
-        </div>
-        {isValidated ? "" : <ValidationRequired />}
-        <div>
-          You click 'delegate' in order to vote on any proposals.  Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.
-        </div>
-        <div>
-          <Button block onClick={handleOnClickDelegate}>Delegate so you can vote</Button>
-        </div>
-        <div>
-          <Link to="/createproposal">Create a proposal</Link>
-        </div>
-
-        <div>
-          {list.length > 0
-
-          ?
-
-          <div>
-            {list}
+        <div className= "app">
+          <div className= "gray">
+            {isValidated ? "" : <ValidationRequired />}
           </div>
-
-          :
-
-          <div>
-            <div>
-              <Link to="/">Please return to the home page</Link>
-            </div>
-            <div>
-              There are no proposals right now.
-            </div>
-          </div>
+            <div className= "yellowB">
+              <div className="main">Delega TARO para votar. Solo podras votar por las propuestas disponibles después de delegar TARO tokens.</div>
+               <div className ="floating">
+                <Button className="alt2" onClick={handleOnClickDelegate}>Delega TARO</Button>
+              </div>
+              <div className="floating">
+                <Link className="alt" to="/createproposal">Crea una propuesta</Link>
+              </div>
+              </div >
+              <div>
+                {list.length > 0
+                ?
+                <div className = "app">
+                  {list}
+                </div>
+                :
+                <div>
+                  <div className ="floating">
+                   <div className="purple">No hay propuestas aún.</div>
+                  </div>
+                  <div className ="floating">
+                    <Link className="alt2" to="/">Regresar al inicio</Link>
+                  </div>
+                </div>
           }
         </div>
 
-        <ListGroup>
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-          <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+      </div>
+
       </div>
     }
     </div>
   );
 };
 
-export default ProposalList;
+ export default ProposalList;

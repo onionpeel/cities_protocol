@@ -108,6 +108,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
   }, []);
 
 
+
   const handleOnClickFor = async () => {
     // console.log('signer address in handle for: ', signerAddress);
 
@@ -121,6 +122,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
     let voteTxReceipt = await voteTx.wait(1);
     console.log(voteTxReceipt);
   };
+
 
   return (
     <div>
@@ -169,9 +171,6 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
       <Card className="gray mb-4">
         <Card.Body>
-            <div>
-              ESP ESP ESP ESP
-            </div>
             <div>
               title: {title}
             </div>

@@ -8,9 +8,7 @@ const QuizAlreadySubmittedModal = (props) => {
 
   return (
     <div>
-    {isEnglish
-
-      ?
+    {isEnglish?
 
       <Modal
         {...props}
@@ -25,13 +23,11 @@ const QuizAlreadySubmittedModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Learn more about <Link to="/home">TARO</Link> tokens
+            Learn more about <Link to="/about">TARO</Link> tokens
           </p>
         </Modal.Body>
       </Modal>
-
       :
-
       <Modal
         {...props}
         size="lg"
@@ -40,14 +36,12 @@ const QuizAlreadySubmittedModal = (props) => {
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
-
-            You have already submitted your quiz
+          Ya has enviado tus respuestas 
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            Learn more about <Link to="/home">TARO</Link> tokens
+            Conoce más sobre <Link to="/about">TARO</Link> 
           </p>
         </Modal.Body>
       </Modal>

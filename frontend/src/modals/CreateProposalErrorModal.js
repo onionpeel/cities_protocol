@@ -23,6 +23,9 @@ const CreateProposalErrorModal = (props) => {
             Your form was not submitted.  Please be sure you are connected to MetaMask and that you entered your information correctly.
           </div>
           <div>
+            Also, make sure you have passed the quiz so that you are validated to make proposals.
+          </div>
+          <div>
             <Link to="/">VoTaro</Link>
           </div>
         </Modal.Body>
@@ -38,10 +41,10 @@ const CreateProposalErrorModal = (props) => {
       >
         <Modal.Body>
           <div>
-            ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
+            Your form was not submitted.  Please be sure you are connected to MetaMask and that you entered your information correctly.
           </div>
           <div>
-            Your form was not submitted.  Please be sure you are connected to MetaMask and that you entered your information correctly.
+            Also, make sure you have passed the quiz so that you are validated to make proposals.
           </div>
           <div>
             <Link to="/">VoTaro</Link>

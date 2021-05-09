@@ -8,9 +8,7 @@ const QuizSuccessModal = (props) => {
 
   return (
     <div>
-      {isEnglish
-
-      ?
+      {isEnglish?
 
       <Modal
         {...props}
@@ -28,13 +26,11 @@ const QuizSuccessModal = (props) => {
             You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.
           </p>
           <p>
-            Click <Link to="/home">TARO</Link> to start earning more!
+            Create your <Link className="alt" to="/CreateProposal">first proposal</Link> to start earning more TARO tokens!
           </p>
         </Modal.Body>
       </Modal>
-
       :
-
       <Modal
         {...props}
         size="lg"
@@ -43,17 +39,15 @@ const QuizSuccessModal = (props) => {
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
-
-            Congratulations!  You passed the quiz!
+          !Felicidades! pasaste el cuestionario!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.
+            Has ganado tokens TARO y ahora puedes participar en la gobernanza de la ciudad al crear o votar propuestas.
           </p>
           <p>
-            Click <Link to="/home">TARO</Link> to start earning more!
+            Crea tu <Link className="alt" to="/CreateProposal">primer propuesta</Link> para ganar más TARO
           </p>
         </Modal.Body>
       </Modal>

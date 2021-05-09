@@ -1,6 +1,6 @@
 To deploy using surge:
 npm install --global surge
-
+  
 In the root of the React project directory:
 1. npm run build
 2. cd build
@@ -18,4 +18,4 @@ This can happen when a local network gets reset and the nonce in MM no longer ma
 2. Shut down the front end server
 3. Keep the hardhat node running, but in a different terminal, go to the same directory and type:
 npx hardhat clean
-4. Start front end server 
+4. Start front end server

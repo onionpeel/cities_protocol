@@ -226,100 +226,117 @@ function Home() {
 
   return (
     <div>
-      {isEnglish
-
-        ?
-
+      {isEnglish ?
         <div className="App">
-
-          {!isMetamastInstalled
-            ?
-              <InstallMetamaskAlert />
-            :
-              isConnected
-              ? ''
-              : isConnecting
-                ? <ConnectingButton />
-                : <ConnectButton handleOnConnect={handleOnConnect}/>
-          }
-
-          {isConnected
-            ?
-            <Card className="gray mb-4">
-              <Card.Body>
-                <div>
-                  Your currently have {userBalance} TARO tokens
-                </div>
-              </Card.Body>
-            </Card>
-            :
-            <Card className="gray mb-4">
-              <Card.Body>
-                <div>
-                  Get connected so you can see your TARO balance
-                </div>
-              </Card.Body>
-            </Card>
-          }
-
-          <Card className="gray mb-4">
-            <Card.Body>
-              <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
-              <div>
-                <Link to="/proposallist">See proposals</Link>
-              </div>
-            </Card.Body>
-          </Card>
-
-          <LeaderBoard />
-        </div>
-
-        :
-
-        <div className="App">
-          <div>
-            ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP This is App.js
+          <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
+          <div className="Wallet">
+            {!isMetamastInstalled ?
+            <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
+            <ConnectingButton />
+            :<ConnectButton handleOnConnect={handleOnConnect}/>
+            }
           </div>
-          {!isMetamastInstalled
-            ?
-              <InstallMetamaskAlert />
-            :
-              isConnected
-              ? ''
-              : isConnecting
-                ? <ConnectingButton />
-                : <ConnectButton handleOnConnect={handleOnConnect}/>
-          }
-
-          {isConnected
-            ?
-            <Card className="gray mb-4">
+          <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
+          {isConnected ?
+          <div>
+          <Card className="orange-unlock">
+            <Card.Title className="purple-unlock">TARO balance</Card.Title>
+            <Card.Title className="big-icon">🥇</Card.Title>
+            <div>
               <Card.Body>
-                <div>
-                  Your currently have {userBalance} TARO tokens
-                </div>
+                <Card.Text className="text-large">{userBalance} TARO</Card.Text>
+                <Button className="TARO-button" href="/About"> Get TARO </Button>
               </Card.Body>
-            </Card>
-            :
-            <Card className="gray mb-4">
-              <Card.Body>
-                <div>
-                  Get connected so you can see your TARO balance
-                </div>
-              </Card.Body>
-            </Card>
-          }
-
-          <Card className="gray mb-4">
-            <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
-            <Card.Body>
-              <div>
-                <Link to="/proposallist">See proposals</Link>
-              </div>
-            </Card.Body>
+            </div>
           </Card>
-
-          <LeaderBoard />
+          <Card className="yellow-unlock">
+            <Card.Title className="purple-unlock">Urban governance</Card.Title>
+            <Card.Title className="big-icon">🗳️</Card.Title>
+            <div>
+              <Card.Body>
+                <Button className="TARO-button" href="/proposallist">🙋🏻‍♀️ Vote 🙋🏽‍♂️</Button>
+              </Card.Body>
+            </div>
+          </Card>
+        </div>
+        :
+        <div>
+          <Card className="gray">
+            <Card.Title className="orange2">TARO Balance</Card.Title>
+            <Card.Text className="text-large">Locked</Card.Text>
+            <div>
+              <Card.Body>
+                <Button disabled block>Get TARO</Button>
+              </Card.Body>
+            </div>
+          </Card>
+          <Card className="gray">
+            <Card.Title className="orange2">Urban governance</Card.Title>
+            <Card.Text className="text-large">Locked</Card.Text>
+            <div>
+              <Card.Body>
+                <Button disabled block>🙋🏻‍♀️ Vote 🙋🏽‍♂️</Button>
+              </Card.Body>
+            </div>
+          </Card>
+        </div>
+        }
+      </div>
+      :
+        <div className="App">
+          <Card.Text>Protocolo para digitalizar la gobernanza urbana de la ciudad de Querétaro</Card.Text>
+          <div className="Wallet">
+            {!isMetamastInstalled ?
+            <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
+            <ConnectingButton />
+            :<ConnectButton handleOnConnect={handleOnConnect}/>
+            }
+          </div>
+          <Button onClick={listSkaleInMetamask}>selecciona la red SKALE in MetaMask</Button>
+          {isConnected ?
+          <div>
+            <Card className="orange-unlock">
+              <Card.Title className="purple-unlock">Balance de TARO</Card.Title>
+              <Card.Title className="big-icon">🥇</Card.Title>
+              <div>
+                <Card.Body>
+                  <Card.Text className="text-large">{userBalance} TARO</Card.Text>
+                  <Button className="TARO-button" href="/About"> Obtén TARO </Button>
+                </Card.Body>
+              </div>
+            </Card>
+            <Card className="yellow-unlock">
+              <Card.Title className="purple-unlock">Gobernanza Urbana</Card.Title>
+              <Card.Title className="big-icon">🗳️</Card.Title>
+              <div>
+                <Card.Body>
+                  <Button className="TARO-button" href="/About">🙋🏻‍♀️ Vota 🙋🏽‍♂️</Button>
+                </Card.Body>
+              </div>
+            </Card>
+          </div>
+          :
+          <div>
+            <Card className="gray">
+              <Card.Title className="orange2">Balance de TARO</Card.Title>
+              <Card.Text className="text-large">Bloqueado</Card.Text>
+              <div>
+                <Card.Body>
+                  <Button disabled block>Obtén TARO</Button>
+                </Card.Body>
+              </div>
+            </Card>
+            <Card className="gray">
+              <Card.Title className="orange2">Gobernanza Urbana</Card.Title>
+              <Card.Text className="text-large">Bloqueado</Card.Text>
+              <div>
+                <Card.Body>
+                  <Button disabled block>🙋🏻‍♀️ Vota 🙋🏽‍♂️</Button>
+                </Card.Body>
+              </div>
+            </Card>
+          </div>
+          }
         </div>
       }
     </div>
