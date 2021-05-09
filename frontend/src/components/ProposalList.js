@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import {Link} from "react-router-dom";
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup, Button} from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Proposal from './Proposal';
@@ -10,6 +10,9 @@ import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import ValidationRequired from '../alerts/ValidationRequired';
 import { EthersContext } from '../contexts/EthersContext';
 
+import Taro from '../contracts/contracts/Taro.sol/Taro.json';
+import taroAddress from '../contracts/contracts/Taro/contract-address.json';
+
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
@@ -17,6 +20,8 @@ import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-
 
 const ProposalList = () => {
   let [retrievedProposals, setRetrievedProposals] = useState([]);
+  let [taro, setTaro] = useState();
+  let [signerAddress, setSignerAddress] = useState();
 
   let {isValidated} = useContext(ValidationRequiredContext);
   let {isEnglish} = useContext(LanguageContext);
@@ -77,15 +82,16 @@ const ProposalList = () => {
             let signer = await _ethersProvider.getSigner();
             // setEthersSigner(signer);
 
-            // const _taro = new ethers.Contract(
-            //   taroAddress.Taro,
-            //   Taro.abi,
-            //   signer
-            // );
-            // setTaro(_taro);
+            const _taro = new ethers.Contract(
+              taroAddress.Taro,
+              Taro.abi,
+              signer
+            );
+            setTaro(_taro);
 
-            // let signerAddress = await signer.getAddress();
+            let _signerAddress = await signer.getAddress();
             // console.log("signerAddress: ", signerAddress);
+            setSignerAddress(_signerAddress);
 
             // let _userBalance = await _taro.balanceOf(signerAddress);
             // console.log('_userBalance in useEffect: ', _userBalance.toString());
@@ -165,6 +171,12 @@ const ProposalList = () => {
     )
   });
 
+  const handleOnClickDelegate = async () => {
+    let delegate = await taro.delegate(signerAddress);
+    let delegateReceipt = await delegate.wait(1);
+    console.log('delegateReceipt: ', delegateReceipt);
+  };
+
   return (
     <div>
       {isEnglish
@@ -173,6 +185,12 @@ const ProposalList = () => {
 
       <div>
         {isValidated ? "" : <ValidationRequired />}
+        <div>
+          You click 'delegate' in order to vote on any proposals.  Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.
+        </div>
+        <div>
+          <Button block onClick={handleOnClickDelegate}>Delegate so you can vote</Button>
+        </div>
         <div>
           <Link to="/createproposal">Create a proposal</Link>
         </div>
@@ -215,6 +233,12 @@ const ProposalList = () => {
           ESP ESP ESP ESP
         </div>
         {isValidated ? "" : <ValidationRequired />}
+        <div>
+          You click 'delegate' in order to vote on any proposals.  Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.
+        </div>
+        <div>
+          <Button block onClick={handleOnClickDelegate}>Delegate so you can vote</Button>
+        </div>
         <div>
           <Link to="/createproposal">Create a proposal</Link>
         </div>

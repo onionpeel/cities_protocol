@@ -308,8 +308,10 @@ contract GovernorAlpha {
 //
     function _castVote(address voter, uint proposalId, bool support) internal {
         require(isProposalActive[proposalId] == true, "GovernorAlpha::_castVote: voting is closed");
+
         Proposal storage proposal = proposals[proposalId];
         Receipt storage receipt = proposal.receipts[voter];
+
         require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
         uint96 votes = taro.getPriorVotes(voter, proposal.startBlock);
 
