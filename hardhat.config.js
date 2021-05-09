@@ -25,8 +25,8 @@ module.exports = {
     localhost: {
       url: "http://localhost:8545",
     },
-    mySkaleChain: {
-      url: "http://eth-global-10.skalenodes.com:10323",
+    skale: {
+      url: "https://eth-global-10.skalenodes.com:10200",
       accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
     rinkeby: {

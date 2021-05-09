@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers';
-import {Card} from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
@@ -124,6 +124,43 @@ function Home() {
     init();
   }, []);
 
+  //Enable app to have SKALE among listed networks
+  const listSkaleInMetamask = async () => {
+    let endpoint = "https://eth-global-10.skalenodes.com:10200";
+    let chainId = "0x3ad0e149d0bf5";
+
+    let switchToSKALE = {
+      chainId: chainId,
+      chainName: "SKALE Network Testnet",
+      rpcUrls: [endpoint],
+      nativeCurrency: {
+        name: "SKALE ETH",
+        symbol: "skETH",
+        decimals: 18
+      },
+      blockExplorerUrls: [
+        "https://expedition.dev/?network=SKALE&rpcUrl=" + endpoint
+      ]
+    };
+    //Request current account selected in Metamask
+    let metamaskAccount;
+    let accounts = await provider.request({ method: 'eth_requestAccounts' });
+      if (accounts.length > 0) {
+        metamaskAccount = accounts[0];
+        setCurrentMetaMaskAccount(accounts[0]);
+        setIsMetamaskInstalled(true);
+        setIsConnected(true);
+      } else {
+      };
+    console.log(`metamaskAccount in Skale function: ${metamaskAccount}`);
+
+    //Request change to SKALE network
+    await provider.request({
+      method: "wallet_addEthereumChain",
+      params: [switchToSKALE, accounts[0]]
+    });
+  };
+
   const getAccounts = async () => {
     try {
       const accounts = await provider.request({ method: 'eth_requestAccounts' });
@@ -161,7 +198,7 @@ function Home() {
       setEthersSigner(signer);
 
       const _taro = new ethers.Contract(
-        '0x5081a39b8A5f0E35a8D959395a630b68B74Dd30f',
+        taroAddress.Taro,
         Taro.abi,
         signer
       );
@@ -177,7 +214,7 @@ function Home() {
       };
 
       const _governorAlpha = new ethers.Contract(
-        '0xfbC22278A96299D91d41C453234d97b4F5Eb9B2d',
+        governorAlphaAddress.GovernorAlpha,
         GovernorAlpha.abi,
         signer
       );
@@ -227,6 +264,7 @@ function Home() {
 
           <Card className="gray mb-4">
             <Card.Body>
+              <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
               <div>
                 <Link to="/proposallist">See proposals</Link>
               </div>
@@ -273,6 +311,7 @@ function Home() {
           }
 
           <Card className="gray mb-4">
+            <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
             <Card.Body>
               <div>
                 <Link to="/proposallist">See proposals</Link>
