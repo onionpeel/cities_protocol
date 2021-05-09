@@ -9,3 +9,13 @@ In the root of the React project directory:
 
 
 cp index.html 200.html
+
+
+Steps to fix Metamask not working with local network.
+This can happen when a local network gets reset and the nonce in MM no longer matches the local network
+
+1. In MM, settings > advanced > reset
+2. Shut down the front end server
+3. Keep the hardhat node running, but in a different terminal, go to the same directory and type:
+npx hardhat clean
+4. Start front end server 

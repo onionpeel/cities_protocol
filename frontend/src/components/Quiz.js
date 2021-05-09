@@ -153,12 +153,12 @@ const Quiz = () => {
       // const delay = () => new Promise(res => setTimeout(res, 2000));
 
       if(_checkedAnswers.length === 10) {
-        // setLoadingModalShow(true);
+        setLoadingModalShow(true);
         //Make network call to receive 100 tokens
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('100'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log('submitAnswersReceipt: ', submitAnswersReceipt);
-        // handleOnLoadingModal();
+        handleOnLoadingModal();
 
         let signerAddress = await ethersSigner.getAddress();
         console.log("signerAddress in Quiz: ", signerAddress);
@@ -168,37 +168,35 @@ const Quiz = () => {
 
 
         // console.log('length: ', checkedAnswers.length);
-        // setSuccessModalShow(true);
-        // setCheckedAnswers([]);
+        setSuccessModalShow(true);
+        setCheckedAnswers([]);
       } else if(_checkedAnswers.length >= 8) {
+        setLoadingModalShow(true);
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('80'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log(submitAnswersReceipt);
-        // setLoadingModalShow(true);
-        // //Make network call to receive 80 tokens
-        // handleOnLoadingModal();
+        handleOnLoadingModal();
         //
         // console.log('length: ', checkedAnswers.length);
-        // setSuccessModalShow(true);
-        // setCheckedAnswers([]);
+        setSuccessModalShow(true);
+        setCheckedAnswers([]);
       } else if(_checkedAnswers.length >= 6) {
+        setLoadingModalShow(true);
         let submitAnswers = await governorAlpha.validate(ethers.BigNumber.from('20'));
         let submitAnswersReceipt = await submitAnswers.wait(1);
         console.log(submitAnswersReceipt);
-        // setLoadingModalShow(true);
-        // //Make network call to receive 20 tokens
-        // handleOnLoadingModal();
+        handleOnLoadingModal();
         //
         // console.log('length: ', checkedAnswers.length)
-        // setSuccessModalShow(true);
-        // setCheckedAnswers([]);
+        setSuccessModalShow(true);
+        setCheckedAnswers([]);
       } else {
-        // setLoadingModalShow(true);
-        // handleOnLoadingModal();
+        setLoadingModalShow(true);
+        handleOnLoadingModal();
         //
         console.log('length: ', _checkedAnswers.length)
-        // setFailureModalShow(true);
-        // setCheckedAnswers([]);
+        setFailureModalShow(true);
+        setCheckedAnswers([]);
       };
     } else {
       setAlreadSubmittedModal(true);
