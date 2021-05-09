@@ -2,12 +2,14 @@ import { useState, useContext } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { ethers } from 'ethers';
 import IsLoadingModal from '../modals/IsLoadingModal';
+import CreateProposalErrorModal from '../modals/CreateProposalErrorModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 
 const CreateProposal = () => {
   let [form, setForm] = useState();
   let [loadingModalShow, setLoadingModalShow] = useState();
+  let [errorModalShow, setErrorModalShow] = useState();
 
   let {isEnglish} = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
@@ -17,14 +19,18 @@ const CreateProposal = () => {
 
   const handleOnSubmit = async e => {
     e.preventDefault();
-    // setLoadingModalShow(true);
+    setLoadingModalShow(true);
     console.log('form: ', form);
 
-    let tx = await governorAlpha.propose(form);
-    let txReceipt = await tx.wait(1);
-    console.log('form tx: ', txReceipt);
-
-    // handleOnLoadingModal();
+    try {
+      let tx = await governorAlpha.propose(form);
+      let txReceipt = await tx.wait(1);
+      console.log('form tx: ', txReceipt);
+      handleOnLoadingModal();
+    } catch (e) {
+      handleOnLoadingModal();
+      setErrorModalShow(true);
+    };
   };
 
   const setField = (field, value) => {
@@ -68,6 +74,10 @@ const CreateProposal = () => {
 
   const handleOnLoadingModal = () => {
     setLoadingModalShow(false);
+  };
+
+  const handleOnErrorModal = () => {
+    setErrorModalShow(false);
   };
 
   return (
@@ -162,6 +172,12 @@ const CreateProposal = () => {
             show={loadingModalShow}
             onHide={handleOnLoadingModal}
           />
+
+          <CreateProposalErrorModal
+            show={errorModalShow}
+            onHide={handleOnErrorModal}
+          />
+
         </div>
 
         :
@@ -254,6 +270,11 @@ const CreateProposal = () => {
           <IsLoadingModal
             show={loadingModalShow}
             onHide={handleOnLoadingModal}
+          />
+
+          <CreateProposalErrorModal
+            show={errorModalShow}
+            onHide={handleOnErrorModal}
           />
         </div>
       }
