@@ -188,7 +188,6 @@ const PastProposals = () => {
             {isValidated ? "" : <ValidationRequired />}
           </div>
             <div className= "yellowB">
-
               <div>
                 {list.length > 0
                 ?
@@ -204,10 +203,10 @@ const PastProposals = () => {
                     <Link className="alt2" to="/">Return to home</Link>
                   </div>
                 </div>
-          }
+                }
+              </div>
+            </div>
         </div>
-
-      </div>
 
       </div>
 
