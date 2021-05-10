@@ -14,6 +14,7 @@ const Header = () => {
 
   const handleOnSelect = () => {
     setLoc();
+    window.location.reload();
   };
 
   // useEffect(() => {
@@ -27,7 +28,7 @@ const Header = () => {
 
   return (
   <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
 
         <div className="Nav">
           <Navbar>

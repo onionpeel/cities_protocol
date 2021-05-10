@@ -12,14 +12,14 @@ import { useState } from 'react';
 // };
 
 export function useLocalState() {
-  const [isEnglish, setLoc] = useState(localStorage.getItem('language'));
+  let [isEnglish, setLoc] = useState(localStorage.getItem('language'));
 
   if(isEnglish === 'english') {
-    function setLoc() {
+    setLoc = () => {
       localStorage.setItem('language', 'spanish');
     };
   } else {
-    function setLoc() {
+    setLoc = () => {
       localStorage.setItem('language', 'english');
     };
   };

@@ -228,7 +228,7 @@ function Home() {
 
   return (
     <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
         <div className="App">
           <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
           <div className="Wallet">

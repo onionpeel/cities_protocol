@@ -10,7 +10,7 @@ const About = () => {
 
   return (
   <div className="App">
-  {isEnglish ?
+  {isEnglish === 'english' ?
     <div>
     <div className="App">
       <div className="gray3">
