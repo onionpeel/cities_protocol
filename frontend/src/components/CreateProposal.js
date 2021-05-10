@@ -3,6 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import IsLoadingModal from '../modals/IsLoadingModal';
+import CreateProposalSuccessModal from '../modals/CreateProposalSuccessModal';
 import CreateProposalErrorModal from '../modals/CreateProposalErrorModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
@@ -22,6 +23,7 @@ const CreateProposal = () => {
   let [isConnected, setIsConnected] = useState();
   let [ethersProvider, setEthersProvider] = useState();
   let [signerAddress, setSignerAddress] = useState();
+  let [successModalShow, setSuccessModalShow] = useState();
 
   let [isEnglish] = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
@@ -128,6 +130,7 @@ const CreateProposal = () => {
       let txReceipt = await tx.wait(1);
       console.log('form tx: ', txReceipt);
       handleOnLoadingModal();
+      setSuccessModalShow(true);
     } catch (e) {
       handleOnLoadingModal();
       setErrorModalShow(true);
@@ -168,6 +171,12 @@ const CreateProposal = () => {
   };
 
   const handleOnChangeBudget = e => {
+    if(e.target.value === '') {
+      return;
+    };
+    if(isNaN(e.target.value)) {
+      return;
+    };
     setField('budget', ethers.BigNumber.from(e.target.value));
   };
 
@@ -181,6 +190,10 @@ const CreateProposal = () => {
 
   const handleOnErrorModal = () => {
     setErrorModalShow(false);
+  };
+
+  const handleOnAlreadySubmitted = () => {
+    window.location.reload();
   };
 
   return (
@@ -197,7 +210,7 @@ const CreateProposal = () => {
                 Title
               </Form.Label>
               <Form.Control type="text"
-                placeholder="Give a name to your proposal to catch the eyes of voters"
+                placeholder="Give your proposal a name"
                 onChange={handleOnChangeTitle}/>
             </Form.Group>
 
@@ -224,7 +237,7 @@ const CreateProposal = () => {
                 Person in charge
               </Form.Label>
                 <Form.Control type="text"
-                  placeholder="Who will be responsible for carrying out the proposal?"
+                  placeholder="Who is responsible for it?"
                   onChange={handleOnChangePersonInCharge}/>
             </Form.Group>
 
@@ -234,7 +247,7 @@ const CreateProposal = () => {
             </Form.Label>
             <Form.Control as="textarea"
               type="text" rows={3}
-              placeholder="Provide  details about your proposals to let voters know what you want to do"
+              placeholder="Provide details about your proposal"
               onChange={handleOnChangeDescription}/>
             </Form.Group>
             {/*
@@ -250,7 +263,7 @@ const CreateProposal = () => {
                 Budget
               </Form.Label>
               <Form.Control type="text"
-                placeholder="How much will it cost to carry out your proposal? (In Pesos)"
+                placeholder="How much will it cost? (In Pesos)"
                 onChange={handleOnChangeBudget}/>
             </Form.Group>
             {/*
@@ -274,6 +287,10 @@ const CreateProposal = () => {
             onHide={handleOnErrorModal}
           />
 
+          <CreateProposalSuccessModal
+            show={successModalShow}
+            onHide={handleOnAlreadySubmitted}
+          />
         </div>
 
         :
@@ -341,13 +358,19 @@ const CreateProposal = () => {
             </Form>
 
             <IsLoadingModal
-                show={loadingModalShow}
-                onHide={handleOnLoadingModal}
-              />
-              <CreateProposalErrorModal
-                show={errorModalShow}
-                onHide={handleOnErrorModal}
-              />
+              show={loadingModalShow}
+              onHide={handleOnLoadingModal}
+            />
+
+            <CreateProposalErrorModal
+              show={errorModalShow}
+              onHide={handleOnErrorModal}
+            />
+
+            <CreateProposalSuccessModal
+              show={successModalShow}
+              onHide={handleOnAlreadySubmitted}
+            />
         </div>
         }
       </div>

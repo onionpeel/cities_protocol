@@ -31,10 +31,9 @@ function Home() {
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
-
 
   useEffect(() => {
     const init = async () => {
@@ -225,7 +224,7 @@ function Home() {
 
   return (
     <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
         <div className="App">
           <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
           <div className="Wallet">

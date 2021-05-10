@@ -13,12 +13,20 @@
 a:link {color: #FFff!important;}
 a:active{color: #FAC91A!important;}
 a:visited {color: #FFff!important;}
-a:hover {color: #FF9400!important;}
+a:hover {
+  text-decoration: none;
+  color: #3d386b!important;
+  background-color: #FAC91A !important;}
 
 a.alt:link {color: #FFff!important;}
 a.alt:active{color: #FAC91A!important;}
 a.alt:visited {color: #FFff!important;}
-a.alt:hover {color: #3d386b!important;}
+a.alt:hover {
+  color: #3d386b !important;}
+
+.nohover {
+  background-color: transparent!important;
+}
 
 .alt {
   font-family: 'Lexend Deca', sans-serif;
@@ -33,14 +41,15 @@ a.alt:hover {color: #3d386b!important;}
 .alt2 {
   border-radius: 25px !important;
   margin-top: 3%;
+  padding: 2%;
   border: none !important;
   display: flex !important;
   justify-content: center !important;
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
-  background-color: #3d386b !important;
   color: #ffffff !important;
+  background-color: #3d386b !important;
 }
 
 .submitbutton {
@@ -305,6 +314,7 @@ align-items: center !important;
   font-size: 20px;
   text-align: center;
   color: #ffffff;
+
 }
 
 .space {
