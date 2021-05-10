@@ -193,7 +193,7 @@ const ProposalList = () => {
                 <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
               </div>
               <div className="floating">
-                <Button className="alt" to="/createproposal">Create a proposal</Button>
+                <Link className="alt" to="/createproposal">Create a proposal</Link>
               </div>
               </div >
               <div>
@@ -208,7 +208,7 @@ const ProposalList = () => {
                    <div className="purple">There are no proposals right now.</div>
                   </div>
                   <div className ="floating">
-                    <Button className="alt2" to="/">Return to home</Button>
+                    <Link className="alt2" to="/">Return to home</Link>
                   </div>
                 </div>
           }
@@ -245,7 +245,7 @@ const ProposalList = () => {
                 Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
               </div>
               <div className="floating">
-                <Button className="alt2" to="/createproposal">Crea una propuesta</Button>
+                <Link className="alt2" to="/createproposal">Crea una propuesta</Link>
               </div>
             </div >
             <div>
@@ -260,7 +260,7 @@ const ProposalList = () => {
                    <div className="purple">No hay propuestas aún.</div>
                   </div>
                   <div className ="floating">
-                    <Button className="alt2" to="/">Regresar al inicio</Button>
+                    <Link className="alt2" to="/">Regresar al inicio</Link>
                   </div>
                 </div>
           }

@@ -133,11 +133,13 @@ const CreateProposal = () => {
       setErrorModalShow(true);
     };
   };
-
+  //expiration and requiredTaroToVote are hardcoded because these fields are needed for the smart contract.  The front end is not ready to use these fields.  Later, when the front end is ready, these inputs can be added back into the form inputs.
   const setField = (field, value) => {
     setForm({
       ...form,
-      [field]: value
+      [field]: value,
+      expiration: 0,
+      requiredTaroToVote: 0
     });
   };
 
@@ -224,30 +226,31 @@ const CreateProposal = () => {
             </Form.Label>
             <Form.Control as="textarea" type="text" rows={3} placeholder="description" onChange={handleOnChangeDescription}/>
             </Form.Group>
-
+            {/*
             <Form.Group as={Row} controlId="formExpiration">
               <Form.Label  >
                 Expiration
               </Form.Label>
               <Form.Control type="text" placeholder="expiration" onChange={handleOnChangeExpiration}/>
             </Form.Group>
-
+            */}
             <Form.Group as={Row} controlId="formBudget">
               <Form.Label  >
                 Budget
               </Form.Label>
               <Form.Control type="text" placeholder="budget" onChange={handleOnChangeBudget}/>
             </Form.Group>
-
+            {/*
             <Form.Group as={Row} controlId="formRequiredTaroToVote">
               <Form.Label  >
                 Required TARO to vote
             </Form.Label>
               <Form.Control type="text" placeholder="required TARO to vote" onChange={handleOnChangeRequiredTaroToVote}/>
             </Form.Group>
-            <Button className="submitbutton"classntype="submit" onClick={handleOnSubmit}>Submit proposal</Button>
-          </Form>
+            */}
 
+            <Button className="submitbutton"classntype="submit" onClick={handleOnSubmit}>Submit proposal</Button>
+            </Form>
           <IsLoadingModal
             show={loadingModalShow}
             onHide={handleOnLoadingModal}
@@ -299,29 +302,28 @@ const CreateProposal = () => {
               </Form.Label>
                 <Form.Control as="textarea" type="text" rows={3} placeholder="Describe tu propuesta" onChange={handleOnChangeDescription}/>
               </Form.Group>
-
+              {/*}
               <Form.Group as={Row} controlId="formExpiration">
                 <Form.Label  >
                   Expiración
                 </Form.Label>
                 <Form.Control type="text" placeholder="expiration" onChange={handleOnChangeExpiration}/>
               </Form.Group>
-
+              */}
               <Form.Group as={Row} controlId="formBudget">
                 <Form.Label  >
                   Presupuesto
               </Form.Label>
-
                 <Form.Control type="text" placeholder="Presupuesto" onChange={handleOnChangeBudget}/>
-
               </Form.Group>
-
+              {/*}
               <Form.Group as={Row} controlId="formRequiredTaroToVote">
                 <Form.Label  >
                   TARO delegado minimo
               </Form.Label>
                 <Form.Control type="text" placeholder="Establece el TARO minimo para votar" onChange={handleOnChangeRequiredTaroToVote}/>
               </Form.Group>
+              */}
               <Button className="submitbutton"classntype="submit" onClick={handleOnSubmit}>Enviar propuesta</Button>
             </Form>
 

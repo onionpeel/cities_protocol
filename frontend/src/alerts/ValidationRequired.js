@@ -16,7 +16,7 @@ const ValidationRequired = () => {
       Only users who have validated their account can create a new proposal. Take the Quiz to get validated
       </div>
       <div className ="floating">
-        <Button className="alt2" to="/quiz">Take the quiz to get validated</Button>
+        <Link className="alt2" to="/quiz">Take the quiz to get validated</Link>
       </div>
 
 
@@ -32,7 +32,7 @@ const ValidationRequired = () => {
           </div>
         </div>
         <div className ="floating">
-          <Button className="alt2" to="/quiz">Validar que soy Queretan@</Button>
+          <Link className="alt2" to="/quiz">Validar que soy Queretan@</Link>
         </div>
 
 
