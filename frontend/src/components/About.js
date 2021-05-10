@@ -5,7 +5,6 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import '../styles/Home.css';
 
 const About = () => {
-  // let {isEnglish} = useContext(LanguageContext);
   let [isEnglish] = useContext(LanguageContext);
 
   return (
@@ -35,10 +34,12 @@ const About = () => {
         <div className="main"><p>
            New users are first instructed to install MetaMask and then connect to the application and get validated. Because the focus is on people who live in Queretaro,
            a quiz about Queretaro is used to check the validity of potential users. When validated, a user receives TARO tokens and becomes eligible to offer community proposals.
-           More TARO tokens are received for the first five proposals a user makes.</p>
+          </p>
           <p>
-          Proposals are voted upon, and if passed and the proposed activity is carried out, the proposer is receives TARO. One TARO token is worth one vote. Anyone with TARO
-          can delegate their voting power to another TARO holder. After the first five proposals, a user must have received one percent of the total voting power to make a proposal.
+            In the future there will be some changes, including more ways to earn TARO:
+            TARO tokens will be received for the first five proposals a user makes.
+            If a proposal is passed and the proposed activity is carried out, the proposer will receive TARO.
+            One TARO token is worth one vote. Anyone with TARO will be able to delegate their voting power to another TARO holder. After the first five proposals, a user must have received one percent of the total voting power to make a proposal.
           </p></div>
         <Button className="alt" href="https://metamask.io" >Download Wallet</Button>
         <div className="main">

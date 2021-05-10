@@ -27,15 +27,13 @@ function Home() {
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
-  // let [isEnglish, setIsEnglish] = useState();
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
-  // let {isEnglish} = useContext(LanguageContext);
+  let {isEnglish} = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
-  let [isEnglish] = useContext(LanguageContext);
 
 
   useEffect(() => {
@@ -227,7 +225,7 @@ function Home() {
 
   return (
     <div>
-      {isEnglish === 'english' ?
+      {isEnglish ?
         <div className="App">
           <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
           <div className="Wallet">
@@ -311,7 +309,7 @@ function Home() {
               <Card.Title className="big-icon">🗳️</Card.Title>
               <div>
                 <Card.Body>
-                  <Button className="TARO-button" href="/About">🙋🏻‍♀️ Vota 🙋🏽‍♂️</Button>
+                  <Button className="TARO-button" href="/ProposalList">🙋🏻‍♀️ Vota 🙋🏽‍♂️</Button>
                 </Card.Body>
               </div>
             </Card>
@@ -336,6 +334,7 @@ function Home() {
                 </Card.Body>
               </div>
             </Card>
+
           </div>
           }
         </div>

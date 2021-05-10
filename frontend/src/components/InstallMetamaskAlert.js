@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { LanguageContext } from '../contexts/LanguageContext';
-import {Alert} from 'react-bootstrap';
+import {Alert, Button} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
 
@@ -11,18 +11,29 @@ const InstallMetamaskAlert = () => {
   return (
     <div>
       {isEnglish === 'english' ?
-    <Alert variant="primary">
-      <Alert.Heading>It appears you don't have MetaMask installed</Alert.Heading>
-      <p>
-      <Link to="/about">More info</Link>
-      </p>
-    </Alert>
+
+    <Alert className= "valert">
+      <div >
+        <div className="big-icon">⚠️</div>
+        <div className="title3">It appears you don't have MetaMask installed</div>
+
+        <div className ="floating">
+          <Button className="alt2" to="https://metamask.io/">Download Wallet</Button>
+        </div>
+      </div>
+
+   </Alert>
     :
-    <Alert variant="primary">
-      <Alert.Heading>Parece que no tienes una wallet de Metamask</Alert.Heading>
-      <p>
-      <Link to="/about">Conoce más</Link>
-      </p>
+    <Alert className= "valert">
+        <div >
+          <div className="big-icon">⚠️</div>
+          <div className="title3">Parece que no tienes una wallet de Metamask</div>
+
+          <div className ="floating">
+            <Button className="alt2" to="https://metamask.io/">Descargar Wallet</Button>
+          </div>
+        </div>
+
     </Alert>
     }</div>
   );

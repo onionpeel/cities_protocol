@@ -3,7 +3,7 @@
 
 .App {
   background-color: #ffffff;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: 'Lexend Deca', sans-serif !important;
   text-align: center;
   color: #FF9400;
   -webkit-font-smoothing: antialiased;
@@ -74,9 +74,9 @@ Nav {
 
 .main  {
   font-family: 'Lexend Deca', sans-serif;
-  text-align: justify;
-  text-justify: inter-word;
-  box-sizing: border-box;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  box-sizing: border-box !important;
   padding: 15px;
 }
 
@@ -114,9 +114,17 @@ button:disabled {
 }
 
 .text-large {
+  font-family: 'Lexend Deca', sans-serif !important;
+  text-align: center;
   font-size: 2rem !important;
   margin-top: 5% !important;
   margin-bottom: 5%;
+}
+
+.text-large-fit {
+  font-family: 'Lexend Deca', sans-serif !important;
+  text-align: center;
+  font-size: 2rem !important;
 }
 
 .text-large-left {
@@ -147,7 +155,7 @@ button:disabled {
   max-width: 50%;
   min-width: 450px !important;
   margin: 3% auto;
-  background-image: linear-gradient(#eee, #ccc);
+  background-image: linear-gradient(#eee, #e9e5e5);
   font-family: 'Lexend Deca', sans-serif;
   display: flex !important;
   justify-content: center !important;
@@ -163,6 +171,21 @@ button:disabled {
   min-width: 450px !important;
   margin: 3% auto;
   background-image: linear-gradient(#FF9400, #ffc16b);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.valert {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#dc3840, #e26c72);
   font-family: 'Lexend Deca', sans-serif;
   display: flex !important;
   justify-content: center !important;
@@ -208,7 +231,7 @@ button:disabled {
   margin: 3% auto;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-image: linear-gradient(#eee, #ccc);
+  background-image: linear-gradient(#eee, #cecece);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
@@ -221,9 +244,24 @@ button:disabled {
   max-width: 50%;
   min-width: 450px !important;
   margin: 3% auto;
-  padding-top: 1%;
+  padding-top: 3%;
   padding-bottom: 1%;
   background-image: linear-gradient(#FAC91a,#fcd95c);
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
+.orangeB {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  padding-top: 3%;
+  padding-bottom: 1%;
+  background-image: linear-gradient(#FF9400,#fab759);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
@@ -252,12 +290,21 @@ align-items: center !important;
 .title {
   color: #3d386b;
   font-size: 2rem !important;
-  background-image: linear-gradient(#FF9400, #FAC91A)!important;
+  ;
 }
 
 .title2 {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 20px;
+  text-align: center;
   color: #3d386b;
-  background-image: linear-gradient(#FAC91a, #FF9400)!important;
+}
+
+.title3 {
+  font-family: 'Lexend Deca', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .space {
@@ -300,6 +347,7 @@ align-items: center !important;
 
 .big-icon {
   font-size: 75px !important;
+  text-align: center;
   color: #3d386b;
 }
 
@@ -324,7 +372,7 @@ align-items: center !important;
 
 .white {
   color: #ffffff !important;
-  text-align: center !important;
+  text-align: justify !important;
   display: flex !important;
   justify-content: center !important;
   align-content: center !important;

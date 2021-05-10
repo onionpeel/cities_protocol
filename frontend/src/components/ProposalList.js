@@ -193,7 +193,7 @@ const ProposalList = () => {
                 <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
               </div>
               <div className="floating">
-                <Link className="alt" to="/createproposal">Create a proposal</Link>
+                <Button className="alt" to="/createproposal">Create a proposal</Button>
               </div>
               </div >
               <div>
@@ -222,19 +222,33 @@ const ProposalList = () => {
 
       <div>
         <div className= "app">
-          <div className= "gray">
+          <div className= "valert">
             {isValidated ? "" : <ValidationRequired />}
           </div>
             <div className= "yellowB">
-              <div className="main">Delega TARO para votar. Solo podras votar por las propuestas disponibles después de delegar TARO tokens.</div>
+              <div className="title2">Delega TARO para votar.</div>
+              <div className="big-icon">🗳️</div>
+              <div className="main">Para poder crear propuestas o votarlas, es necesario que deleges tus tokens de TARO
+              así el sistema sabrá que deseas utilizar tus TARO como poder de voto.
+              </div>
+              <div className="text-large-fit">1 TARO = 1 Voto
+              </div>
                <div className ="floating">
                 <Button className="alt2" onClick={handleOnClickDelegate}>Delega TARO</Button>
               </div>
-              <div className="floating">
-                <Link className="alt" to="/createproposal">Crea una propuesta</Link>
+            </div >
+            <div className= "orangeB">
+              <div className="title2">Crea una nueva propuesta .</div>
+              <div className="big-icon">🦸🦸‍♂️</div>
+              <div className="main">
+                ¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
+                Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
               </div>
-              </div >
-              <div>
+              <div className="floating">
+                <Button className="alt2" to="/createproposal">Crea una propuesta</Button>
+              </div>
+            </div >
+            <div>
                 {list.length > 0
                 ?
                 <div className = "app">
@@ -246,7 +260,7 @@ const ProposalList = () => {
                    <div className="purple">No hay propuestas aún.</div>
                   </div>
                   <div className ="floating">
-                    <Link className="alt2" to="/">Regresar al inicio</Link>
+                    <Button className="alt2" to="/">Regresar al inicio</Button>
                   </div>
                 </div>
           }
