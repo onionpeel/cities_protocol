@@ -2,7 +2,7 @@
 
 src/REALQUIZ
 src/SKALE/
-/PRESENTATION/
+PRESENTATION/
 
 # dependencies
 /node_modules
