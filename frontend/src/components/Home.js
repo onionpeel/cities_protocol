@@ -28,13 +28,15 @@ function Home() {
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
+  // let [isEnglish, setIsEnglish] = useState();
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
-  let {isEnglish} = useContext(LanguageContext);
+  // let {isEnglish} = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
+  let [isEnglish, setLoc] = useContext(LanguageContext);
 
 
   useEffect(() => {

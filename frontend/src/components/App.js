@@ -10,6 +10,7 @@ import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 import { ConnectedContext } from '../contexts/ConnectedContext';
+import { useLocalState } from '../contexts/hooks';
 
 import Home from './Home';
 import About from './About';
@@ -21,16 +22,17 @@ import CreateProposal from './CreateProposal';
 function App() {
   let [isValidated, setIsValidated] = useState();
   let [taro, setTaro] = useState();
-  let [isEnglish, setIsEnglish] = useState();
+  // let [isEnglish, setIsEnglish] = useState();
   let [governorAlpha, setGovernorAlpha] = useState();
   let [ethersSigner, setEthersSigner] = useState();
   let [isConnected, setIsConnected] = useState();
   let [provider, setProvider] = useState();
 
+  const [isEnglish, setLoc] = useLocalState();
 
     return (
     <div>
-      <LanguageContext.Provider value={{isEnglish, setIsEnglish}}>
+      <LanguageContext.Provider value={[isEnglish, setLoc]}>
         <GovernorAlphaContext.Provider value={{governorAlpha, setGovernorAlpha}}>
           <TaroContext.Provider value={{taro, setTaro}}>
             <EthersContext.Provider value={{ethersSigner, setEthersSigner, provider, setProvider}}>

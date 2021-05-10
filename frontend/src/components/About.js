@@ -5,7 +5,8 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import '../styles/Home.css';
 
 const About = () => {
-  let {isEnglish} = useContext(LanguageContext);
+  // let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish, setLoc] = useContext(LanguageContext);
 
   return (
   <div className="App">

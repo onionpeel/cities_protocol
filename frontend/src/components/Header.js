@@ -1,13 +1,30 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import logo from '../assets/Logo.svg';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const Header = () => {
-  let {isEnglish, setIsEnglish} = useContext(LanguageContext);
+  // let {isEnglish, setIsEnglish} = useContext(LanguageContext);
+  // const handleOnSelect = () => {
+  //   setIsEnglish(!isEnglish);
+  // };
+
+  // let [isEnglish, setIsEnglish] = useState();
+  let [isEnglish, setLoc] = useContext(LanguageContext);
+
   const handleOnSelect = () => {
-    setIsEnglish(!isEnglish);
+    setLoc();
   };
+
+  // useEffect(() => {
+  //   const main = () => {
+  //     let language = localStorage.getItem('language');
+  //     if(language === 'english') {
+  //       setIsEnglish(true);
+  //     };
+  //   };
+  // }, []);
+
   return (
   <div>
       {isEnglish ?
