@@ -372,3 +372,18 @@ align-items: center !important;
   font-size: 15px !important;
   color: #FF9400 !important;
 }
+
+.proposal-sub {
+  width: 50% !important;
+   display: table-cell;
+  text-align: left !important;
+  font-size: 15px !important;
+  color: #3d386b !important;
+}
+
+.proposal-subaction {
+  display: table-cell;
+  text-align: right !important;
+  font-size: 15px !important;
+  color: #3d386b !important;
+}

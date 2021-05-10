@@ -1,0 +1,37 @@
+[show the votaro logo on screen]
+The problem that our team wanted to solve for this hackathon was:
+How can we get more people involved with blockchain technology and make my home city of Queretaro, Mexico, a better place to live?
+
+Our solution was to build Votaro.
+
+[show the application home page]
+Votaro is a voting app.
+It uses tokens as a reward in order to incentivize people to join Votaro and to offer proposals that other people can vote on.
+
+A new visitor you will probably first ask, "What is Votaro"?  Luckily, we have an answer for that, and you can learn more by clicking here
+[click on spanish What is Votaro]
+
+Not everyone reads Spanish, so we have made our site bilingual.
+[click on link to change the language]
+
+[as you scroll down the About page]
+You can learn more details about Votaro, including what is the Taro token and how you can earn it.  If you don't have MetaMask, you are instructed to install it.
+
+Then you can begin by taking a verification quiz.
+[point to verify Queretaro citizenship]
+
+We'll take the quiz in a moment, but first we need to connect to MetaMask.
+[scroll to top and click on Votaro to go to Home]
+
+We've included links so that you can connect to MetaMask or and get directly connect to a Skale network.
+[click select skale in metamask and connect to it]
+
+Now we can take the quiz.
+[go back to About and click the link at the bottom]
+
+Votaro is meant for residents of Queretaro.  We have a quiz that tries to limit the app just for people with a first-hand knowledge of the city.
+This is how you can get your first Taro tokens.  The more questions you get right, the more Taro you receive.  If you fail the quiz, you will not be validated and you can't make proposals or vote.
+
+We are already validated, so we will skip the quiz.  Plus, we don't want to reveal the correct answers!
+
+[click on the medal to go to ProposalList]

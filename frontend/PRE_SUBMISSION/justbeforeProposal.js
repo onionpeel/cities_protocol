@@ -130,75 +130,81 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
       ?
 
-      <Card className="gray">
-      <Card.Body className="proposal-table">
-        <div className="proposal-main">
-          <div className="proposal-title"> Clases de baile en el parque {title}</div>
-          <div className="proposal-action">type of action: {typeOfAction}</div>
-        </div>
-
-        <div className="proposal-main">
-          <div className="proposal-sub">Where: {neighborhood}</div>
-          <div className="proposal-subaction"> Person in charge: {personInCharge}</div>
-        </div>
-
-
-        <div className ="proposal-main">
-          <div className="proposal-sub">description: {description}</div>
-          <div className="proposal-action">expiration:{expiration}</div>
-        </div>
-
-        <div className ="proposal-main">
-          <div className="proposal-sub">cost: {budget}</div>
-          <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
-        </div>
-
-        <div className="proposal-main">
-          <div className="proposal-sub">For:{forVotes}</div>
-          <div className="proposal-action">Against: {againstVotes}</div>
-        </div>
-        <div className="proposal-main">
-          <Button className="wallet" block onClick={handleOnClickFor}>Vote for this proposal</Button>
-          <Button claasName="wallet" block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
-        </div>
-      </Card.Body>
-    </Card>
+      <Card className="gray mb-4">
+        <Card.Body>
+            <div>
+              title: {title}
+            </div>
+            <div>
+              type of action: {typeOfAction}
+            </div>
+            <div>
+              Where: {neighborhood}
+            </div>
+            <div>
+              Person in charge: {personInCharge}
+            </div>
+            <div>
+              description: {description}
+            </div>
+            <div>
+              expiration: {expiration}
+            </div>
+            <div>
+              cost: {budget}
+            </div>
+            <div>
+              Required TARO to vote: {requiredTaroToVote}
+            </div>
+            <div>
+              For: {forVotes}
+            </div>
+            <div>
+              Against: {againstVotes}
+            </div>
+            <Button block onClick={handleOnClickFor}>Vote for this proposal</Button>
+            <Button block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
+        </Card.Body>
+      </Card>
 
       :
 
-<Card className="gray">
-  <Card.Body className="proposal-table">
-    <div className="proposal-main">
-      <div className="proposal-title">{title}</div>
-      <div className="proposal-action">Tipo de acción: {typeOfAction}</div>
-    </div>
-
-    <div className="proposal-main">
-      <div className="proposal-sub">Donde: {neighborhood}</div>
-      <div className="proposal-subaction"> Persona a cargo: {personInCharge}</div>
-    </div>
-
-
-    <div className ="proposal-main">
-      <div className="proposal-sub">Descripción: {description}</div>
-      <div className="proposal-action">Expiración:{expiration}</div>
-    </div>
-
-    <div className ="proposal-main">
-      <div className="proposal-sub">Costo: {budget}</div>
-      <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
-    </div>
-
-    <div className="proposal-main">
-      <div className="proposal-sub">A favor:{forVotes}</div>
-      <div className="proposal-action">En contra: {againstVotes}</div>
-    </div>
-    <div className="proposal-main">
-      <Button className="wallet" block onClick={handleOnClickFor}>Votar a favor</Button>
-      <Button claasName="wallet" block onClick={handleOnClickAgainst}>Votar en contra</Button>
-    </div>
-  </Card.Body>
-</Card>
+      <Card className="gray mb-4">
+        <Card.Body>
+            <div>
+              title: {title}
+            </div>
+            <div>
+              type of action: {typeOfAction}
+            </div>
+            <div>
+              Where: {neighborhood}
+            </div>
+            <div>
+              Person in charge: {personInCharge}
+            </div>
+            <div>
+              description: {description}
+            </div>
+            <div>
+              expiration: {expiration}
+            </div>
+            <div>
+              cost: {budget}
+            </div>
+            <div>
+              Required TARO to vote: {requiredTaroToVote}
+            </div>
+            <div>
+              For: {forVotes}
+            </div>
+            <div>
+              Against: {againstVotes}
+            </div>
+            <Button block onClick={handleOnClickFor}>Vote for this proposal</Button>
+            <Button block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
+        </Card.Body>
+      </Card>
       }
     </div>
   );
