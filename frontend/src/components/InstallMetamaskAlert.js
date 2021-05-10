@@ -6,10 +6,11 @@ import {Link} from "react-router-dom";
 
 
 const InstallMetamaskAlert = () => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
+
   return (
     <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
     <Alert variant="primary">
       <Alert.Heading>It appears you don't have MetaMask installed</Alert.Heading>
       <p>

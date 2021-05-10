@@ -23,7 +23,7 @@ const CreateProposal = () => {
   let [ethersProvider, setEthersProvider] = useState();
   let [signerAddress, setSignerAddress] = useState();
 
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
@@ -183,7 +183,7 @@ const CreateProposal = () => {
 
   return (
     <div>
-      {isEnglish
+      {isEnglish === 'english'
 
         ?
 

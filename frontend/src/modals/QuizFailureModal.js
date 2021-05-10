@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const QuizFailureModal = (props) => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-      {isEnglish?
+      {isEnglish === 'english' ?
 
       <Modal
         {...props}

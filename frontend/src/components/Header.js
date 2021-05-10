@@ -4,27 +4,12 @@ import logo from '../assets/Logo.svg';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const Header = () => {
-  // let {isEnglish, setIsEnglish} = useContext(LanguageContext);
-  // const handleOnSelect = () => {
-  //   setIsEnglish(!isEnglish);
-  // };
-
-  // let [isEnglish, setIsEnglish] = useState();
   let [isEnglish, setLoc] = useContext(LanguageContext);
 
   const handleOnSelect = () => {
     setLoc();
     window.location.reload();
   };
-
-  // useEffect(() => {
-  //   const main = () => {
-  //     let language = localStorage.getItem('language');
-  //     if(language === 'english') {
-  //       setIsEnglish(true);
-  //     };
-  //   };
-  // }, []);
 
   return (
   <div>

@@ -5,11 +5,11 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import {ListGroup, Button} from 'react-bootstrap';
 
 const ValidationRequired = () => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-      {isEnglish
+      {isEnglish === 'english'
       ?
       <Alert variant="secondary">
       <div>

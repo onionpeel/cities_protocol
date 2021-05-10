@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const QuizAlreadySubmittedModal = (props) => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-    {isEnglish?
+    {isEnglish === 'english' ?
 
       <Modal
         {...props}
@@ -36,12 +36,12 @@ const QuizAlreadySubmittedModal = (props) => {
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-          Ya has enviado tus respuestas 
+          Ya has enviado tus respuestas
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            Conoce más sobre <Link to="/about">TARO</Link> 
+            Conoce más sobre <Link to="/about">TARO</Link>
           </p>
         </Modal.Body>
       </Modal>

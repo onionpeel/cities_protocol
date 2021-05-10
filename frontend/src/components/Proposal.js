@@ -17,7 +17,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
 
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   // let {governorAlpha} = useContext(GovernorAlphaContext);
   let {provider} = useContext(EthersContext);
 
@@ -126,7 +126,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
   return (
     <div>
-      {isEnglish
+      {isEnglish === 'english'
 
       ?
 

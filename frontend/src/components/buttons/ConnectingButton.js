@@ -5,10 +5,11 @@ import '../../styles/Home.css';
 
 
 const ConnectingButton = () => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
+
   return (
     <div>
-    {isEnglish ?    
+    {isEnglish === 'english' ?    
     <Button variant="secondary" disabled>
     <Spinner
       as="span"

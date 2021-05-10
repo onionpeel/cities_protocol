@@ -24,7 +24,7 @@ const ProposalList = () => {
   let [signerAddress, setSignerAddress] = useState();
 
   let {isValidated} = useContext(ValidationRequiredContext);
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
   let {provider} = useContext(EthersContext);
 
@@ -179,7 +179,7 @@ const ProposalList = () => {
 
   return (
 <div>
-      {isEnglish
+      {isEnglish === 'english'
       ?
 
       <div>

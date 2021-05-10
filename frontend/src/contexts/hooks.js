@@ -26,14 +26,3 @@ export function useLocalState() {
 
   return [isEnglish, setLoc];
 };
-
-// let [isEnglish, setIsEnglish] = useState();
-//
-// useEffect(() => {
-//   const main = () => {
-//     let language = localStorage.getItem('language');
-//     if(language === 'english') {
-//       setIsEnglish(true);
-//     };
-//   };
-// }, []);

@@ -3,11 +3,11 @@ import { Modal, Spinner } from 'react-bootstrap';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const IsLoadingModal = (props) => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-      {isEnglish?
+      {isEnglish === 'english' ?
 
       <Modal
         {...props}

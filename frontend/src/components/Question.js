@@ -5,7 +5,7 @@ import { LanguageContext } from '../contexts/LanguageContext';
 
 const Question = ({question, answers, number}) => {
   let { userAnswers, setUserAnswers } = useContext(QuizContext);
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   const handleOnAnswer = e => {
     userAnswers.push(e.target.value);
@@ -27,7 +27,7 @@ const Question = ({question, answers, number}) => {
 
   return (
     <div>
-      {isEnglish?
+      {isEnglish === 'english' ?
 
       <Card className="list-group-item">
         <Card.Body>

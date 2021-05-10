@@ -5,10 +5,11 @@ import '../../styles/Home.css';
 
 
 const ConnectButton = ({handleOnConnect}) => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
+
   return (
     <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
     <div>
       <Card.Text className="purple2">You need a Metamask wallet to use VoTARO</Card.Text>
       <Button onClick={handleOnConnect}>Connect Wallet</Button>
@@ -17,7 +18,7 @@ const ConnectButton = ({handleOnConnect}) => {
     <div>
       <Card.Text className="purple2">Necesitas una wallet de Metamask para usar VoTARO</Card.Text>
       <Button onClick={handleOnConnect}>Conectar Wallet</Button>
-      
+
     </div>
 }</div>
   );

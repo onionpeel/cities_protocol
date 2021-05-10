@@ -36,7 +36,7 @@ function Home() {
   // let {isEnglish} = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
-  let [isEnglish, setLoc] = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
 
   useEffect(() => {
