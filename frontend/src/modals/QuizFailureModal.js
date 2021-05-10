@@ -4,13 +4,11 @@ import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const QuizFailureModal = (props) => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-      {isEnglish
-
-      ?
+      {isEnglish === 'english' ?
 
       <Modal
         {...props}
@@ -41,14 +39,12 @@ const QuizFailureModal = (props) => {
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
-
-            You didn't pass the quiz
+            No pasaste el cuestionario
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-            Please learn more about Queretaro and take the quiz again.
+            Aprende más sobre Querétaro e intentalo de nuevo
           </p>
         </Modal.Body>
         <Link to="/home">TARO</Link>

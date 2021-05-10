@@ -1,40 +1,41 @@
 import { useContext } from 'react';
-import {Alert} from 'react-bootstrap';
-import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
+import {Alert, Button} from 'react-bootstrap';
+import {Link} from "react-router-dom";
+
+
 
 const InstallMetamaskAlert = () => {
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
-      {isEnglish
+      {isEnglish === 'english' ?
 
-      ?
+    <Alert className= "valert">
+      <div >
+        <div className="big-icon">⚠️</div>
+        <div className="title3">It appears you don't have MetaMask installed</div>
 
-      <div>
-        <Alert variant="primary">
-          <Alert.Heading>It appears you don't have MetaMask installed</Alert.Heading>
-          <p>
-          <Link to="/createproposal">Get started so you can start earning TARO</Link>
-          </p>
-        </Alert>
+        <div className ="floating">
+          <Button className="alt2" to="https://metamask.io/">Download Wallet</Button>
+        </div>
       </div>
 
-      :
+   </Alert>
+    :
+    <Alert className= "valert">
+        <div >
+          <div className="big-icon">⚠️</div>
+          <div className="title3">Parece que no tienes una wallet de Metamask</div>
 
-      <div>
-        <Alert variant="primary">
-          <Alert.Heading>It appears you don't have MetaMask installed</Alert.Heading>
-          <p>
-          ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP ESP
+          <div className ="floating">
+            <Button className="alt2" to="https://metamask.io/">Descargar Wallet</Button>
+          </div>
+        </div>
 
-          <Link to="/createproposal">Get started so you can start earning TARO</Link>
-          </p>
-        </Alert>
-      </div>
-      }
-    </div>
+    </Alert>
+    }</div>
   );
 };
 

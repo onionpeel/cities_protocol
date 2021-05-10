@@ -228,10 +228,11 @@ contract GovernorAlpha {
 
     //The front end will respond based on the uint value that is returned.
     //The user cannot validate if the user is currently validated.
+    //The validation period lasts for six months.
     function validate(uint _rewardedTokens) public returns(uint) {
       if(validations[msg.sender].expirationTime == 0) {
         validations[msg.sender] = Validation({
-            expirationTime: block.timestamp + 30
+            expirationTime: block.timestamp + 15780000
         });
         bool transferred = taro.transferFrom(address(this), msg.sender, _rewardedTokens);
         require(transferred, "Tokens not transferred to msg.sender");
@@ -240,7 +241,7 @@ contract GovernorAlpha {
           return 1; //already validated
       } else {
           validations[msg.sender] = Validation({
-              expirationTime: block.timestamp + 30
+              expirationTime: block.timestamp + 15780000
           });
           return 2; // return 2; //renew validation
       }
@@ -307,8 +308,10 @@ contract GovernorAlpha {
 //
     function _castVote(address voter, uint proposalId, bool support) internal {
         require(isProposalActive[proposalId] == true, "GovernorAlpha::_castVote: voting is closed");
+
         Proposal storage proposal = proposals[proposalId];
         Receipt storage receipt = proposal.receipts[voter];
+
         require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
         uint96 votes = taro.getPriorVotes(voter, proposal.startBlock);
 

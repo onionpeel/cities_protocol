@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import {Link} from "react-router-dom";
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup, Button} from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Proposal from './Proposal';
@@ -10,6 +10,9 @@ import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
 import ValidationRequired from '../alerts/ValidationRequired';
 import { EthersContext } from '../contexts/EthersContext';
 
+import Taro from '../contracts/contracts/Taro.sol/Taro.json';
+import taroAddress from '../contracts/contracts/Taro/contract-address.json';
+
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
@@ -17,9 +20,11 @@ import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-
 
 const ProposalList = () => {
   let [retrievedProposals, setRetrievedProposals] = useState([]);
+  let [taro, setTaro] = useState();
+  let [signerAddress, setSignerAddress] = useState();
 
   let {isValidated} = useContext(ValidationRequiredContext);
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
   let {provider} = useContext(EthersContext);
 
@@ -77,15 +82,16 @@ const ProposalList = () => {
             let signer = await _ethersProvider.getSigner();
             // setEthersSigner(signer);
 
-            // const _taro = new ethers.Contract(
-            //   taroAddress.Taro,
-            //   Taro.abi,
-            //   signer
-            // );
-            // setTaro(_taro);
+            const _taro = new ethers.Contract(
+              taroAddress.Taro,
+              Taro.abi,
+              signer
+            );
+            setTaro(_taro);
 
-            // let signerAddress = await signer.getAddress();
+            let _signerAddress = await signer.getAddress();
             // console.log("signerAddress: ", signerAddress);
+            setSignerAddress(_signerAddress);
 
             // let _userBalance = await _taro.balanceOf(signerAddress);
             // console.log('_userBalance in useEffect: ', _userBalance.toString());
@@ -165,93 +171,107 @@ const ProposalList = () => {
     )
   });
 
-  return (
-    <div>
-      {isEnglish
+  const handleOnClickDelegate = async () => {
+    let delegate = await taro.delegate(signerAddress);
+    let delegateReceipt = await delegate.wait(1);
+    console.log('delegateReceipt: ', delegateReceipt);
+  };
 
+  return (
+<div>
+      {isEnglish === 'english'
       ?
 
       <div>
-        {isValidated ? "" : <ValidationRequired />}
-        <div>
-          <Link to="/createproposal">Create a proposal</Link>
-        </div>
-
-        <div>
-          {list.length > 0
-
-          ?
-
-          <div>
-            {list}
+        <div className= "app">
+          <div className= "gray">
+            {isValidated ? "" : <ValidationRequired />}
           </div>
-
-          :
-
-          <div>
-            <div>
-              <Link to="/">Please return to the home page</Link>
-            </div>
-            <div>
-              There are no proposals right now.
-            </div>
-          </div>
+            <div className= "yellowB">
+              <div className="main">Delegate TARO to vote. Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.</div>
+               <div className ="floating">
+                <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
+              </div>
+              <div className="floating">
+                <Link className="alt" to="/createproposal">Create a proposal</Link>
+              </div>
+              </div >
+              <div>
+                {list.length > 0
+                ?
+                <div className = "app">
+                  {list}
+                </div>
+                :
+                <div>
+                  <div className ="floating">
+                   <div className="purple">There are no proposals right now.</div>
+                  </div>
+                  <div className ="floating">
+                    <Link className="alt2" to="/">Return to home</Link>
+                  </div>
+                </div>
           }
         </div>
 
-        <ListGroup>
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-          <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+      </div>
+
       </div>
 
       :
 
       <div>
-        <div>
-          ESP ESP ESP ESP
-        </div>
-        {isValidated ? "" : <ValidationRequired />}
-        <div>
-          <Link to="/createproposal">Create a proposal</Link>
-        </div>
-
-        <div>
-          {list.length > 0
-
-          ?
-
-          <div>
-            {list}
+        <div className= "app">
+          <div className= "valert">
+            {isValidated ? "" : <ValidationRequired />}
           </div>
-
-          :
-
-          <div>
+            <div className= "yellowB">
+              <div className="title2">Delega TARO para votar.</div>
+              <div className="big-icon">🗳️</div>
+              <div className="main">Para poder crear propuestas o votarlas, es necesario que deleges tus tokens de TARO
+              así el sistema sabrá que deseas utilizar tus TARO como poder de voto.
+              </div>
+              <div className="text-large-fit">1 TARO = 1 Voto
+              </div>
+               <div className ="floating">
+                <Button className="alt2" onClick={handleOnClickDelegate}>Delega TARO</Button>
+              </div>
+            </div >
+            <div className= "orangeB">
+              <div className="title2">Crea una nueva propuesta .</div>
+              <div className="big-icon">🦸🦸‍♂️</div>
+              <div className="main">
+                ¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
+                Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
+              </div>
+              <div className="floating">
+                <Link className="alt2" to="/createproposal">Crea una propuesta</Link>
+              </div>
+            </div >
             <div>
-              <Link to="/">Please return to the home page</Link>
-            </div>
-            <div>
-              There are no proposals right now.
-            </div>
-          </div>
+                {list.length > 0
+                ?
+                <div className = "app">
+                  {list}
+                </div>
+                :
+                <div>
+                  <div className ="floating">
+                   <div className="purple">No hay propuestas aún.</div>
+                  </div>
+                  <div className ="floating">
+                    <Link className="alt2" to="/">Regresar al inicio</Link>
+                  </div>
+                </div>
           }
         </div>
 
-        <ListGroup>
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-          <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
+      </div>
+
       </div>
     }
     </div>
   );
 };
 
-export default ProposalList;
+ export default ProposalList;

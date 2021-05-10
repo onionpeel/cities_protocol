@@ -1,6 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-src/REALQUIZ/
+src/REALQUIZ
+src/COMPONENTSTOADD/
+src/SKALE/
+src/PRESENTATION/
+src/DELETEBEFOREPRODUCTION
+src/PRE_SUBMISSION
 
 # dependencies
 /node_modules
