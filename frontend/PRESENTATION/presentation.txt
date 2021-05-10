@@ -30,8 +30,48 @@ Now we can take the quiz.
 [go back to About and click the link at the bottom]
 
 Votaro is meant for residents of Queretaro.  We have a quiz that tries to limit the app just for people with a first-hand knowledge of the city.
-This is how you can get your first Taro tokens.  The more questions you get right, the more Taro you receive.  If you fail the quiz, you will not be validated and you can't make proposals or vote.
+This is how you can get your first Taro tokens.  The more questions you get right, the more Taro you receive.  If you fail the quiz, you will not be validated and you can't make proposals or vote.  Validation lasts for six months, then you can take the quiz to continue using Votaro.
 
 We are already validated, so we will skip the quiz.  Plus, we don't want to reveal the correct answers!
 
 [click on the medal to go to ProposalList]
+When we go to the proposals page, we can see all of the active proposals that can be voted on.  It is important to know that you can only vote if you have first delegated votes to yourself.  In the future it will be possible to delegate to other Taro holders.  Also, you can't vote on any proposal that existed before you delegated.  So it is important to do that right away.
+
+[click on delegate and confirm in metamask]
+
+Since we are already validated and we have delegated our votes, let's create a proposal.
+
+[click to create new proposal]
+Once you have entered the information about your proposal, go ahead and submit it.
+[Fill out the fields with information that people can understand.  For example: Clean the park, outdoor, some neighborhood, some person, we will pick up trash around the playground, expiration???, budget: 0]
+
+[click submit]
+Skale handles the submission.  The response time is really fast.
+
+To see the proposal, go to the proposals page.
+And there it is!
+Proposals remain active for 3 days.  If they pass, that means the Votaro community will do the proposed activity.
+
+Let's vote.
+[click 'for' and confirm]
+[refresh browser]
+And there it is!  We just voted.  You may be wondering about the number of votes. Voting power is set by the number of Taro tokens you have.  Your initial amount of tokens is determined by your quiz score, which is the number that you see in favor of the proposal.
+
+[show the slide of how it was made and talk through this]
+[then show future work, but keep this short (on and off chain is too much) because it takes away attention from the app itself]
+
+[at the end show slide of team ]
+And here is the team behind votaro
+(no need to introduce us or spend more than 3 seconds on this slide. Time is short and viewers can read)
+
+Here is my approach to the video.  I'll give my thoughts, and then I wrote up a script that I developed as I was debugging and going through the flow of use.  I think you did a great job with the video--so I am not criticizing that, i'm just looking for how to get the most out of the next one.  I'll support whatever decisions you make about it.
+
+"A dapp to digitize urban governance in Queretaro city through gamified interactions using the Skale network."
+
+This is a technical definition of votaro.  If someone heard that definition and then you asked them, "What is votaro?", they wouldn't know what it is.  It's too abstract.  It doesn't tell us anything about what votaro does (it could be a bunch of tic tac toe games and the winner get to each lunch with the mayor).
+
+I refer to votaro as a voting app because it is an easy mental concept to understand and if I told someone that they could tell me it is a voting app.  They understand that, and that is what the app does.  The problem with a technical definition is that it requires an explanation, and it means that the viewers are lost until they get that explanation.  So it would be better just to give them something concrete/understandable to begin with.
+
+I think the focus needs to be on the app.  Talking while showing slides decreases the viewer's attention.  But if we are continually guiding them through the app, they will stay engaged.  Plus, the app is why we are all here, so let's make the most of it.  So instead of the slides at the beginning that talk about the app, just jump in and explain it by showing them how to use it.  It is more time efficient and they will be more engaged by seeing the app being used than by seeing bullet points on a slide.
+
+You have a good voice and presentation style.  I encourage you take your time when explaining the app because while it may feel slow to you, for the viewers it can be tough to find the curser and see the links being clicked.  Make the pace slow enough so that they can absorb what they are seeing and hearing.  Their understanding is more important than the amount of content we can through at them.
