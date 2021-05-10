@@ -19,3 +19,5 @@ This can happen when a local network gets reset and the nonce in MM no longer ma
 3. Keep the hardhat node running, but in a different terminal, go to the same directory and type:
 npx hardhat clean
 4. Start front end server
+
+When running the front end on the localhost after it has been using skale, it will be necessary to restart the front end server because the json files are all pointing to the addresses of contracts on skale.  The new deployment will set these for the localhost.

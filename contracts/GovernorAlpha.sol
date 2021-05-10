@@ -86,6 +86,9 @@ contract GovernorAlpha {
       uint expirationTime;
     }
 
+    struct UserProposal {
+      uint count;
+    }
     /// @notice Possible states that a proposal may be in
     // enum ProposalState {
     //     Pending,
@@ -109,6 +112,9 @@ contract GovernorAlpha {
 
     /// @notice Collection of all Validation structs that are used to calculate the validity of an address
     mapping (address => Validation) public validations;
+
+    /// @notice A collection of user proposals
+    mapping (address => UserProposal) public userProposals;
 
     /// @notice The EIP-712 typehash for the contract's domain
     // bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
@@ -150,7 +156,12 @@ contract GovernorAlpha {
     }
 
     function propose(UserInputFields memory _userInputFields) public checkValidity returns (uint) {
-        // require(taro.getPriorVotes(msg.sender, sub256(block.number, 1)) > proposalThreshold(), "GovernorAlpha::propose: proposer votes below proposal threshold");
+        //A user recieves 20 Taro for each of their first five proposals
+        if(userProposals[msg.sender].count < 5) {
+          bool transferred = taro.transferFrom(address(this), msg.sender, 20*10**18);
+          require(transferred, "Tokens not transferred to msg.sender");
+          userProposals[msg.sender].count++;
+        }
 
         uint startBlock = add256(block.number, votingDelay());
         uint endBlock = add256(startBlock, votingPeriod());

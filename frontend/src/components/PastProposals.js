@@ -121,7 +121,7 @@ const PastProposals = () => {
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
                 // console.log('proposal: ', proposal);
 
-                if(proposal.endBlock.toNumber() > currentBlockNumber) {
+                if(proposal.endBlock.toNumber() < currentBlockNumber) {
                   activeProposals.push({
                     title: proposal[9][0],
                     typeOfAction: proposal[9][1],

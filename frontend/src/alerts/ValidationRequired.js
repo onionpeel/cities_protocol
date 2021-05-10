@@ -12,16 +12,17 @@ const ValidationRequired = () => {
       {isEnglish === 'english'
       ?
       <Alert>
-      <div>
-      Only users who have validated their account can create a new proposal. Take the Quiz to get validated
-      </div>
-      <div className ="floating">
-        <Link className="alt2" to="/quiz">Take the quiz to get validated</Link>
-      </div>
-
-
-    </Alert>
-
+        <div className="main">
+          <div className="title3">Get valiated to vote</div>
+          <div className="big-icon">⚠️</div>
+          <div className="white">
+            Only validated Queretaro citizens can create new proposals or vote on the available
+          </div>
+        </div>
+        <div className ="floating">
+          <Link className="alt2" to="/quiz">Validate account</Link>
+        </div>
+      </Alert>
       :
       <Alert>
         <div className="main">
@@ -34,8 +35,6 @@ const ValidationRequired = () => {
         <div className ="floating">
           <Link className="alt2" to="/quiz">Validar que soy Queretan@</Link>
         </div>
-
-
       </Alert>
       }
     </div>

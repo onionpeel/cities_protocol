@@ -25,7 +25,7 @@ a.alt:hover {
   color: #3d386b !important;}
 
 .nohover {
-  background-color: transparent!important;
+  background-color: #3d386b!important;
 }
 
 .alt {
@@ -45,12 +45,37 @@ a.alt:hover {
   border: none !important;
   display: flex !important;
   justify-content: center !important;
-  justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
   color: #ffffff !important;
   background-color: #3d386b !important;
 }
+
+.alt3 {
+
+  border-radius: 25px !important;
+  border: none !important;
+  display: flex !important;
+  text-align: left;
+  color: #ffffff !important;
+  background-color: #3d386b !important;
+}
+
+.NavDropdown.Item {
+
+  right: 0 !important;
+  left: 50%  !important;
+  border-radius: 25px !important;
+  border: none !important;
+  text-align: left;
+  display: flex !important;
+  justify-content: left !important;
+  align-content: left !important;
+  align-items: left !important;
+  color: #ffffff !important;
+  background-color: #3d386b !important;
+}
+
 
 .submitbutton {
   width: 100% !important;

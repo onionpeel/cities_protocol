@@ -133,7 +133,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       <Card className="gray">
       <Card.Body className="proposal-table">
         <div className="proposal-main">
-          <div className="proposal-title"> Clases de baile en el parque {title}</div>
+          <div className="proposal-title"> Type of action {title}</div>
           <div className="proposal-action">type of action: {typeOfAction}</div>
         </div>
 
@@ -147,12 +147,12 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
           <div className="proposal-sub">description: {description}</div>
           <div className="proposal-action">expiration:{expiration}</div>
         </div>
-
+        {/*}
         <div className ="proposal-main">
           <div className="proposal-sub">cost: {budget}</div>
           <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
         </div>
-
+        */}
         <div className="proposal-main">
           <div className="proposal-sub">For:{forVotes}</div>
           <div className="proposal-action">Against: {againstVotes}</div>
@@ -183,12 +183,12 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       <div className="proposal-sub">Descripción: {description}</div>
       <div className="proposal-action">Expiración:{expiration}</div>
     </div>
-
+    {/*}
     <div className ="proposal-main">
       <div className="proposal-sub">Costo: {budget}</div>
       <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
     </div>
-
+    */}
     <div className="proposal-main">
       <div className="proposal-sub">A favor:{forVotes}</div>
       <div className="proposal-action">En contra: {againstVotes}</div>
