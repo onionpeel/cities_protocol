@@ -18,6 +18,7 @@ import ProposalList from './ProposalList';
 import Quiz from './Quiz';
 import Header from './Header';
 import CreateProposal from './CreateProposal';
+import PastProposals from './PastProposals';
 
 function App() {
   let [isValidated, setIsValidated] = useState();
@@ -45,6 +46,7 @@ function App() {
                       <Route path="/proposallist"><ProposalList /></Route>
                       <Route path="/createproposal"><CreateProposal /></Route>
                       <Route path="/quiz"><Quiz /></Route>
+                      <Route path="/pastproposals"><PastProposals /></Route>
                       <Route path="/"><Home /></Route>
                     </Switch>
                   </Router>
