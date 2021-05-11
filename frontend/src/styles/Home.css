@@ -110,7 +110,6 @@ Nav {
 
 .main  {
   font-family: 'Lexend Deca', sans-serif;
-
   text-align: justify !important;
   text-justify: inter-word !important;
   box-sizing: border-box !important;
@@ -180,7 +179,7 @@ button:disabled {
 
 .text-large-quiz {
   font-family: 'Lexend Deca', sans-serif !important;
-  text-align: center;
+  text-align: left;
   font-size: 20px !important;
 }
 
@@ -270,9 +269,9 @@ button:disabled {
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 720px !important;
+  min-width: 450px !important;
   margin: 3% auto;
-  background-image: linear-gradient(#3d386b, #3d386b);
+  background-image: linear-gradient(#3d386b, #827bbb);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
@@ -389,6 +388,7 @@ align-items: center !important;
 }
 
 .white2 {
+  text-align: left;
   margin-bottom: 1% !important;
   font-size: 18px !important;
   color: #ffffff !important;
@@ -523,10 +523,18 @@ align-items: center !important;
 }
 
 .orange-card {
-  background-color: #3d386b;
+  background-image: linear-gradient(#3d386b , #3d386b);
   width: 100%;
   border-radius: 5px;
+  margin-top: 5% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
 
+.orange-card2 {
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
   margin-top: 5% !important;
   font-size: 15px !important;
   color: #ffffff !important;

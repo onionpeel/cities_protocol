@@ -282,16 +282,18 @@ const Quiz = () => {
         </div>
 
         :
-        <div>
+        <div className="app">
           {isConnected ?
               <div className="gray2">
-                <text className="white">Validar que soy de Querétaro</text>
+                <text className="white">Contesta correctamente para validar que eres de Querétaro</text>
                 <div>
                   <div className="app">
                     <QuizContext.Provider  value={{userAnswers, setUserAnswers}}>
-                    <div className="orange-card">{spanishQuestions}</div>
+                    <div className="orange-card2">{spanishQuestions}</div>
                     </QuizContext.Provider>
-                    <Button className="alt2" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+
+                    <div className="main"><Button className="alt2" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+                    </div>
                   </div>
 
 
