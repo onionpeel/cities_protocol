@@ -245,7 +245,7 @@ const Quiz = () => {
 
           ?
 
-          <div>
+          <div className="gray2">
             <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
               <div>
                 {englishQuestions}
@@ -276,7 +276,7 @@ const Quiz = () => {
             <div>
               To take the quiz and start earning Taro, you first need to get connected to the Ethereum network
             </div>
-            <Link to="/">Return home and click on "Connect Wallet to Unlock"</Link>
+            <Link className="alt2" to="/">Return home and click on "Connect Wallet to Unlock"</Link>
           </div>
           }
         </div>
@@ -287,12 +287,14 @@ const Quiz = () => {
               <div className="gray2">
                 <text className="white">Validar que soy de Querétaro</text>
                 <div>
-                  <div>
-                    <QuizContext.Provider className="item" value={{userAnswers, setUserAnswers}}>
-                    <div>{spanishQuestions}</div>
+                  <div className="app">
+                    <QuizContext.Provider  value={{userAnswers, setUserAnswers}}>
+                    <div className="orange-card">{spanishQuestions}</div>
                     </QuizContext.Provider>
+                    <Button className="alt2" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
                   </div>
-                  <Button className="Wallet" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+
+
                   <QuizFailureModal
                     show={failureModalShow}
                     onHide={handleOnFailure}
@@ -316,7 +318,7 @@ const Quiz = () => {
                 <div>
                   Necesitas conectarte con una wallet de Metamask a la red de Ethereum para poder contestar el cuestionario
                 </div>
-                <Link to="/">Regresa al inicio para conectar tu cartera a la Dapp</Link>
+                <Link className="alt2" to="/">Regresa al inicio para conectar tu cartera a la Dapp</Link>
               </div>
           }
         </div>

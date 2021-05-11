@@ -13,23 +13,25 @@ const CreateProposalErrorModal = (props) => {
       ?
 
       <Modal
-        {...props}
-        size="md"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Body>
-          <div>
-            Your form was not submitted.  Please be sure you are connected to MetaMask and that you entered your information correctly.
-          </div>
-          <div>
-            Also, make sure you have passed the quiz so that you are validated to make proposals.
-          </div>
-          <div>
-            <Link to="/">VoTaro</Link>
-          </div>
-        </Modal.Body>
-      </Modal>
+      {...props}
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+    <Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter">
+        ⚠️Your proposal was not submitted⚠️
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="main">
+          Please be sure you are connected to MetaMask and that you entered your information correctly.
+        </div>
+        <div className="main">
+          Also, make sure you have passed the quiz so that you are validated to make proposals.
+        </div>
+      </Modal.Body>
+    </Modal>
 
       :
 
@@ -39,15 +41,17 @@ const CreateProposalErrorModal = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+      <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">
+          ⚠️No se envió tu propuesta⚠️
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body>
-          <div>
-            Your form was not submitted.  Please be sure you are connected to MetaMask and that you entered your information correctly.
+          <div className="main">
+          Asegúrese de estar conectado a MetaMask y de haber ingresado su información correctamente.
           </div>
-          <div>
-            Also, make sure you have passed the quiz so that you are validated to make proposals.
-          </div>
-          <div>
-            <Link to="/">VoTaro</Link>
+          <div className="main">
+          Además, asegurate de haber validado tu cuenta y haber llenado todos los campos.
           </div>
         </Modal.Body>
       </Modal>

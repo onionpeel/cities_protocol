@@ -29,17 +29,17 @@ const Question = ({question, answers, number}) => {
     <div>
       {isEnglish === 'english' ?
 
-      <Card className="list-group-item">
-        <Card.Body>
-          <Card.Title className="orange">{question}</Card.Title>
-          {answer}
+      <Card className="orange-card">
+        <Card.Body className="main">
+          <Card.Title className="orange3">{question}</Card.Title>
+          <div className="text-large-quiz">{answer}</div>
         </Card.Body>
       </Card>
       :
-      <Card className="list-group-item">
-      <Card.Body>
-        <Card.Title className="orange">{question}</Card.Title>
-        {answer}
+      <Card className="orange-card">
+      <Card.Body className="main">
+        <Card.Title className="orange3">{question}</Card.Title>
+        <div className="text-large-quiz">{answer}</div>
       </Card.Body>
     </Card>
     }
