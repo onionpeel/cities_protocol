@@ -106,6 +106,10 @@ const PastProposals = () => {
             );
             // setGovernorAlpha(_governorAlpha);
 
+            let _isValidated = await _governorAlpha.getValidityStatus();
+            let _isValidatedReceipt = await _isValidated.wait(1);
+            console.log(_isValidatedReceipt);
+
             let proposalCount = await _governorAlpha.proposalCount();
             proposalCount = +proposalCount;
 

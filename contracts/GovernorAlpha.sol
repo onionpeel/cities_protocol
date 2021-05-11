@@ -128,6 +128,9 @@ contract GovernorAlpha {
     /// @notice An event emitted when a vote has been cast on a proposal
     event VoteCast(address voter, uint proposalId, bool support, uint votes);
 
+    /// @notice values used to calculate user validity
+    event ValidityStatus(uint timestamp);
+
     /// @notice An event emitted when a proposal has been canceled
     // event ProposalCanceled(uint id);
 
@@ -190,53 +193,6 @@ contract GovernorAlpha {
         return newProposal.id;
     }
 
-    // function queue(uint proposalId) public {
-    //     require(state(proposalId) == ProposalState.Succeeded, "GovernorAlpha::queue: proposal can only be queued if it is succeeded");
-    //     Proposal storage proposal = proposals[proposalId];
-    //     uint eta = add256(block.timestamp, timelock.delay());
-    //     for (uint i = 0; i < proposal.targets.length; i++) {
-    //         _queueOrRevert(proposal.targets[i], proposal.values[i], proposal.signatures[i], proposal.calldatas[i], eta);
-    //     }
-    //     proposal.eta = eta;
-    //     emit ProposalQueued(proposalId, eta);
-    // }
-
-    // function _queueOrRevert(address target, uint value, string memory signature, bytes memory data, uint eta) internal {
-    //     require(!timelock.queuedTransactions(keccak256(abi.encode(target, value, signature, data, eta))), "GovernorAlpha::_queueOrRevert: proposal action already queued at eta");
-    //     timelock.queueTransaction(target, value, signature, data, eta);
-    // }
-
-    // function execute(uint proposalId) public payable {
-    //     require(state(proposalId) == ProposalState.Queued, "GovernorAlpha::execute: proposal can only be executed if it is queued");
-    //     Proposal storage proposal = proposals[proposalId];
-    //     proposal.executed = true;
-    //     for (uint i = 0; i < proposal.targets.length; i++) {
-    //         timelock.executeTransaction.value(proposal.values[i])(proposal.targets[i], proposal.values[i], proposal.signatures[i], proposal.calldatas[i], proposal.eta);
-    //     }
-    //     emit ProposalExecuted(proposalId);
-    // }
-
-    // function cancel(uint proposalId) public {
-    //     ProposalState state = state(proposalId);
-    //     require(state != ProposalState.Executed, "GovernorAlpha::cancel: cannot cancel executed proposal");
-    //
-    //     Proposal storage proposal = proposals[proposalId];
-    //     require(msg.sender == guardian || taro.getPriorVotes(proposal.proposer, sub256(block.number, 1)) < proposalThreshold(), "GovernorAlpha::cancel: proposer above threshold");
-    //
-    //     proposal.canceled = true;
-    //     for (uint i = 0; i < proposal.targets.length; i++) {
-    //         timelock.cancelTransaction(proposal.targets[i], proposal.values[i], proposal.signatures[i], proposal.calldatas[i], proposal.eta);
-    //     }
-    //
-    //     emit ProposalCanceled(proposalId);
-    // }
-
-//     function getActions(uint proposalId) public view returns (address[] memory targets, uint[] memory values, string[] memory signatures, bytes[] memory calldatas) {
-//         Proposal storage p = proposals[proposalId];
-//         return (p.targets, p.values, p.signatures, p.calldatas);
-//     }
-//
-
     //The front end will respond based on the uint value that is returned.
     //The user cannot validate if the user is currently validated.
     //The validation period lasts for six months.
@@ -270,17 +226,13 @@ contract GovernorAlpha {
       _;
     }
 
-    function getValidityStatus() public view returns(uint) {
-      if(validations[msg.sender].expirationTime > block.timestamp) {
-          return 1;
-      } else {
-          return 0;
-      }
+    function getValidityStatus() public view returns (uint, uint){
+        return (validations[msg.sender].expirationTime, block.timestamp);
     }
 
-    function getReceipt(uint proposalId, address voter) public view returns (Receipt memory) {
-        return proposals[proposalId].receipts[voter];
-    }
+    // function getReceipt(uint proposalId, address voter) public view returns (Receipt memory) {
+    //     return proposals[proposalId].receipts[voter];
+    // }
 //
 //     function state(uint proposalId) public view returns (ProposalState) {
 //         require(proposalCount >= proposalId && proposalId > 0, "GovernorAlpha::state: invalid proposal id");

@@ -23,7 +23,7 @@ const ProposalList = () => {
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
 
-  let {isValidated} = useContext(ValidationRequiredContext);
+  let {isValidated, setIsValidated} = useContext(ValidationRequiredContext);
   let [isEnglish] = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
   let {provider} = useContext(EthersContext);
@@ -105,6 +105,22 @@ const ProposalList = () => {
               signer
             );
             // setGovernorAlpha(_governorAlpha);
+
+            let _isValidated = await _governorAlpha.getValidityStatus();
+            let userExpirationTime = _isValidated[0].toNumber();
+            let currentBlockTimestamp = _isValidated[1].toNumber();
+
+            if(userExpirationTime === 0) {
+              console.log('user is zero time; not validated');
+              setIsValidated(false);
+            } else if (currentBlockTimestamp > userExpirationTime){
+              console.log('user is past validity period; not validated');
+              setIsValidated(false);
+            } else {
+              setIsValidated(true);
+              console.log('user exp time: ', _isValidated[0].toNumber());
+              console.log('block.timestamp: ', _isValidated[1].toNumber());
+            };
 
             let proposalCount = await _governorAlpha.proposalCount();
             proposalCount = +proposalCount;
