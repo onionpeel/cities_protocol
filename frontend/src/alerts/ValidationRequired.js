@@ -13,7 +13,7 @@ const ValidationRequired = () => {
       ?
       <Alert>
         <div className="main">
-          <div className="title3">Get valiated to vote</div>
+          <div className="title3">Get validated to vote</div>
           <div className="big-icon">⚠️</div>
           <div className="white">
             Only validated Queretaro citizens can create new proposals or vote on the available
