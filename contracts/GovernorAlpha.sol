@@ -7,14 +7,8 @@ contract GovernorAlpha {
     /// @notice The name of this contract
     string public constant name = "VoTaro Governor Alpha";
 
-    /// @notice The number of votes in support of a proposal required in order for a quorum to be reached and for a vote to succeed
-    // function quorumVotes() public pure returns (uint) { return 400000e18; } // 400,000 = 4% of Taro
-    //
     /// @notice The number of votes required in order for a voter to become a proposer
     function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of Taro
-    //
-    /// @notice The maximum number of actions that can be included in a proposal
-    // function proposalMaxOperations() public pure returns (uint) { return 10; } // 10 actions
     //
     /// @notice The delay before voting on a proposal may take place, once proposed
     function votingDelay() public pure returns (uint) { return 1; } // 1 block
@@ -89,18 +83,6 @@ contract GovernorAlpha {
     struct UserProposal {
       uint count;
     }
-    /// @notice Possible states that a proposal may be in
-    // enum ProposalState {
-    //     Pending,
-    //     Active,
-    //     Canceled,
-    //     Defeated,
-    //     Succeeded,
-    //     Queued,
-    //     Expired,
-    //     Executed
-    // }
-
     /// @notice The official record of all proposals ever proposed
     mapping (uint => Proposal) public proposals;
 
@@ -116,12 +98,6 @@ contract GovernorAlpha {
     /// @notice A collection of user proposals
     mapping (address => UserProposal) public userProposals;
 
-    /// @notice The EIP-712 typehash for the contract's domain
-    // bytes32 public constant DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)");
-
-    /// @notice The EIP-712 typehash for the ballot struct used by the contract
-    // bytes32 public constant BALLOT_TYPEHASH = keccak256("Ballot(uint256 proposalId,bool support)");
-
     /// @notice An event emitted when a new proposal is created
     event ProposalCreated(uint id);
 
@@ -130,15 +106,6 @@ contract GovernorAlpha {
 
     /// @notice values used to calculate user validity
     event ValidityStatus(uint timestamp);
-
-    /// @notice An event emitted when a proposal has been canceled
-    // event ProposalCanceled(uint id);
-
-    /// @notice An event emitted when a proposal has been queued in the Timelock
-    // event ProposalQueued(uint id, uint eta);
-
-    /// @notice An event emitted when a proposal has been executed in the Timelock
-    // event ProposalExecuted(uint id);
 
 
     constructor(address timelock_, address taro_, address guardian_) public {
@@ -230,87 +197,37 @@ contract GovernorAlpha {
         return (validations[msg.sender].expirationTime, block.timestamp);
     }
 
-    // function getReceipt(uint proposalId, address voter) public view returns (Receipt memory) {
-    //     return proposals[proposalId].receipts[voter];
-    // }
-//
-//     function state(uint proposalId) public view returns (ProposalState) {
-//         require(proposalCount >= proposalId && proposalId > 0, "GovernorAlpha::state: invalid proposal id");
-//         Proposal storage proposal = proposals[proposalId];
-//         if (proposal.canceled) {
-//             return ProposalState.Canceled;
-//         } else if (block.number <= proposal.startBlock) {
-//             return ProposalState.Pending;
-//         } else if (block.number <= proposal.endBlock) {
-//             return ProposalState.Active;
-//         } else if (proposal.forVotes <= proposal.againstVotes || proposal.forVotes < quorumVotes()) {
-//             return ProposalState.Defeated;
-//         } else if (proposal.eta == 0) {
-//             return ProposalState.Succeeded;
-//         } else if (proposal.executed) {
-//             return ProposalState.Executed;
-//         } else if (block.timestamp >= add256(proposal.eta, timelock.GRACE_PERIOD())) {
-//             return ProposalState.Expired;
-//         } else {
-//             return ProposalState.Queued;
-//         }
-//     }
-//
+
     function castVote(uint proposalId, bool support) public {
         return _castVote(msg.sender, proposalId, support);
     }
-//
-    // function castVoteBySig(uint proposalId, bool support, uint8 v, bytes32 r, bytes32 s) public {
-    //     bytes32 domainSeparator = keccak256(abi.encode(DOMAIN_TYPEHASH, keccak256(bytes(name)), getChainId(), address(this)));
-    //     bytes32 structHash = keccak256(abi.encode(BALLOT_TYPEHASH, proposalId, support));
-    //     bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
-    //     address signatory = ecrecover(digest, v, r, s);
-    //     require(signatory != address(0), "GovernorAlpha::castVoteBySig: invalid signature");
-    //     return _castVote(signatory, proposalId, support);
-    // }
-//
+
     function _castVote(address voter, uint proposalId, bool support) internal {
         require(isProposalActive[proposalId] == true, "GovernorAlpha::_castVote: voting is closed");
 
         Proposal storage proposal = proposals[proposalId];
         Receipt storage receipt = proposal.receipts[voter];
 
+        uint amountOfTaro = taro.balanceOf(msg.sender);
+        uint96 amountOfT = uint96(amountOfTaro);
+
         require(receipt.hasVoted == false, "GovernorAlpha::_castVote: voter already voted");
-        uint96 votes = taro.getPriorVotes(voter, proposal.startBlock);
+        //The following line was causing the first proposal to not allow it to be voted on
+        // uint96 votes = taro.getPriorVotes(voter, proposal.startBlock, amountOfT);
 
         if (support) {
-            proposal.forVotes = add256(proposal.forVotes, votes);
+            proposal.forVotes = add256(proposal.forVotes, amountOfT);
         } else {
-            proposal.againstVotes = add256(proposal.againstVotes, votes);
+            proposal.againstVotes = add256(proposal.againstVotes, amountOfT);
         }
 
         receipt.hasVoted = true;
         receipt.support = support;
-        receipt.votes = votes;
+        receipt.votes = amountOfT;
 
-        emit VoteCast(voter, proposalId, support, votes);
+        emit VoteCast(voter, proposalId, support, amountOfT);
     }
-//
-//     function __acceptAdmin() public {
-//         require(msg.sender == guardian, "GovernorAlpha::__acceptAdmin: sender must be gov guardian");
-//         timelock.acceptAdmin();
-//     }
-//
-//     function __abdicate() public {
-//         require(msg.sender == guardian, "GovernorAlpha::__abdicate: sender must be gov guardian");
-//         guardian = address(0);
-//     }
-//
-//     function __queueSetTimelockPendingAdmin(address newPendingAdmin, uint eta) public {
-//         require(msg.sender == guardian, "GovernorAlpha::__queueSetTimelockPendingAdmin: sender must be gov guardian");
-//         timelock.queueTransaction(address(timelock), 0, "setPendingAdmin(address)", abi.encode(newPendingAdmin), eta);
-//     }
-//
-//     function __executeSetTimelockPendingAdmin(address newPendingAdmin, uint eta) public {
-//         require(msg.sender == guardian, "GovernorAlpha::__executeSetTimelockPendingAdmin: sender must be gov guardian");
-//         timelock.executeTransaction(address(timelock), 0, "setPendingAdmin(address)", abi.encode(newPendingAdmin), eta);
-//     }
-//
+
     function add256(uint256 a, uint256 b) internal pure returns (uint) {
         uint c = a + b;
         require(c >= a, "addition overflow");
@@ -321,14 +238,8 @@ contract GovernorAlpha {
         require(b <= a, "subtraction underflow");
         return a - b;
     }
-//
-//     function getChainId() internal pure returns (uint) {
-//         uint chainId;
-//         assembly { chainId := chainid() }
-//         return chainId;
-//     }
 }
-//
+
 interface TimelockInterface {
     function delay() external view returns (uint);
     function GRACE_PERIOD() external view returns (uint);
@@ -343,4 +254,5 @@ interface TaroInterface {
     function getPriorVotes(address account, uint blockNumber) external view returns (uint96);
     function getCurrentVotes(address account) external view returns (uint96);
     function transferFrom(address src, address dst, uint rawAmount) external returns (bool);
+    function balanceOf(address account) external view returns (uint);
 }

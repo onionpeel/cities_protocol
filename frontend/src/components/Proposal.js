@@ -85,7 +85,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
             let _signerAddress = await signer.getAddress();
             // console.log("signerAddress: ", _signerAddress);
             setSignerAddress(_signerAddress);
-
+            console.log('signer address in useEffect: ', _signerAddress)
             // let _userBalance = await _taro.balanceOf(signerAddress);
             // console.log('_userBalance in useEffect: ', _userBalance.toString());
             // if(_userBalance) {
@@ -111,14 +111,15 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
   const handleOnClickFor = async () => {
     // console.log('signer address in handle for: ', signerAddress);
-
-    let voteTx = await governorAlpha.castVote(ethers.BigNumber.from(id), true);
+    let vote = ethers.BigNumber.from(id);
+    let voteTx = await governorAlpha.castVote(vote, true);
     let voteTxReceipt = await voteTx.wait(1);
     console.log(voteTxReceipt);
   };
 
   const handleOnClickAgainst = async () => {
-    let voteTx = await governorAlpha.castVote(ethers.BigNumber.from(id), false);
+    let vote = ethers.BigNumber.from(id);
+    let voteTx = await governorAlpha.castVote(vote, false);
     let voteTxReceipt = await voteTx.wait(1);
     console.log(voteTxReceipt);
   };
@@ -159,7 +160,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
         </div>
         <div className="proposal-main">
           <Button className="wallet" block onClick={handleOnClickFor}>Vote for this proposal</Button>
-          <Button claasName="wallet" block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
+          <Button className="wallet" block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
         </div>
       </Card.Body>
     </Card>
