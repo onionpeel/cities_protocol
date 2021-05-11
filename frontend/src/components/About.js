@@ -94,7 +94,7 @@ const About = () => {
       </div>
       <div className="text-medium-left">
           <p className="main2">✔️ Verificar que eres ciudadan@ queretan@ al final de esta pantalla.</p>
-          <p className="main2">🗳️ Participar en la gobernanza de la ciudad.</p>
+          <p className="main2">🗳️ Crea tus primeras 5 propuestas.</p>
         </div>
       <div className="orange">5. Beneficios para la ciudad</div>
       <div className="text-medium-left">

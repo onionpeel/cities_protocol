@@ -203,8 +203,9 @@ const CreateProposal = () => {
         ?
 
         <div className="gray">
-          <Form >
+          <Form className="create">
           <p className="orange2">Create new urban governance proposal</p>
+          <p className="purple3">⚠️All fields need to be filled out⚠️</p>
             <Form.Group as={Row} controlId="formTitle">
               <Form.Label>
                 Title
@@ -296,41 +297,41 @@ const CreateProposal = () => {
         :
 
         <div className="gray">
-          <Form >
+          <Form className="create" >
             <p className="orange2">Crear nueva propuesta de gobernanza urbana</p>
+            <p className="purple3">⚠️Debes llenar todos los campos⚠️</p>
               <Form.Group as={Row} controlId="formTitle">
                 <Form.Label>
                   Título
                 </Form.Label>
-                <Form.Control type="text" placeholder="Título" onChange={handleOnChangeTitle}/>
+                <Form.Control type="text" placeholder="Nombra tu propuesta en un enunciado" onChange={handleOnChangeTitle}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formTypeOfAction">
                 <Form.Label  >
                   Tipo de acción
                 </Form.Label>
-                <Form.Control type="text" placeholder="type" onChange={handleOnChangeTypeOfAction}/>
+                <Form.Control type="text" placeholder="Obra pública, actividad, servicio" onChange={handleOnChangeTypeOfAction}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formNeighborhood">
                 <Form.Label  >
                   Colonia
                 </Form.Label>
-                  <Form.Control type="text" placeholder="neighborhood" onChange={handleOnChangeNeighborhood}/>
+                  <Form.Control type="text" placeholder="En que colonia es tu propuesta" onChange={handleOnChangeNeighborhood}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formPersonInCharge">
                 <Form.Label  >
                   Persona o entidad a cargo
                 </Form.Label>
-              <Form.Control type="text" placeholder="Vecinos, Gobierno" onChange={handleOnChangePersonInCharge}/>
+              <Form.Control type="text" placeholder="¿Quien tiene que hacerlo?" onChange={handleOnChangePersonInCharge}/>
               </Form.Group>
-
               <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
                 <Form.Label  >
                   Descripción
               </Form.Label>
-                <Form.Control as="textarea" type="text" rows={3} placeholder="Describe tu propuesta" onChange={handleOnChangeDescription}/>
+                <Form.Control as="textarea" type="field" rows={3} placeholder="Describe a detalle tu propuesta, ¡mientras más información mejor!" onChange={handleOnChangeDescription}/>
               </Form.Group>
               {/*}
               <Form.Group as={Row} controlId="formExpiration">
@@ -344,7 +345,7 @@ const CreateProposal = () => {
                 <Form.Label  >
                   Presupuesto
               </Form.Label>
-                <Form.Control type="text" placeholder="Presupuesto" onChange={handleOnChangeBudget}/>
+                <Form.Control type="text" placeholder="¿Cuanto cuesta en pesos realizar esta propuesta" onChange={handleOnChangeBudget}/>
               </Form.Group>
               {/*}
               <Form.Group as={Row} controlId="formRequiredTaroToVote">

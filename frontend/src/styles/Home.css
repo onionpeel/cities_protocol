@@ -78,6 +78,8 @@ a.alt:hover {
 
 
 .submitbutton {
+  margin-top: 3%;
+  margin-bottom: 5%;
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
@@ -127,7 +129,21 @@ Nav {
 
 Button {
   border-radius: 25px !important;
+  background-color: #3d386b !important;
+  border: none !important;
+  color: #3d386b ;
+}
+
+Button:hover {
+  border-radius: 25px !important;
   background-color: #FF9400 !important;
+  border: none !important;
+  color: #3d386b !important;
+}
+
+.handleOnClickAgainst:hover {
+  border-radius: 25px !important;
+  background-color: #00ff15 !important;
   border: none !important;
   color: #3d386b ;
 }
@@ -189,7 +205,7 @@ button:disabled {
   max-width: 50%;
   min-width: 450px !important;
   margin: 3% auto;
-  background-image: linear-gradient(#eee, #e9e5e5);
+  background-image: linear-gradient(#eee, rgb(204, 200, 200));
   font-family: 'Lexend Deca', sans-serif;
   display: flex !important;
   justify-content: center !important;
@@ -346,6 +362,11 @@ align-items: center !important;
   margin-top: 3%;
 }
 
+.create {
+  text-align: center;
+  width:90% !important;
+}
+
 .item {
   display: flex;
   overflow: auto;
@@ -360,6 +381,12 @@ align-items: center !important;
   min-height: 150px;
 }
 
+.white2 {
+  margin-bottom: 1% !important;
+  font-size: 18px !important;
+  color: #ffffff !important;
+}
+
 .orange {
   margin-top: 1% !important;
   font-size: 2rem !important;
@@ -367,12 +394,22 @@ align-items: center !important;
 }
 
 .orange2 {
-  margin-top: 3% !important;
   margin-bottom: 3% !important;
   font-size: 18px !important;
   color: #FF9400 !important;
 }
 
+.orange3 {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  color: #FF9400 !important;
+}
+
+.yellow {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  color: #FAC91a !important;
+}
 .purple-unlock {
   margin-top: 3% !important;
   margin-bottom: 3% !important;
@@ -383,7 +420,29 @@ align-items: center !important;
 .big-icon {
   font-size: 75px !important;
   text-align: center;
-  color: #3d386b;
+  color: #ffffff;
+}
+
+.big-iconf {
+  border-radius: 20px;
+  background-color: #36a74e;
+  background-image: linear-gradient(#36a74e, #82bb8e)!important;
+  margin-right: 3% ;
+  font-size: 65px !important;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: #cac9c9 !important;
+}
+
+.big-icona {
+  font-size: 65px !important;
+  margin-right: 3%;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 20px;
+  background-color: #dc3840;
+  background-image: linear-gradient(#dc3840, #da898d)!important;
+
 }
 
 .purple {
@@ -400,7 +459,8 @@ align-items: center !important;
 }
 
 .purple3 {
-  text-align: left !important;
+  font-size: 15px !important;
+  text-align: center !important;
   margin-top: 1%;
   color: #3d386b;
 }
@@ -430,6 +490,21 @@ align-items: center !important;
 
 */
 
+.proposal {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#3d386b , #7770b4);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
 .proposal-table {
   width: 100%;
   display: table !important;
@@ -440,13 +515,59 @@ align-items: center !important;
   display: table-row !important;
 }
 
+.orange-card {
+  width: 100%;
+  border-radius: 5px;
+
+  margin-top: 5% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+
+.yellow-card {
+  width: 100%;
+  margin-left: 2%;
+  border-radius: 5px;
+  margin-top: 3% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+
+.white-card {
+  width: 100%;
+  margin-left: 2%;
+  border-radius: 5px;
+  background-image: linear-gradient(#ffffff,#e6e6e6);
+  margin-top: 3% !important;;
+  font-size: 15px !important;
+  text-align: center !important;
+  color: #3d386b !important;
+}
+
+.feed  {
+  color: #ffffff !important;
+  font-family: 'Lexend Deca', sans-serif;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  box-sizing: border-box !important;
+  padding: 15px;
+}
 
 .proposal-title {
   width: 75%;
   display: table-cell;
   text-align: left !important;
-  font-size: 20px !important;
-  color: #FF9400 !important;
+  font-size: 23px !important;
+  color: #ffffff !important;
+}
+
+.proposal-title2 {
+  width: 25%;
+  display: table-cell;
+  align-content: right !important;
+  text-align: right !important;
+  font-size: 23px !important;
+  color: #ffffff !important;
 }
 
 .proposal-action {
@@ -458,10 +579,18 @@ align-items: center !important;
 
 .proposal-sub {
   width: 50% !important;
-   display: table-cell;
+  display: table-cell;
   text-align: left !important;
   font-size: 15px !important;
   color: #3d386b !important;
+}
+
+.proposal-description {
+  padding-left: 3%;
+  display: table-cell;
+  text-align: left !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
 }
 
 .proposal-subaction {
@@ -469,4 +598,11 @@ align-items: center !important;
   text-align: right !important;
   font-size: 15px !important;
   color: #3d386b !important;
+}
+
+.against {
+  background-color: #3d386b !important;
+  border-radius: 25px !important;
+  margin-top: 3%;
+  margin-bottom: 1%;
 }
