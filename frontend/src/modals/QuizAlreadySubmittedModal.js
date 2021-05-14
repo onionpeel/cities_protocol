@@ -23,7 +23,7 @@ const QuizAlreadySubmittedModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Learn more about <Link to="/about">TARO</Link> tokens
+            Learn more about <Link className="alt2" to="/about">TARO</Link> tokens
           </p>
         </Modal.Body>
       </Modal>
@@ -41,7 +41,7 @@ const QuizAlreadySubmittedModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Conoce más sobre <Link to="/about">TARO</Link>
+            Conoce más sobre <Link className="alt2" to="/about">VoTARO</Link>
           </p>
         </Modal.Body>
       </Modal>

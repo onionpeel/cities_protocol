@@ -238,14 +238,14 @@ const Quiz = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       {isEnglish === 'english' ?
         <div>
           {isConnected
 
           ?
 
-          <div>
+          <div className="gray2">
             <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
               <div>
                 {englishQuestions}
@@ -272,27 +272,32 @@ const Quiz = () => {
 
           :
 
-          <div>
-            <div>
-              To take the quiz and start earning Taro, you first need to get connected to the Ethereum network
+          <div className="valert">
+            <div className="main">
+              <div className="big-icon">⚠️</div>
+              <div className="white">To take the quiz and start earning TARO, you first need to get connected to the Ethereum network</div>
+              <Link className="alt2" to="/">Return home and click on "Connect Wallet to Unlock"</Link>
             </div>
-            <Link to="/">Return home and click on "Connect Wallet to Unlock"</Link>
           </div>
           }
         </div>
 
         :
-        <div>
+        <div className="app">
           {isConnected ?
               <div className="gray2">
-                <text className="white">Validar que soy de Querétaro</text>
+                <text className="white">Contesta correctamente para validar que eres de Querétaro</text>
                 <div>
-                  <div>
-                    <QuizContext.Provider className="item" value={{userAnswers, setUserAnswers}}>
-                    <div>{spanishQuestions}</div>
+                  <div className="app">
+                    <QuizContext.Provider  value={{userAnswers, setUserAnswers}}>
+                    <div className="orange-card2">{spanishQuestions}</div>
                     </QuizContext.Provider>
+
+                    <div className="main"><Button className="alt2" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+                    </div>
                   </div>
-                  <Button className="Wallet" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+
+
                   <QuizFailureModal
                     show={failureModalShow}
                     onHide={handleOnFailure}
@@ -312,12 +317,13 @@ const Quiz = () => {
                 </div>
               </div>
               :
-              <div>
-                <div>
-                  Necesitas conectarte con una wallet de Metamask a la red de Ethereum para poder contestar el cuestionario
-                </div>
-                <Link to="/">Regresa al inicio para conectar tu cartera a la Dapp</Link>
-              </div>
+              <div className="valert">
+            <div className="main">
+              <div className="big-icon">⚠️</div>
+              <div className="white">Necesitas conectarte con una wallet de Metamask a la red de Ethereum para poder contestar el cuestionario</div>
+              <Link className="alt2" to="/">Regresa al inicio para conectar Wallet</Link>
+            </div>
+          </div>
           }
         </div>
       }

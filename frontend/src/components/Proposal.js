@@ -130,72 +130,68 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
       ?
 
-      <Card className="gray">
-      <Card.Body className="proposal-table">
-        <div className="proposal-main">
-          <div className="proposal-title"> Clases de baile en el parque {title}</div>
-          <div className="proposal-action">type of action: {typeOfAction}</div>
-        </div>
-
-        <div className="proposal-main">
-          <div className="proposal-sub">Where: {neighborhood}</div>
-          <div className="proposal-subaction"> Person in charge: {personInCharge}</div>
-        </div>
-
-
-        <div className ="proposal-main">
-          <div className="proposal-sub">description: {description}</div>
-          <div className="proposal-action">expiration:{expiration}</div>
-        </div>
-
-        <div className ="proposal-main">
-          <div className="proposal-sub">cost: {budget}</div>
-          <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
-        </div>
-
-        <div className="proposal-main">
-          <div className="proposal-sub">For:{forVotes}</div>
-          <div className="proposal-action">Against: {againstVotes}</div>
-        </div>
-        <div className="proposal-main">
-          <Button className="wallet" block onClick={handleOnClickFor}>Vote for this proposal</Button>
-          <Button claasName="wallet" block onClick={handleOnClickAgainst}>Vote against this proposal</Button>
-        </div>
-      </Card.Body>
-    </Card>
-
-      :
-
-<Card className="gray">
+  <Card className="proposal">
   <Card.Body className="proposal-table">
+  <div className="proposal-main"></div>
     <div className="proposal-main">
-      <div className="proposal-title">{title}</div>
-      <div className="proposal-action">Tipo de acción: {typeOfAction}</div>
+      <div className="proposal-title">🎯{title}
+      <div className="proposal-sub"><div className="orange-card2"><div className="orange3">🦸🦸‍♂️In charge:</div><p className="orange3">{personInCharge}</p></div></div>
+      <div className="proposal-action"><div className="yellow-card"><div className="yellow">⚙️Type of work:</div><p className="yellow">{typeOfAction}</p></div></div>
     </div>
-
-    <div className="proposal-main">
-      <div className="proposal-sub">Donde: {neighborhood}</div>
-      <div className="proposal-subaction"> Persona a cargo: {personInCharge}</div>
+      <div className="proposal-subaction">
+      <div className="white-card">📍 Where:<p className="purple4">{neighborhood}</p></div>
+      </div>
     </div>
+    </Card.Body>
+      <div className="proposal-description"><div className="white2">📑 Description:</div><p>{description}</p></div>
 
-
-    <div className ="proposal-main">
-      <div className="proposal-sub">Descripción: {description}</div>
-      <div className="proposal-action">Expiración:{expiration}</div>
-    </div>
-
+    {/*}
     <div className ="proposal-main">
       <div className="proposal-sub">Costo: {budget}</div>
       <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
     </div>
+    */}
 
+  <Card.Body className="proposal-table">
     <div className="proposal-main">
-      <div className="proposal-sub">A favor:{forVotes}</div>
-      <div className="proposal-action">En contra: {againstVotes}</div>
+      <div className="proposal-sub"><div className="proposal-title">✔️ Votes for:</div><p className="big-iconf">{forVotes}
+      <Button className="wallet" block onClick={handleOnClickFor}>✔️ Vote for </Button></p></div>
+      <div className="proposal-action"> <div className="proposal-title2">❌ Votes against:</div><p className="big-icona">{againstVotes}
+      <Button claasName="against" block onClick={handleOnClickAgainst}>❌ Vote against </Button></p></div>
     </div>
+  </Card.Body>
+</Card>
+
+      :
+
+<Card className="proposal">
+  <Card.Body className="proposal-table">
+  <div className="proposal-main"></div>
     <div className="proposal-main">
-      <Button className="wallet" block onClick={handleOnClickFor}>Votar a favor</Button>
-      <Button claasName="wallet" block onClick={handleOnClickAgainst}>Votar en contra</Button>
+      <div className="proposal-title">🎯{title}
+      <div className="proposal-sub"><div className="orange-card2"><div className="orange3">🦸🦸‍♂️Responsable:</div><p className="orange3">{personInCharge}</p></div></div>
+      <div className="proposal-action"><div className="yellow-card"><div className="yellow">⚙️Tipo de trabajo:</div><p className="yellow">{typeOfAction}</p></div></div>
+    </div>
+      <div className="proposal-subaction">
+      <div className="white-card">📍 Donde:<p className="purple4">{neighborhood}</p></div>
+      </div>
+    </div>
+    </Card.Body>
+      <div className="proposal-description"><div className="white2">📑 Descripción:</div><p>{description}</p></div>
+
+    {/*}
+    <div className ="proposal-main">
+      <div className="proposal-sub">Costo: {budget}</div>
+      <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
+    </div>
+    */}
+
+  <Card.Body className="proposal-table">
+    <div className="proposal-main">
+      <div className="proposal-sub"><div className="proposal-title">✔️ Votos a favor:</div><p className="big-iconf">{forVotes}
+      <Button className="wallet" block onClick={handleOnClickFor}>✔️ Votar a favor </Button></p></div>
+      <div className="proposal-action"> <div className="proposal-title2">❌ En contra:</div><p className="big-icona">{againstVotes}
+      <Button claasName="against" block onClick={handleOnClickAgainst}>❌ Votar en contra </Button></p></div>
     </div>
   </Card.Body>
 </Card>

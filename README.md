@@ -1,12 +1,31 @@
-## VoTaro
+# 🤔 What's VoTARO?
+A voting DApp that rewards users with $TARO when the propose or vote on cities' public needs.
 
-ROUGH DRAFT:
-VoTaro is an Ethereum application that uses a reward system to encourage residents of Queretaro to propose and participate in activities that will improve their community.
+### ✋ Propose  
+### 🗳️ Vote  
+### 🥇 Get $TARO  
 
-New users are first instructed to install MetaMask and then connect to the application and get validated.  Because the focus is on people who live in Queretaro, a quiz about Queretaro is used to check the validity of potential users.  When validated, a user receives TARO tokens and becomes eligible to offer community proposals.  More TARO tokens are received for the first five proposals a user makes.
+VoTaro is an Ethereum application that uses a reward system to encourage residents of Queretaro City to propose and participate in activities that will improve their community. It was developed on the [Scaling Ethereum Hackathon 2021.](https://showcase.ethglobal.co/scaling/cities-protocol)  
 
-Proposals are voted upon, and if passed and the proposed activity is carried out, the proposer is receives TARO.  One TARO token is worth one vote.  Anyone with TARO can delegate their voting power to another TARO holder.  After the first five proposals, a user must have received one percent of the total voting power to make a proposal.  
+The citizens of Querétaro who use VoTARO to propose, vote and solve the needs of their neighborhood in Queretaro City, will be rewarded with $TARO, an ERC20 token which give users voting power on these proposals and will work as an instrument to fund the costs necessary to solve them.  
 
-TARO is a modified version of Compound's COMP smart contract.  The major difference is that TARO brings Compound's governance structure into a real world setting and uses the incentive of earning more tokens as a way to promote community activity.
+Proposals are registered and managed in an automated way by the smart contract Governor Alpha a version of Compound's contract adapted to real-world interactions.  
 
-This application would not be practical currently on Ethereum due to slow transaction speeds and high gas costs.  Therefore a layer two solution, SKALE Network, is used as the platform for VoTaro.  SKALE provides VoTaro speed and security in the near term, while offering the possibility for expansion over time.  
+VoTARO implements SKALE Network, an ethereum layer 2 solution that reduces gas charges to 0 and increases the speed of transactions without compromising security.
+
+
+# 🧰 What do I need to get $ TARO?
+You need to do 5 activities to get TARO.  
+1. 🦊 Download Metamask  
+2. 🧅 Switch to Skale Network  
+3. ✔️ Get Validated  
+4. 🗳️ Delegate TARO  
+5. 🦸🦸‍♂️ Create and Vote on proposals  
+
+# Benefits for the city
+⛓️ Urban governance on blockchain.  
+🏙️ Urban processes tracked in Smart Contracts.  
+🤖 Automation and Decentralization of services.  
+🧙‍♂️ Citizens develop digital skills.  
+🤝 Transparent and decentralized urban consensus.  
+🧬 Predictive Economy and Urban Development.  

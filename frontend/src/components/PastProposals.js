@@ -106,6 +106,10 @@ const PastProposals = () => {
             );
             // setGovernorAlpha(_governorAlpha);
 
+            let _isValidated = await _governorAlpha.getValidityStatus();
+            let _isValidatedReceipt = await _isValidated.wait(1);
+            console.log(_isValidatedReceipt);
+
             let proposalCount = await _governorAlpha.proposalCount();
             proposalCount = +proposalCount;
 
@@ -121,7 +125,7 @@ const PastProposals = () => {
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
                 // console.log('proposal: ', proposal);
 
-                if(proposal.endBlock.toNumber() > currentBlockNumber) {
+                if(proposal.endBlock.toNumber() < currentBlockNumber) {
                   activeProposals.push({
                     title: proposal[9][0],
                     typeOfAction: proposal[9][1],
@@ -188,7 +192,6 @@ const PastProposals = () => {
             {isValidated ? "" : <ValidationRequired />}
           </div>
             <div className= "yellowB">
-
               <div>
                 {list.length > 0
                 ?
@@ -204,10 +207,10 @@ const PastProposals = () => {
                     <Link className="alt2" to="/">Return to home</Link>
                   </div>
                 </div>
-          }
+                }
+              </div>
+            </div>
         </div>
-
-      </div>
 
       </div>
 

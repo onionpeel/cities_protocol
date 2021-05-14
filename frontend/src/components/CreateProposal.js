@@ -3,6 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import IsLoadingModal from '../modals/IsLoadingModal';
+import CreateProposalSuccessModal from '../modals/CreateProposalSuccessModal';
 import CreateProposalErrorModal from '../modals/CreateProposalErrorModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
@@ -22,6 +23,7 @@ const CreateProposal = () => {
   let [isConnected, setIsConnected] = useState();
   let [ethersProvider, setEthersProvider] = useState();
   let [signerAddress, setSignerAddress] = useState();
+  let [successModalShow, setSuccessModalShow] = useState();
 
   let [isEnglish] = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
@@ -128,6 +130,7 @@ const CreateProposal = () => {
       let txReceipt = await tx.wait(1);
       console.log('form tx: ', txReceipt);
       handleOnLoadingModal();
+      setSuccessModalShow(true);
     } catch (e) {
       handleOnLoadingModal();
       setErrorModalShow(true);
@@ -168,6 +171,12 @@ const CreateProposal = () => {
   };
 
   const handleOnChangeBudget = e => {
+    if(e.target.value === '') {
+      return;
+    };
+    if(isNaN(e.target.value)) {
+      return;
+    };
     setField('budget', ethers.BigNumber.from(e.target.value));
   };
 
@@ -183,48 +192,64 @@ const CreateProposal = () => {
     setErrorModalShow(false);
   };
 
+  const handleOnAlreadySubmitted = () => {
+    window.location.reload();
+  };
+
   return (
-    <div>
+    <div className ="App">
       {isEnglish === 'english'
 
         ?
 
         <div className="gray">
-          <Form >
+          <Form className="create">
           <p className="orange2">Create new urban governance proposal</p>
+          <p className="purple3">⚠️All fields need to be filled out⚠️</p>
             <Form.Group as={Row} controlId="formTitle">
               <Form.Label>
                 Title
               </Form.Label>
-              <Form.Control type="text" placeholder="title" onChange={handleOnChangeTitle}/>
+              <Form.Control type="text"
+                placeholder="Give your proposal a name"
+                onChange={handleOnChangeTitle}/>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formTypeOfAction">
               <Form.Label  >
                 Type of action
               </Form.Label>
-              <Form.Control type="text" placeholder="type" onChange={handleOnChangeTypeOfAction}/>
+              <Form.Control type="text"
+                placeholder="What sort of activity will this be?"
+                onChange={handleOnChangeTypeOfAction}/>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formNeighborhood">
               <Form.Label  >
                 Neighborhood
               </Form.Label>
-                <Form.Control type="text" placeholder="neighborhood" onChange={handleOnChangeNeighborhood}/>
+                <Form.Control type="text"
+                  placeholder="Where will it take place?"
+                  onChange={handleOnChangeNeighborhood}/>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formPersonInCharge">
               <Form.Label  >
                 Person in charge
               </Form.Label>
-                <Form.Control type="text" placeholder="Person in charge" onChange={handleOnChangePersonInCharge}/>
+                <Form.Control type="text"
+                  placeholder="Who is responsible for it?"
+                  onChange={handleOnChangePersonInCharge}/>
             </Form.Group>
 
             <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
               <Form.Label  >
                 Description
             </Form.Label>
-            <Form.Control as="textarea" type="text" rows={3} placeholder="description" onChange={handleOnChangeDescription}/>
+            <Form.Control as="textarea"
+              type="text" rows={3}
+              placeholder="Provide details about your proposal"
+              onChange={handleOnChangeDescription}/>
             </Form.Group>
             {/*
             <Form.Group as={Row} controlId="formExpiration">
@@ -238,7 +263,9 @@ const CreateProposal = () => {
               <Form.Label  >
                 Budget
               </Form.Label>
-              <Form.Control type="text" placeholder="budget" onChange={handleOnChangeBudget}/>
+              <Form.Control type="text"
+                placeholder="How much will it cost? (In Pesos)"
+                onChange={handleOnChangeBudget}/>
             </Form.Group>
             {/*
             <Form.Group as={Row} controlId="formRequiredTaroToVote">
@@ -261,46 +288,50 @@ const CreateProposal = () => {
             onHide={handleOnErrorModal}
           />
 
+          <CreateProposalSuccessModal
+            show={successModalShow}
+            onHide={handleOnAlreadySubmitted}
+          />
         </div>
 
         :
 
         <div className="gray">
-          <Form >
+          <Form className="create" >
             <p className="orange2">Crear nueva propuesta de gobernanza urbana</p>
+            <p className="purple3">⚠️Debes llenar todos los campos⚠️</p>
               <Form.Group as={Row} controlId="formTitle">
                 <Form.Label>
                   Título
                 </Form.Label>
-                <Form.Control type="text" placeholder="Título" onChange={handleOnChangeTitle}/>
+                <Form.Control type="text" placeholder="Nombra tu propuesta en un enunciado" onChange={handleOnChangeTitle}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formTypeOfAction">
                 <Form.Label  >
                   Tipo de acción
                 </Form.Label>
-                <Form.Control type="text" placeholder="type" onChange={handleOnChangeTypeOfAction}/>
+                <Form.Control type="text" placeholder="Obra pública, actividad, servicio" onChange={handleOnChangeTypeOfAction}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formNeighborhood">
                 <Form.Label  >
                   Colonia
                 </Form.Label>
-                  <Form.Control type="text" placeholder="neighborhood" onChange={handleOnChangeNeighborhood}/>
+                  <Form.Control type="text" placeholder="En que colonia es tu propuesta" onChange={handleOnChangeNeighborhood}/>
               </Form.Group>
 
               <Form.Group as={Row} controlId="formPersonInCharge">
                 <Form.Label  >
                   Persona o entidad a cargo
                 </Form.Label>
-              <Form.Control type="text" placeholder="Vecinos, Gobierno" onChange={handleOnChangePersonInCharge}/>
+              <Form.Control type="text" placeholder="¿Quien tiene que hacerlo?" onChange={handleOnChangePersonInCharge}/>
               </Form.Group>
-
               <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
                 <Form.Label  >
                   Descripción
               </Form.Label>
-                <Form.Control as="textarea" type="text" rows={3} placeholder="Describe tu propuesta" onChange={handleOnChangeDescription}/>
+                <Form.Control as="textarea" type="field" rows={3} placeholder="Describe a detalle tu propuesta, ¡mientras más información mejor!" onChange={handleOnChangeDescription}/>
               </Form.Group>
               {/*}
               <Form.Group as={Row} controlId="formExpiration">
@@ -314,7 +345,7 @@ const CreateProposal = () => {
                 <Form.Label  >
                   Presupuesto
               </Form.Label>
-                <Form.Control type="text" placeholder="Presupuesto" onChange={handleOnChangeBudget}/>
+                <Form.Control type="text" placeholder="¿Cuanto cuesta en pesos realizar esta propuesta" onChange={handleOnChangeBudget}/>
               </Form.Group>
               {/*}
               <Form.Group as={Row} controlId="formRequiredTaroToVote">
@@ -328,13 +359,19 @@ const CreateProposal = () => {
             </Form>
 
             <IsLoadingModal
-                show={loadingModalShow}
-                onHide={handleOnLoadingModal}
-              />
-              <CreateProposalErrorModal
-                show={errorModalShow}
-                onHide={handleOnErrorModal}
-              />
+              show={loadingModalShow}
+              onHide={handleOnLoadingModal}
+            />
+
+            <CreateProposalErrorModal
+              show={errorModalShow}
+              onHide={handleOnErrorModal}
+            />
+
+            <CreateProposalSuccessModal
+              show={successModalShow}
+              onHide={handleOnAlreadySubmitted}
+            />
         </div>
         }
       </div>

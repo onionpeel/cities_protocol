@@ -15,40 +15,42 @@ const Header = () => {
   <div>
       {isEnglish === 'english' ?
 
-        <div className="Nav">
-          <Navbar>
-            <Navbar.Brand href="/Home">
-            <img src={logo} alt="Procotol Cities" width="150px" />
+        <div >
+          <Navbar collapseOnSelect fixed="top" expand="sm">
+            <Navbar.Brand  className="alt" href="/Home"><a className="Vo">Vo</a><a className="TARO">TARO</a>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-              <Nav>
-                <Nav.Link  href="/About">What is VoTARO?</Nav.Link>
-                <Nav.Link  href="/ProposalList">🥇 0</Nav.Link>
-                <Nav.Link  href="/CreateProposal">🗳️ 0</Nav.Link>
-                <NavDropdown  title="🌐Language" id="basic-nav-dropdown">
-                 <NavDropdown.Item className="lan" onSelect={handleOnSelect}>Español</NavDropdown.Item>
+
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+            <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
+             <NavDropdown title="🌐">
+                 <NavDropdown.Item className="alt" onSelect={handleOnSelect}>Español</NavDropdown.Item>
                 </NavDropdown>
+              <Nav>
+                <Nav.Link className="alt" href="/About">🤔 about VoTARO</Nav.Link>
+                <Nav.Link className="alt" href="/About">✔️ Get Validaded</Nav.Link>
+                <Nav.Link className="alt" href="/ProposalList">🗳️ Use TARO</Nav.Link>
+                <Nav.Link className="alt" href="/CreateProposal">🦸🦸‍♂️ New Proposal</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           </div>
-
       :
       <div>
-        <Navbar className="Nav">
-          <Navbar.Brand href="/Home">
-          <img src={logo} alt="Procotol Cities" width="150px" />
+        <Navbar className="Nav" fixed="top" expand="sm">
+          <Navbar.Brand className="alt" href="/Home"><a className="Vo">Vo</a><a className="TARO">TARO</a>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-            <Nav>
-              <Nav.Link href="/About">¿Qué es VoTARO?</Nav.Link>
-              <Nav.Link style={{color: 'white'}} href="/ProposalList">🥇 0</Nav.Link>
-              <Nav.Link style={{color: 'white'}} href="/CreateProposal">🗳️ 0</Nav.Link>
-              <NavDropdown style={{color: '#fff'}} title="🌐Idioma"id="basic-nav-dropdown">
-              <NavDropdown.Item className="lan" onSelect={handleOnSelect}>English</NavDropdown.Item>
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
+          <NavDropdown className="alt" title="🌐">
+              <NavDropdown.Item className="alt" onSelect={handleOnSelect}>English</NavDropdown.Item>
               </NavDropdown>
+            <Nav>
+              <Nav.Link className="alt" href="/About">🤔 ¿Qué es VoTARO?</Nav.Link>
+              <Nav.Link className="alt" href="/About">✔️ Validar cuenta</Nav.Link>
+              <Nav.Link className="alt" href="/ProposalList">🗳️ Usa TARO</Nav.Link>
+              <Nav.Link className="alt" href="/CreateProposal">🦸🦸‍♂️ Nueva Propuesta</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           </Navbar>

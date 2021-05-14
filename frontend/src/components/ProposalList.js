@@ -23,7 +23,7 @@ const ProposalList = () => {
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
 
-  let {isValidated} = useContext(ValidationRequiredContext);
+  let {isValidated, setIsValidated} = useContext(ValidationRequiredContext);
   let [isEnglish] = useContext(LanguageContext);
   let {governorAlpha} = useContext(GovernorAlphaContext);
   let {provider} = useContext(EthersContext);
@@ -106,6 +106,22 @@ const ProposalList = () => {
             );
             // setGovernorAlpha(_governorAlpha);
 
+            let _isValidated = await _governorAlpha.getValidityStatus();
+            let userExpirationTime = _isValidated[0].toNumber();
+            let currentBlockTimestamp = _isValidated[1].toNumber();
+
+            if(userExpirationTime === 0) {
+              console.log('user is zero time; not validated');
+              setIsValidated(false);
+            } else if (currentBlockTimestamp > userExpirationTime){
+              console.log('user is past validity period; not validated');
+              setIsValidated(false);
+            } else {
+              setIsValidated(true);
+              console.log('user exp time: ', _isValidated[0].toNumber());
+              console.log('block.timestamp: ', _isValidated[1].toNumber());
+            };
+
             let proposalCount = await _governorAlpha.proposalCount();
             proposalCount = +proposalCount;
 
@@ -178,34 +194,50 @@ const ProposalList = () => {
   };
 
   return (
-<div>
+<div className= "App">
       {isEnglish === 'english'
       ?
 
       <div>
-        <div className= "app">
-          <div className= "gray">
+        <div >
+          <div className= "valert">
             {isValidated ? "" : <ValidationRequired />}
-          </div>
+            </div>
             <div className= "yellowB">
-              <div className="main">Delegate TARO to vote. Note that you can only vote on proposals that are made after you have delegated.  You cannot delegate and then vote on existing proposals.</div>
+              <div className="title2">Delegate TARO to vote.</div>
+              <div className="big-icon">🗳️</div>
+              <div className="main">In order to create or vote on proposals, verified citizens needs to delegate your TARO tokens.
+               In this way the contracts will know that you want to use your TARO as voting power.
+              </div>
+              <div className="text-large-fit">1 TARO = 1 Vote
+              </div>
                <div className ="floating">
                 <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
               </div>
-              <div className="floating">
-                <Link className="alt" to="/createproposal">Create a proposal</Link>
+            </div >
+            <div className= "orangeB">
+              <div className="title2">Make a new proposal .</div>
+              <div className="big-icon">🦸🦸‍♂️</div>
+              <div className="main">
+                 The city needs you! generate proposals for activities, public works or needs that you have identified in your community
+                 Make proposals, vote for them and make them come true to get more TARO.
               </div>
-              </div >
-              <div>
+              <div className="floating">
+                <Link className="alt2" to="/createproposal">Create proposal</Link>
+              </div>
+            </div >
+            <div>
+
                 {list.length > 0
                 ?
                 <div className = "app">
+                  <div className="text-large">Available proposals</div>
                   {list}
                 </div>
                 :
                 <div>
                   <div className ="floating">
-                   <div className="purple">There are no proposals right now.</div>
+                   <div className="purple">There are no proposals yet.</div>
                   </div>
                   <div className ="floating">
                     <Link className="alt2" to="/">Return to home</Link>
@@ -249,15 +281,17 @@ const ProposalList = () => {
               </div>
             </div >
             <div>
+
                 {list.length > 0
                 ?
                 <div className = "app">
+                  <div className="text-large">Propuestas disponibles</div>
                   {list}
                 </div>
                 :
                 <div>
                   <div className ="floating">
-                   <div className="purple">No hay propuestas aún.</div>
+                   <div className="text-large">No hay propuestas aún.</div>
                   </div>
                   <div className ="floating">
                     <Link className="alt2" to="/">Regresar al inicio</Link>

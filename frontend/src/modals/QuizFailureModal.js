@@ -12,8 +12,6 @@ const QuizFailureModal = (props) => {
 
       <Modal
         {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header>
@@ -30,11 +28,9 @@ const QuizFailureModal = (props) => {
       </Modal>
 
       :
-
+    <div className="modal">
       <Modal
         {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header>
@@ -46,9 +42,11 @@ const QuizFailureModal = (props) => {
           <p>
             Aprende más sobre Querétaro e intentalo de nuevo
           </p>
+          <Link className="alt2" to="/home">TARO</Link>
         </Modal.Body>
-        <Link to="/home">TARO</Link>
+
       </Modal>
+      </div>
     }
     </div>
   );

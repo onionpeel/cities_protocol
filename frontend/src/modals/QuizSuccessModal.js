@@ -12,8 +12,6 @@ const QuizSuccessModal = (props) => {
 
       <Modal
         {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header>
@@ -26,19 +24,19 @@ const QuizSuccessModal = (props) => {
             You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.
           </p>
           <p>
-            <Link className="alt" to="/ProposalList">Delegate and make your first proposal</Link> to start earning more TARO tokens!
+            <Link className="alt2" to="/ProposalList">Delegate and make your first proposal</Link>
           </p>
         </Modal.Body>
       </Modal>
       :
+      <div className="modal">
       <Modal
+        className="orange-modal"
         {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Header >
+          <Modal.Title >
           !Felicidades! pasaste el cuestionario!
           </Modal.Title>
         </Modal.Header>
@@ -47,10 +45,11 @@ const QuizSuccessModal = (props) => {
             Has ganado tokens TARO y ahora puedes participar en la gobernanza de la ciudad al crear o votar propuestas.
           </p>
           <p>
-            <Link className="alt" to="/ProposalList">Delega tokens y crea tu primer propuesta</Link> para empezar a ganar más TARO
+            <Link className="alt2" to="/ProposalList">Delega tokens y crea tu primer propuesta</Link>
           </p>
         </Modal.Body>
       </Modal>
+      </div>
     }
     </div>
   );

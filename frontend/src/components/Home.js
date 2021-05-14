@@ -28,13 +28,12 @@ function Home() {
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
 
-  let {setIsValidated} = useContext(ValidationRequiredContext);
+  let {isValidated,setIsValidated} = useContext(ValidationRequiredContext);
   let {taro, setTaro} = useContext(TaroContext);
   let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
-  let {isEnglish} = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
   let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
-
 
   useEffect(() => {
     const init = async () => {
@@ -113,6 +112,22 @@ function Home() {
               signer
             );
             setGovernorAlpha(_governorAlpha);
+
+            let _isValidated = await _governorAlpha.getValidityStatus();
+            let userExpirationTime = _isValidated[0].toNumber();
+            let currentBlockTimestamp = _isValidated[1].toNumber();
+
+            if(userExpirationTime === 0) {
+              console.log('user is zero time; not validated');
+              setIsValidated(false);
+            } else if (currentBlockTimestamp > userExpirationTime){
+              console.log('user is past validity period; not validated');
+              setIsValidated(false);
+            } else {
+              setIsValidated(true);
+              console.log('user exp time: ', _isValidated[0].toNumber());
+              console.log('block.timestamp: ', _isValidated[1].toNumber());
+            };
 
           };
         } catch (error) {
@@ -225,7 +240,7 @@ function Home() {
 
   return (
     <div>
-      {isEnglish ?
+      {isEnglish === 'english' ?
         <div className="App">
           <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
           <div className="Wallet">

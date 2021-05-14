@@ -2,6 +2,7 @@
 
 
 .App {
+  margin-top: 100px;
   background-color: #ffffff;
   font-family: 'Lexend Deca', sans-serif !important;
   text-align: center;
@@ -10,40 +11,92 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:link {color: #FFff!important;}
+a:link {color: #FFff!important;
+        border: none;}
 a:active{color: #FAC91A!important;}
 a:visited {color: #FFff!important;}
-a:hover {color: #FF9400!important;}
+a:hover {
+  text-decoration: none;
+  color: #3d386b!important;
+  background-color: #FAC91A !important;}
 
-a.alt:link {color: #FFff!important;}
-a.alt:active{color: #FAC91A!important;}
-a.alt:visited {color: #FFff!important;}
-a.alt:hover {color: #3d386b!important;}
+a.alt:link {color: #FF9400 !important;}
+a.alt:visited {color: #FF9400 !important;}
+a.alt:hover {
+  background-color: transparent !important;
+  color: #FAC91A !important;}
+
+.nohover {
+  background-color: #3d386b!important;
+}
+
+a.alt3:link {color: #ffffff !important;}
 
 .alt {
   font-family: 'Lexend Deca', sans-serif;
+  font-size: 15px;
   border-radius: 25px !important;
-  margin-bottom: 3%;
   border: none !important;
   justify-content: left !important;
-  background-color: #FF9400 !important;
-  color: #ffffff !important;
 }
 
 .alt2 {
   border-radius: 25px !important;
   margin-top: 3%;
+  padding: 2%;
   border: none !important;
   display: flex !important;
   justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #ffffff !important;
+  background-color: #3d386b !important;
+}
+
+.aboutbutton {
+  border-radius: 25px !important;
+  margin-top: 3%;
+  padding: 2%;
+  border: none !important;
+  display: flex !important;
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
-  background-color: #3d386b !important;
   color: #ffffff !important;
+  background-color: #FF9400 !important;
 }
 
+.aboutlink {
+  color: #FF9400 !important;
+}
+
+.alt3 {
+  border-radius: 25px !important;
+  border: none !important;
+  text-align: left;
+  color: #ffffff !important;
+  background-color: #3d386b !important;
+}
+
+.NavDropdown.Item {
+
+  right: 0 !important;
+  left: 50%  !important;
+  border-radius: 25px !important;
+  border: none !important;
+  text-align: left;
+  display: flex !important;
+  justify-content: left !important;
+  align-content: left !important;
+  align-items: left !important;
+  color: #ffffff !important;
+  background-color: #3d386b !important;
+}
+
+
 .submitbutton {
+  margin-top: 3%;
+  margin-bottom: 5%;
   width: 100% !important;
   display: flex !important;
   justify-content: center !important;
@@ -62,8 +115,9 @@ a.alt:hover {color: #3d386b!important;}
 }
 
 Nav {
+  margin-bottom: 25px !important;
   background-color: #3d386b !important;
-  position: sticky !important;
+  position: fixed !important;
   font-family: 'Lexend Deca', sans-serif;
   color: #FF9400;
 }
@@ -93,7 +147,21 @@ Nav {
 
 Button {
   border-radius: 25px !important;
+  background-color: #3d386b !important;
+  border: none !important;
+  color: #3d386b ;
+}
+
+Button:hover {
+  border-radius: 25px !important;
   background-color: #FF9400 !important;
+  border: none !important;
+  color: #3d386b !important;
+}
+
+.handleOnClickAgainst:hover {
+  border-radius: 25px !important;
+  background-color: #00ff15 !important;
   border: none !important;
   color: #3d386b ;
 }
@@ -127,6 +195,12 @@ button:disabled {
   font-size: 2rem !important;
 }
 
+.text-large-quiz {
+  font-family: 'Lexend Deca', sans-serif !important;
+  text-align: left;
+  font-size: 20px !important;
+}
+
 .text-large-left {
   font-size: 2rem !important;
   text-align: left !important;
@@ -155,13 +229,17 @@ button:disabled {
   max-width: 50%;
   min-width: 450px !important;
   margin: 3% auto;
-  background-image: linear-gradient(#eee, #e9e5e5);
+  background-image: linear-gradient(#eee, rgb(204, 200, 200));
   font-family: 'Lexend Deca', sans-serif;
   display: flex !important;
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
   color: #3d386b !important;
+}
+
+.top {
+  position: fixed top;
 }
 
 .orange-unlock {
@@ -213,9 +291,9 @@ button:disabled {
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 720px !important;
+  min-width: 450px !important;
   margin: 3% auto;
-  background-image: linear-gradient(#3d386b, #3d386b);
+  background-image: linear-gradient(#3d386b, #827bbb);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
@@ -223,7 +301,7 @@ button:disabled {
   text-align: left !important;
 }
 
-.gray3 {
+.about {
   border-radius: 25px;
   width:100%;
   max-width: 50%;
@@ -231,11 +309,11 @@ button:disabled {
   margin: 3% auto;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-image: linear-gradient(#eee, #cecece);
+  background-image: linear-gradient(#3d386b, #726baf);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
-  color: #3d386b !important;
+  color: #ffffff !important;
 }
 
 .yellowB {
@@ -305,10 +383,16 @@ align-items: center !important;
   font-size: 20px;
   text-align: center;
   color: #ffffff;
+
 }
 
 .space {
   margin-top: 3%;
+}
+
+.create {
+  text-align: center;
+  width:90% !important;
 }
 
 .item {
@@ -325,6 +409,13 @@ align-items: center !important;
   min-height: 150px;
 }
 
+.white2 {
+  text-align: left;
+  margin-bottom: 1% !important;
+  font-size: 18px !important;
+  color: #ffffff !important;
+}
+
 .orange {
   margin-top: 1% !important;
   font-size: 2rem !important;
@@ -332,12 +423,32 @@ align-items: center !important;
 }
 
 .orange2 {
-  margin-top: 3% !important;
   margin-bottom: 3% !important;
   font-size: 18px !important;
   color: #FF9400 !important;
 }
 
+.orange3 {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  color: #FF9400 !important;
+}
+
+.yellow {
+  margin-top: 3% !important;
+  margin-bottom: 3% !important;
+  color: #FAC91a !important;
+}
+
+.Vo {
+  font-size: 30px !important;
+  color: #FAC91a !important;
+}
+
+.TARO {
+  font-size: 30px;
+  color: #FF9400 !important;
+}
 .purple-unlock {
   margin-top: 3% !important;
   margin-bottom: 3% !important;
@@ -348,14 +459,48 @@ align-items: center !important;
 .big-icon {
   font-size: 75px !important;
   text-align: center;
-  color: #3d386b;
+  color: #ffffff;
+}
+
+.big-iconf {
+  border-radius: 20px;
+  background-color: #36a74e;
+  background-image: linear-gradient(#36a74e, #82bb8e)!important;
+  margin-right: 3% ;
+  font-size: 65px !important;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: #cac9c9 !important;
+}
+
+.big-icona {
+  font-size: 65px !important;
+  margin-right: 3%;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 20px;
+  background-color: #dc3840;
+  background-image: linear-gradient(#dc3840, #da898d)!important;
+
+}
+
+.aboutC {
+  text-align: left !important;
+  font-size: 20px !important;
+  color: #ffffff;
+}
+.aboutCo {
+  text-align: left !important;
+  margin-bottom: 2%;
+  font-size: 20px !important;
+  color: #FF9400;
 }
 
 .purple {
   text-align: left !important;
   margin-top: 3%;
   font-size: 2rem !important;
-  color: #3d386b;
+  color: #ffffff;
 }
 
 
@@ -365,7 +510,8 @@ align-items: center !important;
 }
 
 .purple3 {
-  text-align: left !important;
+  font-size: 15px !important;
+  text-align: center !important;
   margin-top: 1%;
   color: #3d386b;
 }
@@ -395,6 +541,21 @@ align-items: center !important;
 
 */
 
+.proposal {
+  border-radius: 25px;
+  width:100%;
+  max-width: 50%;
+  min-width: 450px !important;
+  margin: 3% auto;
+  background-image: linear-gradient(#3d386b , #7770b4);
+  font-family: 'Lexend Deca', sans-serif;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+}
+
 .proposal-table {
   width: 100%;
   display: table !important;
@@ -405,13 +566,68 @@ align-items: center !important;
   display: table-row !important;
 }
 
+.orange-card {
+  background-image: linear-gradient(#3d386b , #3d386b);
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 5% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+
+.orange-card2 {
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 5% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+
+.yellow-card {
+  width: 100%;
+  margin-left: 2%;
+  border-radius: 5px;
+  margin-top: 3% !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
+}
+
+.white-card {
+  width: 100%;
+  margin-left: 2%;
+  border-radius: 5px;
+  background-image: linear-gradient(#ffffff,#e6e6e6);
+  margin-top: 3% !important;;
+  font-size: 15px !important;
+  text-align: center !important;
+  color: #3d386b !important;
+}
+
+.feed  {
+  color: #ffffff !important;
+  font-family: 'Lexend Deca', sans-serif;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  box-sizing: border-box !important;
+  padding: 15px;
+}
 
 .proposal-title {
   width: 75%;
   display: table-cell;
   text-align: left !important;
-  font-size: 20px !important;
-  color: #FF9400 !important;
+  font-size: 23px !important;
+  color: #ffffff !important;
+}
+
+.proposal-title2 {
+  width: 25%;
+  display: table-cell;
+  align-content: right !important;
+  text-align: right !important;
+  font-size: 23px !important;
+  color: #ffffff !important;
 }
 
 .proposal-action {
@@ -423,15 +639,48 @@ align-items: center !important;
 
 .proposal-sub {
   width: 50% !important;
-   display: table-cell;
+  display: table-cell;
   text-align: left !important;
   font-size: 15px !important;
   color: #3d386b !important;
+}
+
+.proposal-description {
+  padding-left: 3%;
+  display: table-cell;
+  text-align: left !important;
+  font-size: 15px !important;
+  color: #ffffff !important;
 }
 
 .proposal-subaction {
   display: table-cell;
   text-align: right !important;
   font-size: 15px !important;
+  color: #3d386b !important;
+}
+
+.against {
+  background-color: #3d386b !important;
+  border-radius: 25px !important;
+  margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+.modal {
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #3d386b !important;
+  text-align: center !important;
+  font-family: 'Lexend Deca', sans-serif !important;
+  border: none !important;
+}
+
+.orange-modal {
+  background-color: #FF9400 !important;
+  border-radius: 25px !important;
+  background-image: linear-gradient(#FF9400, #ffc16b);
+  font-family: 'Lexend Deca', sans-serif !important;
   color: #3d386b !important;
 }
