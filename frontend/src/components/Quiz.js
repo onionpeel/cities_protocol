@@ -238,7 +238,7 @@ const Quiz = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       {isEnglish === 'english' ?
         <div>
           {isConnected
@@ -272,11 +272,12 @@ const Quiz = () => {
 
           :
 
-          <div>
-            <div>
-              To take the quiz and start earning Taro, you first need to get connected to the Ethereum network
+          <div className="valert">
+            <div className="main">
+              <div className="big-icon">⚠️</div>
+              <div className="white">To take the quiz and start earning TARO, you first need to get connected to the Ethereum network</div>
+              <Link className="alt2" to="/">Return home and click on "Connect Wallet to Unlock"</Link>
             </div>
-            <Link className="alt2" to="/">Return home and click on "Connect Wallet to Unlock"</Link>
           </div>
           }
         </div>
@@ -316,12 +317,13 @@ const Quiz = () => {
                 </div>
               </div>
               :
-              <div>
-                <div>
-                  Necesitas conectarte con una wallet de Metamask a la red de Ethereum para poder contestar el cuestionario
-                </div>
-                <Link className="alt2" to="/">Regresa al inicio para conectar tu cartera a la Dapp</Link>
-              </div>
+              <div className="valert">
+            <div className="main">
+              <div className="big-icon">⚠️</div>
+              <div className="white">Necesitas conectarte con una wallet de Metamask a la red de Ethereum para poder contestar el cuestionario</div>
+              <Link className="alt2" to="/">Regresa al inicio para conectar Wallet</Link>
+            </div>
+          </div>
           }
         </div>
       }

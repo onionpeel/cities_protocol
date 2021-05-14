@@ -2,6 +2,7 @@
 
 
 .App {
+  margin-top: 100px;
   background-color: #ffffff;
   font-family: 'Lexend Deca', sans-serif !important;
   text-align: center;
@@ -10,7 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:link {color: #FFff!important;}
+a:link {color: #FFff!important;
+        border: none;}
 a:active{color: #FAC91A!important;}
 a:visited {color: #FFff!important;}
 a:hover {
@@ -18,24 +20,24 @@ a:hover {
   color: #3d386b!important;
   background-color: #FAC91A !important;}
 
-a.alt:link {color: #FFff!important;}
-a.alt:active{color: #FAC91A!important;}
-a.alt:visited {color: #FFff!important;}
+a.alt:link {color: #FF9400 !important;}
+a.alt:visited {color: #FF9400 !important;}
 a.alt:hover {
-  color: #3d386b !important;}
+  background-color: transparent !important;
+  color: #FAC91A !important;}
 
 .nohover {
   background-color: #3d386b!important;
 }
 
+a.alt3:link {color: #ffffff !important;}
+
 .alt {
   font-family: 'Lexend Deca', sans-serif;
+  font-size: 15px;
   border-radius: 25px !important;
-  margin-bottom: 3%;
   border: none !important;
   justify-content: left !important;
-  background-color: #FF9400 !important;
-  color: #ffffff !important;
 }
 
 .alt2 {
@@ -51,11 +53,26 @@ a.alt:hover {
   background-color: #3d386b !important;
 }
 
-.alt3 {
-
+.aboutbutton {
   border-radius: 25px !important;
+  margin-top: 3%;
+  padding: 2%;
   border: none !important;
   display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+  color: #ffffff !important;
+  background-color: #FF9400 !important;
+}
+
+.aboutlink {
+  color: #FF9400 !important;
+}
+
+.alt3 {
+  border-radius: 25px !important;
+  border: none !important;
   text-align: left;
   color: #ffffff !important;
   background-color: #3d386b !important;
@@ -98,8 +115,9 @@ a.alt:hover {
 }
 
 Nav {
+  margin-bottom: 25px !important;
   background-color: #3d386b !important;
-  position: sticky !important;
+  position: fixed !important;
   font-family: 'Lexend Deca', sans-serif;
   color: #FF9400;
 }
@@ -220,6 +238,10 @@ button:disabled {
   color: #3d386b !important;
 }
 
+.top {
+  position: fixed top;
+}
+
 .orange-unlock {
   border-radius: 25px;
   width:100%;
@@ -279,7 +301,7 @@ button:disabled {
   text-align: left !important;
 }
 
-.gray3 {
+.about {
   border-radius: 25px;
   width:100%;
   max-width: 50%;
@@ -287,11 +309,11 @@ button:disabled {
   margin: 3% auto;
   padding-top: 1%;
   padding-bottom: 1%;
-  background-image: linear-gradient(#eee, #cecece);
+  background-image: linear-gradient(#3d386b, #726baf);
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
-  color: #3d386b !important;
+  color: #ffffff !important;
 }
 
 .yellowB {
@@ -417,6 +439,16 @@ align-items: center !important;
   margin-bottom: 3% !important;
   color: #FAC91a !important;
 }
+
+.Vo {
+  font-size: 30px !important;
+  color: #FAC91a !important;
+}
+
+.TARO {
+  font-size: 30px;
+  color: #FF9400 !important;
+}
 .purple-unlock {
   margin-top: 3% !important;
   margin-bottom: 3% !important;
@@ -452,11 +484,23 @@ align-items: center !important;
 
 }
 
+.aboutC {
+  text-align: left !important;
+  font-size: 20px !important;
+  color: #ffffff;
+}
+.aboutCo {
+  text-align: left !important;
+  margin-bottom: 2%;
+  font-size: 20px !important;
+  color: #FF9400;
+}
+
 .purple {
   text-align: left !important;
   margin-top: 3%;
   font-size: 2rem !important;
-  color: #3d386b;
+  color: #ffffff;
 }
 
 

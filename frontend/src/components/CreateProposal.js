@@ -197,7 +197,7 @@ const CreateProposal = () => {
   };
 
   return (
-    <div>
+    <div className ="App">
       {isEnglish === 'english'
 
         ?

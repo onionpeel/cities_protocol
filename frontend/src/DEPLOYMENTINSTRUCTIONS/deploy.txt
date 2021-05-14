@@ -21,3 +21,4 @@ npx hardhat clean
 4. Start front end server
 
 When running the front end on the localhost after it has been using skale, it will be necessary to restart the front end server because the json files are all pointing to the addresses of contracts on skale.  The new deployment will set these for the localhost.
+But once this is set into production, the contracts cannot be redeployed.  So use the addresses of the contracts on Skale in the contracts folder in the src directory.  They will be in json files.
