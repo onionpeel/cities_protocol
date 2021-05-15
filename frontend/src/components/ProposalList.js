@@ -154,6 +154,7 @@ const ProposalList = () => {
                 };
               };
               // console.log('activeProposals: ', activeProposals)
+              activeProposals.reverse();
               setRetrievedProposals(activeProposals);
             };
 

@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 import {ListGroup, Button} from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
-import Proposal from './Proposal';
+import ApprovedProposal from './PastProposal';
+import RejectedProposal from './RejectedProposal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
@@ -19,9 +20,11 @@ import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-
 // import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
 
 const PastProposals = () => {
-  let [retrievedProposals, setRetrievedProposals] = useState([]);
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
+  let [approvedProposals, setApprovedProposals] = useState();
+  let [rejectedProposals, setRejectedProposals] = useState();
+  let [showApproved, setShowApproved] = useState(true);
 
   let {isValidated} = useContext(ValidationRequiredContext);
   let [isEnglish] = useContext(LanguageContext);
@@ -114,7 +117,7 @@ const PastProposals = () => {
             proposalCount = +proposalCount;
 
             if(proposalCount > 0) {
-              let activeProposals = [];
+              let pastProposals = [];
               let proposal, currentBlockNumber;
               for(let i = 1; i <= proposalCount; i++) {
                 proposal = await _governorAlpha.proposals(ethers.BigNumber.from(i));
@@ -126,7 +129,7 @@ const PastProposals = () => {
                 // console.log('proposal: ', proposal);
 
                 if(proposal.endBlock.toNumber() < currentBlockNumber) {
-                  activeProposals.push({
+                  pastProposals.push({
                     title: proposal[9][0],
                     typeOfAction: proposal[9][1],
                     neighborhood: proposal[9][2],
@@ -142,10 +145,24 @@ const PastProposals = () => {
                 };
               };
               // console.log('activeProposals: ', activeProposals)
-              setRetrievedProposals(activeProposals);
+              pastProposals.reverse();
+
+              let approved = [];
+              for(let i = 0; i < pastProposals.length; i++) {
+                if(pastProposals[i].forVotes >= pastProposals[i].againstVotes) {
+                  approved.push(pastProposals[0]);
+                };
+              };
+              setApprovedProposals(approved);
+
+              let rejected = []
+              for(let i = 0; i < pastProposals.length; i++) {
+                if(pastProposals[i].forVotes < pastProposals[i].againstVotes) {
+                  approved.push(pastProposals[0]);
+                };
+              };
+              setRejectedProposals(rejected);
             };
-
-
           };
         } catch (error) {
           console.error(error);
@@ -155,10 +172,10 @@ const PastProposals = () => {
     main();
   }, []);
 
-  const list = retrievedProposals.map((proposal, i) => {
+  const approvedList = approvedProposals.map((proposal, i) => {
     return (
       <div key={i}>
-        <Proposal
+        <ApprovedProposal
           title={proposal.title}
           typeOfAction={proposal.typeOfAction}
           neighborhood={proposal.neighborhood}
@@ -175,10 +192,28 @@ const PastProposals = () => {
     )
   });
 
-  const handleOnClickDelegate = async () => {
-    let delegate = await taro.delegate(signerAddress);
-    let delegateReceipt = await delegate.wait(1);
-    console.log('delegateReceipt: ', delegateReceipt);
+  const rejectedList = rejectedProposals.map((proposal, i) => {
+    return (
+      <div key={i}>
+        <RejectedProposal
+          title={proposal.title}
+          typeOfAction={proposal.typeOfAction}
+          neighborhood={proposal.neighborhood}
+          personInCharge={proposal.personInCharge}
+          description={proposal.description}
+          expiration={proposal.expiration}
+          budget={proposal.budget}
+          taroToVote={proposal.taroToVote}
+          forVotes={proposal.forVotes}
+          againstVotes={proposal.againstVotes}
+          id={proposal.id}
+        />
+      </div>
+    )
+  });
+
+  const handleOnApprove = () => {
+    setShowApproved(!showApproved);
   };
 
   return (
@@ -193,20 +228,41 @@ const PastProposals = () => {
           </div>
             <div className= "yellowB">
               <div>
-                {list.length > 0
-                ?
-                <div className = "app">
-                  {list}
-                </div>
-                :
-                <div>
-                  <div className ="floating">
-                   <div className="purple">There are no proposals right now.</div>
-                  </div>
-                  <div className ="floating">
-                    <Link className="alt2" to="/">Return to home</Link>
-                  </div>
-                </div>
+                {showApproved
+                  ?
+                  {approvedList.length > 0
+                    ?
+                    <Button onClick={handleOnApprove}>
+                      See rejected proposals
+                    </Button>
+                    {approvedList}
+                    :
+                    <div>
+                      <div className ="floating">
+                       <div className="purple">There are no proposals right now.</div>
+                      </div>
+                      <div className ="floating">
+                        <Link className="alt2" to="/">Return to home</Link>
+                      </div>
+                    </div>
+                  }
+                  :
+                  {rejectedList.length > 0
+                    ?
+                    <Button onClick={handleOnApprove}>
+                      See approved proposals
+                    </Button>
+                    {rejectedList}
+                    :
+                    <div>
+                      <div className ="floating">
+                       <div className="purple">There are no proposals right now.</div>
+                      </div>
+                      <div className ="floating">
+                        <Link className="alt2" to="/">Return to home</Link>
+                      </div>
+                    </div>
+                  }
                 }
               </div>
             </div>
