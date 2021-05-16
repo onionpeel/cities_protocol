@@ -16,8 +16,6 @@ import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-// import { proposalArray } from '../DELETEBEFOREPRODUCTION/proposalArray.js';
-
 const ProposalList = () => {
   let [retrievedProposals, setRetrievedProposals] = useState([]);
   let [taro, setTaro] = useState();
@@ -127,15 +125,18 @@ const ProposalList = () => {
 
             if(proposalCount > 0) {
               let activeProposals = [];
-              let proposal, currentBlockNumber;
+              let proposal, currentBlockNumber, _hasVoted;
               for(let i = 1; i <= proposalCount; i++) {
                 proposal = await _governorAlpha.proposals(ethers.BigNumber.from(i));
+                _hasVoted = await _governorAlpha.checkHasVoted(_signerAddress, ethers.BigNumber.from(i));
                 currentBlockNumber = await _ethersProvider.getBlockNumber();
                 // console.log('block number: ', currentBlockNumber)
                 // console.log('proposal:', proposal.endBlock.toNumber());
                 // console.log('forVotes: ', proposal.forVotes.toString());
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
-                // console.log('proposal: ', proposal);
+                console.log('proposal: ', proposal);
+                console.log('hasVoted: ', _hasVoted);
+
 
                 if(proposal.endBlock.toNumber() > currentBlockNumber) {
                   activeProposals.push({
@@ -149,7 +150,10 @@ const ProposalList = () => {
                     requiredTaroToVote: proposal[9][7].toString(),
                     forVotes: proposal.forVotes.toString(),
                     againstVotes: proposal.againstVotes.toString(),
-                    id: proposal.id.toString()
+                    id: proposal.id.toString(),
+                    proposer: proposal.proposer.toString(),
+                    proposalTime: proposal[9].proposalTime.toNumber(),
+                    hasVoted: _hasVoted
                   });
                 };
               };
@@ -183,6 +187,9 @@ const ProposalList = () => {
           forVotes={proposal.forVotes}
           againstVotes={proposal.againstVotes}
           id={proposal.id}
+          proposer={proposal.proposer}
+          proposalTime={proposal.proposalTime}
+          hasVoted={proposal.hasVoted}
         />
       </div>
     )

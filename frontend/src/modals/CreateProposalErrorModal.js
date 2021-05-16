@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
-import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const CreateProposalErrorModal = (props) => {

@@ -2,10 +2,9 @@ import { useContext } from 'react';
 import { Alert } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
-import {ListGroup, Button} from 'react-bootstrap';
 
 const ValidationRequired = () => {
-  let [isEnglish, setLoc] = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>

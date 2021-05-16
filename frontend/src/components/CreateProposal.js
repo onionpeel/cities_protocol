@@ -138,11 +138,17 @@ const CreateProposal = () => {
   };
   //expiration and requiredTaroToVote are hardcoded because these fields are needed for the smart contract.  The front end is not ready to use these fields.  Later, when the front end is ready, these inputs can be added back into the form inputs.
   const setField = (field, value) => {
+    const date = new Date();
+    const time = date.getTime();
+    let timeAsBigNumber = ethers.BigNumber.from(time);
+
     setForm({
       ...form,
       [field]: value,
       expiration: 0,
-      requiredTaroToVote: 0
+      requiredTaroToVote: 0,
+      proposalTime: timeAsBigNumber,
+      proposer: signerAddress
     });
   };
 

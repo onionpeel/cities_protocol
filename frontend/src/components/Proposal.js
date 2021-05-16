@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ethers } from 'ethers';
+import CountdownClock from './CountdownClock';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
@@ -12,7 +13,7 @@ import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id}) => {
+const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalTime, hasVoted}) => {
   let [governorAlpha, setGovernorAlpha] = useState();
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
@@ -145,6 +146,15 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
     </Card.Body>
       <div className="proposal-description"><div className="white2">📑 Description:</div><p>{description}</p></div>
 
+    <Card.Body>
+      <div>
+        proposer: {proposer}
+      </div>
+      <div>
+        <CountdownClock proposalTime={proposalTime}/>
+      </div>
+    </Card.Body>
+
     {/*}
     <div className ="proposal-main">
       <div className="proposal-sub">Costo: {budget}</div>
@@ -154,10 +164,36 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
 
   <Card.Body className="proposal-table">
     <div className="proposal-main">
-      <div className="proposal-sub"><div className="proposal-title">✔️ Votes for:</div><p className="big-iconf">{forVotes}
-      <Button className="wallet" block onClick={handleOnClickFor}>✔️ Vote for </Button></p></div>
-      <div className="proposal-action"> <div className="proposal-title2">❌ Votes against:</div><p className="big-icona">{againstVotes}
-      <Button claasName="against" block onClick={handleOnClickAgainst}>❌ Vote against </Button></p></div>
+      <div className="proposal-sub">
+        <div className="proposal-title">
+          ✔️ Votes for:
+        </div>
+        <p className="big-iconf">{forVotes}
+          {!hasVoted
+            ?
+            <Button className="wallet" block onClick={handleOnClickFor}>
+              ✔️ Vote for
+            </Button>
+            :
+            ''
+          }
+        </p>
+      </div>
+      <div className="proposal-action">
+        <div className="proposal-title2">
+          ❌ Votes against:
+        </div>
+        <p className="big-icona">{againstVotes}
+          {!hasVoted
+            ?
+            <Button className="against" block onClick={handleOnClickAgainst}>
+              ❌ Vote against
+            </Button>
+            :
+            ''
+          }
+        </p>
+      </div>
     </div>
   </Card.Body>
 </Card>
@@ -191,7 +227,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       <div className="proposal-sub"><div className="proposal-title">✔️ Votos a favor:</div><p className="big-iconf">{forVotes}
       <Button className="wallet" block onClick={handleOnClickFor}>✔️ Votar a favor </Button></p></div>
       <div className="proposal-action"> <div className="proposal-title2">❌ En contra:</div><p className="big-icona">{againstVotes}
-      <Button claasName="against" block onClick={handleOnClickAgainst}>❌ Votar en contra </Button></p></div>
+      <Button className="against" block onClick={handleOnClickAgainst}>❌ Votar en contra </Button></p></div>
     </div>
   </Card.Body>
 </Card>

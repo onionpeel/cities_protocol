@@ -22,3 +22,6 @@ npx hardhat clean
 
 When running the front end on the localhost after it has been using skale, it will be necessary to restart the front end server because the json files are all pointing to the addresses of contracts on skale.  The new deployment will set these for the localhost.
 But once this is set into production, the contracts cannot be redeployed.  So use the addresses of the contracts on Skale in the contracts folder in the src directory.  They will be in json files.
+
+
+If the browser has been running the app on Skale, and then you want to use localhost, there will be a problem that MetaMask is still signing messages for the Skale network.  This does not change when you select a different network in metamask.  Resetting metamask (the steps described above) does not work.  The only successful approach seems to be closing everything and restarting the computer.  

@@ -13,7 +13,6 @@ import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
 import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
-import { ConnectedContext } from '../contexts/ConnectedContext';
 import { EthersContext } from '../contexts/EthersContext';
 import { TaroContext } from '../contexts/TaroContext';
 
