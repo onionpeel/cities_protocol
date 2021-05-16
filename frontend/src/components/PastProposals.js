@@ -126,7 +126,11 @@ const PastProposals = () => {
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
                 // console.log('proposal: ', proposal);
 
-                if(proposal.endBlock.toNumber() < currentBlockNumber) {
+                console.log('eb: ', proposal.endBlock.toNumber());
+                console.log('currentBlockNumber: ', currentBlockNumber);
+
+
+                if(proposal.endBlock.toNumber() <= currentBlockNumber) {
                   let _proposalTime = proposal[9].proposalTime.toNumber();
                   let dateObject = new Date(_proposalTime);
                   let year = dateObject.toLocaleString("en-US", {year: 'numeric'});
@@ -150,21 +154,21 @@ const PastProposals = () => {
                   });
                 };
               };
-              console.log('pastProposals: ', pastProposals)
-              // pastProposals.reverse();
+              // console.log('pastProposals: ', pastProposals)
+              pastProposals.reverse();
 
               let approved = [];
               for(let i = 0; i < pastProposals.length; i++) {
-                if(pastProposals[i].forVotes >= pastProposals[i].againstVotes) {
-                  approved.push(pastProposals[0]);
+                if(pastProposals[i].forVotes > pastProposals[i].againstVotes) {
+                  approved.push(pastProposals[i]);
                 };
               };
               setApprovedProposals(approved);
 
               let rejected = []
               for(let i = 0; i < pastProposals.length; i++) {
-                if(pastProposals[i].forVotes < pastProposals[i].againstVotes) {
-                  approved.push(pastProposals[0]);
+                if(pastProposals[i].forVotes <= pastProposals[i].againstVotes) {
+                  rejected.push(pastProposals[i]);
                 };
               };
               setRejectedProposals(rejected);
