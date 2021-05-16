@@ -137,8 +137,9 @@ const ProposalList = () => {
                 console.log('proposal: ', proposal);
                 console.log('hasVoted: ', _hasVoted);
 
-
                 if(proposal.endBlock.toNumber() > currentBlockNumber) {
+                  let blocksToExpiration = proposal.endBlock.toNumber() - currentBlockNumber;
+
                   activeProposals.push({
                     title: proposal[9][0],
                     typeOfAction: proposal[9][1],
@@ -153,7 +154,8 @@ const ProposalList = () => {
                     id: proposal.id.toString(),
                     proposer: proposal.proposer.toString(),
                     proposalTime: proposal[9].proposalTime.toNumber(),
-                    hasVoted: _hasVoted
+                    hasVoted: _hasVoted,
+                    blocksToExpiration
                   });
                 };
               };
@@ -190,6 +192,7 @@ const ProposalList = () => {
           proposer={proposal.proposer}
           proposalTime={proposal.proposalTime}
           hasVoted={proposal.hasVoted}
+          blocksToExpiration={proposal.blocksToExpiration}
         />
       </div>
     )

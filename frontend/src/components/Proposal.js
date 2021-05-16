@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ethers } from 'ethers';
-import CountdownClock from './CountdownClock';
+import NewCountdownClock from './NewCountdownClock';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { EthersContext } from '../contexts/EthersContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
@@ -13,7 +13,7 @@ import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalTime, hasVoted}) => {
+const Proposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalTime, hasVoted, blocksToExpiration}) => {
   let [governorAlpha, setGovernorAlpha] = useState();
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
@@ -151,7 +151,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
         proposer: {proposer}
       </div>
       <div>
-        <CountdownClock proposalTime={proposalTime}/>
+        <NewCountdownClock blocksToExpiration={blocksToExpiration}/>
       </div>
     </Card.Body>
 
