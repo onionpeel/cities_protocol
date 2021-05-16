@@ -203,6 +203,11 @@ const ProposalList = () => {
 
   return (
 <div className= "App">
+
+      <div>
+        <Link className="alt2" to="/pastproposals">See all past proposals</Link>
+      </div>
+
       {isEnglish === 'english'
       ?
 
