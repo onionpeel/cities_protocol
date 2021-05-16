@@ -127,6 +127,12 @@ const PastProposals = () => {
                 // console.log('proposal: ', proposal);
 
                 if(proposal.endBlock.toNumber() < currentBlockNumber) {
+                  let _proposalTime = proposal[9].proposalTime.toNumber();
+                  let dateObject = new Date(_proposalTime);
+                  let year = dateObject.toLocaleString("en-US", {year: 'numeric'});
+                  let month = dateObject.toLocaleString("en-US", {month: 'numeric'});
+                  let day = dateObject.toLocaleString("en-US", {day: 'numeric'});
+
                   pastProposals.push({
                     title: proposal[9][0],
                     typeOfAction: proposal[9][1],
@@ -140,6 +146,7 @@ const PastProposals = () => {
                     againstVotes: proposal.againstVotes.toString(),
                     id: proposal.id.toString(),
                     proposer: proposal.proposer.toString(),
+                    proposalTimeFormatted: `${year}/${month}/${day}`
                   });
                 };
               };
@@ -187,6 +194,7 @@ const PastProposals = () => {
           againstVotes={proposal.againstVotes}
           id={proposal.id}
           proposer={proposal.proposer}
+          proposalTimeFormatted={proposal.proposalTimeFormatted}
         />
       </div>
     )
@@ -207,6 +215,8 @@ const PastProposals = () => {
           forVotes={proposal.forVotes}
           againstVotes={proposal.againstVotes}
           id={proposal.id}
+          proposer={proposal.proposer}
+          proposalTimeFormatted={proposal.proposalTimeFormatted}
         />
       </div>
     )

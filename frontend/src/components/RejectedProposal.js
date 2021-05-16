@@ -12,7 +12,7 @@ import taroAddress from '../contracts/contracts/Taro/contract-address.json';
 import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-const RejectedProposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer}) => {
+const RejectedProposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalTimeFormatted}) => {
   let [governorAlpha, setGovernorAlpha] = useState();
   let [taro, setTaro] = useState();
   let [signerAddress, setSignerAddress] = useState();
@@ -133,6 +133,9 @@ const RejectedProposal = ({title, typeOfAction, neighborhood, personInCharge, de
       <Card.Body>
         <div>
           proposer: {proposer}
+        </div>
+        <div>
+          proposalTimeFormatted: {proposalTimeFormatted}
         </div>
       </Card.Body>
 
