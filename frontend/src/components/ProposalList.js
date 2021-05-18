@@ -215,10 +215,8 @@ const ProposalList = () => {
           <div className= "orangeB">
             <div className="text-large">Make a new proposal</div>
             <div className="big-icon">🦸🦸‍♂️</div>
-            <div className="main">The city needs you! generate proposals for activities, public works or needs that you have identified in your community
+            <div className="main">The city needs you! Generate proposals for activities, public works or needs that you have identified in your community
                 Make proposals, vote for them and make them come true to get more TARO.
-                ¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
-              Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
             </div>
             <div className ="floating">
               <Link className="alt2" to="/createproposal"> ✍🏼 Create proposal</Link>
