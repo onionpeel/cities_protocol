@@ -23,10 +23,7 @@ const NewCountdownClock = ({blocksToExpiration}) => {
   return (
     <div>
       <div>
-        days {days}
-      </div>
-      <div>
-        hours {hours}
+        days {days},  hours {hours}
       </div>
     </div>
   )

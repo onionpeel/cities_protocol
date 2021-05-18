@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
+import {Button} from "react-bootstrap"
 import {Link} from "react-router-dom";
-import {ListGroup, Button} from 'react-bootstrap';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import Proposal from './Proposal';
@@ -197,128 +197,122 @@ const ProposalList = () => {
       </div>
     )
   });
-
-  const handleOnClickDelegate = async () => {
-    let delegate = await taro.delegate(signerAddress);
-    let delegateReceipt = await delegate.wait(1);
-    console.log('delegateReceipt: ', delegateReceipt);
-  };
+  //const handleOnClickDelegate = async () => {
+  //  let delegate = await taro.delegate(signerAddress);
+  //  let delegateReceipt = await delegate.wait(1);
+  //  console.log('delegateReceipt: ', delegateReceipt);
+  //};
 
   return (
-<div className= "App">
-
-      <div>
-        <Link className="alt2" to="/pastproposals">See all past proposals</Link>
-      </div>
-
+  <div className= "App">
       {isEnglish === 'english'
       ?
-
       <div>
-        <div >
-          <div className= "valert">
-            {isValidated ? "" : <ValidationRequired />}
-            </div>
-            <div className= "yellowB">
-              <div className="title2">Delegate TARO to vote.</div>
-              <div className="big-icon">🗳️</div>
-              <div className="main">In order to create or vote on proposals, verified citizens needs to delegate your TARO tokens.
-               In this way the contracts will know that you want to use your TARO as voting power.
-              </div>
-              <div className="text-large-fit">1 TARO = 1 Vote
-              </div>
-               <div className ="floating">
-                <Button className="alt2" onClick={handleOnClickDelegate}>Delegate TARO</Button>
-              </div>
-            </div >
-            <div className= "orangeB">
-              <div className="title2">Make a new proposal .</div>
-              <div className="big-icon">🦸🦸‍♂️</div>
-              <div className="main">
-                 The city needs you! generate proposals for activities, public works or needs that you have identified in your community
-                 Make proposals, vote for them and make them come true to get more TARO.
-              </div>
-              <div className="floating">
-                <Link className="alt2" to="/createproposal">Create proposal</Link>
-              </div>
-            </div >
-            <div>
-
-                {list.length > 0
-                ?
-                <div className = "app">
-                  <div className="text-large">Available proposals</div>
-                  {list}
-                </div>
-                :
-                <div>
-                  <div className ="floating">
-                   <div className="purple">There are no proposals yet.</div>
-                  </div>
-                  <div className ="floating">
-                    <Link className="alt2" to="/">Return to home</Link>
-                  </div>
-                </div>
-          }
-        </div>
-
-      </div>
-
-      </div>
-
-      :
-
-      <div>
-        <div className= "app">
+        <div>
           <div className= "valert">
             {isValidated ? "" : <ValidationRequired />}
           </div>
-            <div className= "yellowB">
-              <div className="title2">Delega TARO para votar.</div>
-              <div className="big-icon">🗳️</div>
-              <div className="main">Para poder crear propuestas o votarlas, es necesario que deleges tus tokens de TARO
-              así el sistema sabrá que deseas utilizar tus TARO como poder de voto.
-              </div>
-              <div className="text-large-fit">1 TARO = 1 Voto
-              </div>
-               <div className ="floating">
-                <Button className="alt2" onClick={handleOnClickDelegate}>Delega TARO</Button>
-              </div>
-            </div >
-            <div className= "orangeB">
-              <div className="title2">Crea una nueva propuesta .</div>
-              <div className="big-icon">🦸🦸‍♂️</div>
-              <div className="main">
+          <div className= "orangeB">
+            <div className="text-large">Make a new proposal</div>
+            <div className="big-icon">🦸🦸‍♂️</div>
+            <div className="main">The city needs you! generate proposals for activities, public works or needs that you have identified in your community
+                Make proposals, vote for them and make them come true to get more TARO.
                 ¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
-                Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
-              </div>
+              Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
+            </div>
+            <div className ="floating">
+              <Link className="alt2" to="/createproposal"> ✍🏼 Create proposal</Link>
+            </div>
+          </div >
+        <div>
+          {list.length > 0 ?
+            <div className ="space">
+              <div className= "yellowB">
+                <div className="text-large"> Proposals to vote </div>
+                <div className="big-icon">🗳️</div>
+                <div className="text-large">1 TARO = 1 Vote</div>
+                <div className="main">Use your TARO to vote for or against available proposals. Your voting power depends on how many TARO tokens you hold in your wallet.</div>
+                {list}
+                <div className="floating">
+                <Link className="alt2" to="/pastproposals">📅 Past proposals</Link>
+                </div>
+              </div >
+            </div>
+          :
+            <div className="space">
+              <div className= "yellowB">
+                <div className="text-large"> Proposals to vote </div>
+                <div className="big-icon">🗳️</div>
+                <div className="text-large">1 TARO = 1 Vote</div>
+                <div className="main">Use your TARO to vote for or against available proposals. Your voting power depends on how many TARO tokens you hold in your wallet.</div>
+                <div className="floating">
+                <div className="title2">⛔There are no proposals yet.⛔</div>
+                </div>
+                <div className="floating">
+                  <Link className="alt2" to="/pastproposals">📅 See past proposals</Link>
+                </div>
+              </div >
               <div className="floating">
-                <Link className="alt2" to="/createproposal">Crea una propuesta</Link>
-              </div>
-            </div >
-            <div>
-
-                {list.length > 0
-                ?
-                <div className = "app">
-                  <div className="text-large">Propuestas disponibles</div>
-                  {list}
+                  <Link className="alt2" to="/">Return to home</Link>
                 </div>
-                :
-                <div>
-                  <div className ="floating">
-                   <div className="text-large">No hay propuestas aún.</div>
-                  </div>
-                  <div className ="floating">
-                    <Link className="alt2" to="/">Regresar al inicio</Link>
-                  </div>
-                </div>
+            </div>
           }
         </div>
-
       </div>
-
+    </div>
+    :
+      <div>
+        <div>
+          <div className= "valert">
+            {isValidated ? "" : <ValidationRequired />}
+          </div>
+          <div className= "orangeB">
+            <div className="text-large">Crea una nueva propuesta</div>
+            <div className="big-icon">🦸🦸‍♂️</div>
+            <div className="main">¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
+              Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
+            </div>
+            <div className ="floating">
+              <Link className="alt2" to="/createproposal"> ✍🏼 Crear propuesta</Link>
+            </div>
+          </div >
+        <div>
+          {list.length > 0 ?
+            <div className ="space">
+              <div className= "yellowB">
+                <div className="text-large"> Propuestas para votar </div>
+                <div className="big-icon">🗳️</div>
+                <div className="text-large">1 TARO = 1 Voto</div>
+                <div className="main">Usa tu taro TARO para votar a favor o en contra de las propuestas disponibles. Tu poder de voto depende de la cantidad de tokens TARO que tengas en tu wallet.
+                </div>
+                {list}
+                <div className="floating">
+                <Link className="alt2" to="/pastproposals">📅 Propestas pasadas</Link>
+                </div>
+              </div >
+            </div>
+          :
+          <div className="space">
+          <div className= "yellowB">
+            <div className="text-large"> Propuestas para votar </div>
+            <div className="big-icon">🗳️</div>
+            <div className="text-large">1 TARO = 1 Voto</div>
+            <div className="main">Usa tu taro TARO para votar a favor o en contra de las propuestas disponibles. Tu poder de voto depende de la cantidad de tokens TARO que tengas en tu wallet.</div>
+            <div className="floating">
+            <div className="title2">⛔Aún no hay propuestas.⛔</div>
+            </div>
+            <div className="floating">
+              <Link className="alt2" to="/pastproposals">📅 Ver propuestas pasadas</Link>
+            </div>
+          </div >
+          <div className="floating">
+              <Link className="alt2" to="/">Regresar al inicio</Link>
+            </div>
+        </div>
+          }
+        </div>
       </div>
+    </div>
     }
     </div>
   );

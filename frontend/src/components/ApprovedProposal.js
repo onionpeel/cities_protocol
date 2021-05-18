@@ -114,29 +114,71 @@ const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, de
 
       ?
 
-  <Card className="proposal">
-    <Card.Body className="proposal-table">
-    <div className="proposal-main"></div>
-      <div className="proposal-main">
-        <div className="proposal-title">🎯{title}
-        <div className="proposal-sub"><div className="orange-card2"><div className="orange3">🦸🦸‍♂️In charge:</div><p className="orange3">{personInCharge}</p></div></div>
-        <div className="proposal-action"><div className="yellow-card"><div className="yellow">⚙️Type of work:</div><p className="yellow">{typeOfAction}</p></div></div>
-      </div>
-        <div className="proposal-subaction">
-        <div className="white-card">📍 Where:<p className="purple4">{neighborhood}</p></div>
+      <Card className="proposala">
+      <Card.Body className="proposal-table">
+        <div className="proposal-main">
+          <div className="proposal-title">🎯{title}</div>
+          <div className="proposal-subaction">
+            <div className="white-card">📍 Where:<p className="purple4">{neighborhood}</p></div>
+          </div>
         </div>
-      </div>
-      </Card.Body>
-        <div className="proposal-description"><div className="white2">📑 Description:</div><p>{description}</p></div>
+        <div className="proposal-main">
+          <div className="proposal-title3">✍🏼 Author: {proposer}</div>
+          <div className="orange-card2">🦸🦸‍♂️In charge: <p>{personInCharge}</p></div>
+        </div>
+        <div className="proposal-main">
+            <div className="proposal-titles">⚙️Type of work: {typeOfAction}</div>
+            <div className="yellow-card">📅 Proposal time: <div>{proposalTimeFormatted}</div></div>
+          </div>
+        </Card.Body>
+          <div className="proposal-description"><div className="white2">📑 Description:</div><p>{description}</p></div>
+          <div className="white-cost">💸 Cost: {budget} pesos</div>
 
-      <Card.Body>
+      {/*}
+      <div className ="proposal-main">
+        <div className="proposal-sub">Costo: {budget} pesos</div>
+        <div className="proposal-subaction">TARO to vote:{requiredTaroToVote} TARO</div>
+      </div>
+      */}
+
+    <Card.Body className="proposal-table">
+      <div className="proposal-main">
+      <div className="proposal-favor">
         <div>
-          proposer: {proposer}
+          ✔️ Votes for:
         </div>
-        <div>
-          proposalTimeFormatted: {proposalTimeFormatted}
+        <p className="big-iconf">{forVotes}</p>
         </div>
-      </Card.Body>
+        <div className="proposal-action">
+        <div className="proposal-against">
+          ❌ Votes against:
+        </div>
+           <p className="big-icona">{againstVotes}</p>
+        </div>
+      </div>
+    </Card.Body>
+  </Card>
+
+      :
+      <Card className="proposala">
+      <Card.Body className="proposal-table">
+        <div className="proposal-main">
+          <div className="proposal-title">🎯{title}</div>
+          <div className="proposal-subaction">
+            <div className="white-card">📍 Donde:<p className="purple4">{neighborhood}</p></div>
+          </div>
+        </div>
+        <div className="proposal-main">
+          <div className="proposal-title3">✍🏼 Autor: {proposer}</div>
+          <div className="orange-card2">🦸🦸‍♂️ Responsable: <p>{personInCharge}</p></div>
+        </div>
+        <div className="proposal-main">
+            <div className="proposal-titles">⚙️ Tipo de Trabajo: {typeOfAction}</div>
+            <div className="yellow-card">📅 Propuesta hecha el: <div>{proposalTimeFormatted}</div></div>
+          </div>
+        </Card.Body>
+          <div className="proposal-description"><div className="white2">📑 Descripción:</div><p>{description}</p></div>
+          <div className="white-cost">💸 Costo: {budget} pesos</div>
 
       {/*}
       <div className ="proposal-main">
@@ -147,49 +189,21 @@ const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, de
 
     <Card.Body className="proposal-table">
       <div className="proposal-main">
-        <div className="proposal-sub">
-          <div className="proposal-title">
-            ✔️ Votes for:
-          </div>
-          <p className="big-iconf">{forVotes}</p>
+      <div className="proposal-favor">
+        <div>
+          ✔️ Votos a favor:
+        </div>
+        <p className="big-iconf">{forVotes}</p>
         </div>
         <div className="proposal-action">
-           <div className="proposal-title2">
-             ❌ Votes against:
-           </div>
+        <div className="proposal-against">
+          ❌ Votos en contra:
+        </div>
            <p className="big-icona">{againstVotes}</p>
         </div>
       </div>
     </Card.Body>
   </Card>
-
-      :
-  {/*
-  <Card className="proposal">
-    <Card.Body className="proposal-table">
-    <div className="proposal-main"></div>
-      <div className="proposal-main">
-        <div className="proposal-title">🎯{title}
-        <div className="proposal-sub"><div className="orange-card2"><div className="orange3">🦸🦸‍♂️Responsable:</div><p className="orange3">{personInCharge}</p></div></div>
-        <div className="proposal-action"><div className="yellow-card"><div className="yellow">⚙️Tipo de trabajo:</div><p className="yellow">{typeOfAction}</p></div></div>
-      </div>
-        <div className="proposal-subaction">
-        <div className="white-card">📍 Donde:<p className="purple4">{neighborhood}</p></div>
-        </div>
-      </div>
-      </Card.Body>
-        <div className="proposal-description"><div className="white2">📑 Descripción:</div><p>{description}</p></div>
-
-
-    {/*
-    <Card.Body className="proposal-table">
-      <div className="proposal-main">
-        <div className="proposal-sub"><div className="proposal-title">✔️ Votos a favor:</div><p className="big-iconf">{forVotes}
-        <div className="proposal-action"> <div className="proposal-title2">❌ En contra:</div><p className="big-icona">{againstVotes}
-      </div>
-    </Card.Body>
-  </Card>
-  */}
 
 
       }

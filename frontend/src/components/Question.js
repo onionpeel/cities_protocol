@@ -29,14 +29,14 @@ const Question = ({question, answers, number}) => {
     <div>
       {isEnglish === 'english' ?
 
-      <Card className="orange-card">
+      <Card className="question-card">
         <Card.Body className="main">
           <Card.Title className="orange3">{question}</Card.Title>
-          <div className="text-large-quiz">{answer}</div>
+          <div className="text-large-quiz"> {answer} </div>
         </Card.Body>
       </Card>
       :
-      <Card className="orange-card">
+      <Card className="question-card">
       <Card.Body className="main">
         <Card.Title className="orange3">{question}</Card.Title>
         <div className="text-large-quiz">{answer}</div>

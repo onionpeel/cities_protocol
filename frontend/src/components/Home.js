@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react';
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers';
 import {Card, Button} from 'react-bootstrap';
-import {Link} from "react-router-dom";
 import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
 import InstallMetamaskAlert from './InstallMetamaskAlert';
@@ -28,11 +27,11 @@ function Home() {
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
 
-  let {isValidated,setIsValidated} = useContext(ValidationRequiredContext);
-  let {taro, setTaro} = useContext(TaroContext);
-  let {governorAlpha, setGovernorAlpha} = useContext(GovernorAlphaContext);
+  let {setIsValidated} = useContext(ValidationRequiredContext);
+  let {setTaro} = useContext(TaroContext);
+  let {setGovernorAlpha} = useContext(GovernorAlphaContext);
   let [isEnglish] = useContext(LanguageContext);
-  let {ethersSigner, setEthersSigner, provider, setProvider} = useContext(EthersContext);
+  let {setEthersSigner, provider, setProvider} = useContext(EthersContext);
   let {isConnected, setIsConnected} = useContext(ConnectedContext);
 
   useEffect(() => {
@@ -136,6 +135,7 @@ function Home() {
       };
     };
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //Enable app to have SKALE among listed networks

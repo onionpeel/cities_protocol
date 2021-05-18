@@ -15,7 +15,7 @@ const ValidationRequired = () => {
           <div className="title3">Get validated to vote</div>
           <div className="big-icon">⚠️</div>
           <div className="white">
-            Only validated Queretaro citizens can create new proposals or vote on the available
+            Only validated Queretaro citizens can create new proposals or vote on the available proposals
           </div>
         </div>
         <div className ="floating">

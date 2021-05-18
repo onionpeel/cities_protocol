@@ -231,56 +231,71 @@ const PastProposals = () => {
   };
 
   return (
-    <div>
+    <div className= "App">
         {isEnglish === 'english'
         ?
-
         <div>
-          <div className= "app">
-              <div className= "yellowB">
+          <div>
+              <div className= "past">
+               <div className="text-large">Past proposals</div>
+               <div className="big-icon">📅 </div>
                 <div>
                   {showApproved
                     ?
-                    <div className="mt-5">
+                    <div className="space">
                       {approvedList.length > 0
                         ?
-                        <div>
-                          <Button onClick={handleOnApprove}>
-                            See rejected proposals
+                        <div className="space">
+                          <div className="floating">
+                          <Button className="alt2" onClick={handleOnApprove}>
+                            Rejected proposals
                           </Button>
+                          </div>
+                          <div className="title2">✔️ Approved proposals</div>
                           {approvedList}
+
+                          <div className ="floating">
+                            <Link className="alt2" to="/ProposalList"> 🗳️ Return to Governance</Link>
+                          </div>
                         </div>
+
                         :
                         <div>
                           <Button onClick={handleOnApprove}>
                             See rejected proposals
                           </Button>
-                          <div className ="floating">
-                           <div className="purple">There are past approved proposals right now.</div>
+                          <div className ="main">
+                          <div className="title2">⛔There are no past rejected proposals right now.⛔</div>
                           </div>
                           <div className ="floating">
-                            <Link className="alt2" to="/">Return to home</Link>
+                            <Link className="alt2" to="/ProposalList"> 🗳️ Return to Governance</Link>
                           </div>
                         </div>
                       }
                     </div>
                     :
-                    <div className="mt-5">
+                    <div>
                       {rejectedList.length > 0
                         ?
-                        <div>
-                          <Button onClick={handleOnApprove}>
-                            See approved proposals
+                        <div className="space">
+                          <div className="floating">
+                          <Button className="alt2" onClick={handleOnApprove}>
+                            Approved proposals
                           </Button>
+                          </div>
+                          <div className="title2">❌ Rejected Proposals</div>
                           {rejectedList}
+                          <div className ="floating">
+                            <Link className="alt2" to="/ProposalList"> 🗳️ Return to Governance</Link>
+                          </div>
                         </div>
                         :
-                        <div>
+                        <div className="main">
                           <Button onClick={handleOnApprove}>
                             See approved proposals
                           </Button>
-                          <div className ="floating">
-                           <div className="purple">There are no past rejected proposals right now.</div>
+                          <div className ="main">
+                          <div className="titlep">⛔There are no past rejected proposals right now.⛔</div>
                           </div>
                           <div className ="floating">
                             <Link className="alt2" to="/">Return to home</Link>
@@ -291,60 +306,91 @@ const PastProposals = () => {
                   }
                 </div>
               </div>
+              <div className="floating">
+                  <Link className="alt2" to="/">Return to home</Link>
+              </div>
           </div>
 
         </div>
 
         :
-        {/*}
         <div>
-          <div className= "app">
-            <div className= "valert">
-              {isValidated ? "" : <ValidationRequired />}
-            </div>
-              <div className= "yellowB">
-                <div className="title2">Delega TARO para votar.</div>
-                <div className="big-icon">🗳️</div>
-                <div className="main">Para poder crear propuestas o votarlas, es necesario que deleges tus tokens de TARO
-                así el sistema sabrá que deseas utilizar tus TARO como poder de voto.
-                </div>
-                <div className="text-large-fit">1 TARO = 1 Voto
-                </div>
-                 <div className ="floating">
-                  <Button className="alt2" onClick={handleOnClickDelegate}>Delega TARO</Button>
-                </div>
-              </div >
-              <div className= "orangeB">
-                <div className="title2">Crea una nueva propuesta .</div>
-                <div className="big-icon">🦸🦸‍♂️</div>
-                <div className="main">
-                  ¡La ciudad te necesita! genera propuestas de actividades, obras públicas o necesidades que hayas identificado en tu comunidad
-                  Realiza propuestas, vota por ellas y hazlas realidad para obtener más TARO.
-                </div>
-                <div className="floating">
-                  <Link className="alt2" to="/createproposal">Crea una propuesta</Link>
-                </div>
-              </div >
-              <div>
-                  {list.length > 0
-                  ?
-                  <div className = "app">
-                    {list}
-                  </div>
-                  :
-                  <div>
-                    <div className ="floating">
-                     <div className="purple">No hay propuestas aún.</div>
+          <div>
+              <div className= "past">
+               <div className="text-large">Propuestas Pasadas</div>
+               <div className="big-icon">📅 </div>
+                <div>
+                  {showApproved
+                    ?
+                    <div className="space">
+                      {approvedList.length > 0
+                        ?
+                        <div className="space">
+                          <div className="floating">
+                          <Button className="alt2" onClick={handleOnApprove}>
+                            Ver propuestas rechazadas
+                          </Button>
+                          </div>
+                          <div className="title2">✔️ Propuestas Aprobadas</div>
+                          {approvedList}
+
+                          <div className ="floating">
+                            <Link className="alt2" to="/ProposalList"> 🗳️ Regresar a Gobernanza </Link>
+                          </div>
+                        </div>
+                        :
+                        <div>
+                          <Button onClick={handleOnApprove}>
+                          Ver propuestas rechazadas
+                          </Button>
+                          <div className ="main">
+                           <div className="title2">⛔Aún no hay propuestas aprobadas⛔</div>
+                          </div>
+                          <div className ="floating">
+                          <Link className="alt2" to="/ProposalList"> 🗳️ Regresar a Gobernanza</Link>
+                          </div>
+                        </div>
+                      }
                     </div>
-                    <div className ="floating">
-                      <Link className="alt2" to="/">Regresar al inicio</Link>
+                    :
+                    <div>
+                      {rejectedList.length > 0
+                        ?
+                        <div className="space">
+                          <div className="floating">
+                          <Button className="alt2" onClick={handleOnApprove}>
+                            Ver propuestas aceptadas
+                          </Button>
+                          </div>
+                          <div className="title2">❌ Propuestas Rechazadas</div>
+                          {rejectedList}
+                          <div className ="floating">
+                            <Link className="alt2" to="/ProposalList"> 🗳️ Regresar a Gobernanza</Link>
+                          </div>
+                        </div>
+                        :
+                        <div>
+                          <Button onClick={handleOnApprove}>
+                            Ver propuestas aprobadas
+                          </Button>
+                          <div className ="main">
+                           <div className="title2">⛔Aún no hay propuestas rechazadas⛔</div>
+                          </div>
+                          <div className ="floating">
+                            <Link className="alt2" to="/">Regresar al inicio</Link>
+                          </div>
+                        </div>
+                      }
                     </div>
-                  </div>
-            }
+                  }
+                </div>
+              </div>
+              <div className="floating">
+                  <Link className="alt2" to="/">Regresar al inicio</Link>
+              </div>
           </div>
+
         </div>
-        </div>
-        */}
       }
       </div>
   );
