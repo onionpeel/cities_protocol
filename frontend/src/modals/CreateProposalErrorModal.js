@@ -29,6 +29,9 @@ const CreateProposalErrorModal = (props) => {
         <div className="main">
           Also, make sure you have passed the quiz so that you are validated to make proposals.
         </div>
+        <div className="main">
+          The cost of the proposal must be a number.
+        </div>
       </Modal.Body>
     </Modal>
 

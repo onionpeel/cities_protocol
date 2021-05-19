@@ -30,7 +30,6 @@ const CountdownClock = ({timeToExpiration}) => {
 
       function updateClock() {
         setEndInThreeDays(remaining);
-        console.log('remaining: ', remaining)
         _seconds = ('0' + _seconds).slice(-2);
         _minutes = ('0' + _minutes).slice(-2);
         _hours = ('0' + _hours).slice(-2);
