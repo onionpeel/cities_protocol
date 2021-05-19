@@ -14,7 +14,7 @@ contract GovernorAlpha {
     function votingDelay() public pure returns (uint) { return 1; } // 1 block
     //
     // /// @notice The duration of voting on a proposal, in blocks
-    function votingPeriod() public pure returns (uint) { return 17280; } // ~3 days in blocks (assuming 15s blocks)
+    function votingPeriod() public pure returns (uint) { return 8; } // ~3 days in blocks (assuming 15s blocks; 17280 blocks)
     //
     // /// @notice The address of the Taro Protocol Timelock
     TimelockInterface public timelock;
@@ -123,6 +123,8 @@ contract GovernorAlpha {
       uint expiration;
       uint budget;
       uint requiredTaroToVote;
+      uint proposalTime;
+      address proposer;
     }
 
     function propose(UserInputFields memory _userInputFields) public checkValidity returns (uint) {
@@ -226,6 +228,12 @@ contract GovernorAlpha {
         receipt.votes = amountOfT;
 
         emit VoteCast(voter, proposalId, support, amountOfT);
+    }
+
+    function checkHasVoted(address _user, uint proposalId) public view returns (bool) {
+      Proposal storage proposal = proposals[proposalId];
+      Receipt storage receipt = proposal.receipts[_user];
+      return receipt.hasVoted;
     }
 
     function add256(uint256 a, uint256 b) internal pure returns (uint) {

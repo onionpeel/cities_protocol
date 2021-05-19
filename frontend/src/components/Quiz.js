@@ -13,7 +13,6 @@ import QuizAlreadySubmittedModal from '../modals/QuizAlreadySubmittedModal';
 import IsLoadingModal from '../modals/IsLoadingModal';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { GovernorAlphaContext } from '../contexts/GovernorAlphaContext';
-import { ConnectedContext } from '../contexts/ConnectedContext';
 import { EthersContext } from '../contexts/EthersContext';
 import { TaroContext } from '../contexts/TaroContext';
 
@@ -240,35 +239,44 @@ const Quiz = () => {
   return (
     <div className="App">
       {isEnglish === 'english' ?
-        <div>
-          {isConnected
-
-          ?
-
-          <div className="gray2">
-            <QuizContext.Provider value={{userAnswers, setUserAnswers}}>
+        <div className="app">
+        {isConnected ?
+            <div className="gray2">
+            <div>
+              <div className="main">
+              <div className="text-large"> Validate your account</div>
+              <div className="big-icon">✔️</div>
               <div>
-                {englishQuestions}
+              <p> VoTARO focuses on the governance of the city of Querétaro, so you must <span className = "yellow"> validate that you are a citizen of Queréaro to be able to create proposals or vote using the governance module. </span> </p>
+                <p> To validate your account, it is necessary to pass this Quiz. After you pass it the contract will validate your address and you will receive <span className = "orange3"> 20 to 100 TARO </span>, depending on the number of correct answers. </ p>
               </div>
-            </QuizContext.Provider>
-            <Button onClick={handleOnSubmitAnswers}>Submit your answers</Button>
-            <QuizFailureModal
-              show={failureModalShow}
-              onHide={handleOnFailure}
-            />
-            <QuizSuccessModal
-              show={successModalShow}
-              onHide={handleOnSuccess}
-            />
-            <QuizAlreadySubmittedModal
-              show={alreadySubmittedModal}
-              onHide={handleOnAlreadySubmitted}
-            />
-            <IsLoadingModal
-              show={loadingModalShow}
-              onHide={handleOnLoadingModal}
-            />
-          </div>
+                <QuizContext.Provider  value={{userAnswers, setUserAnswers}}>
+                {englishQuestions}
+                </QuizContext.Provider>
+
+                <div className="floating">
+                      <Button className="alt" onClick={handleOnSubmitAnswers}> ✔️ Verify answers</Button>
+                    </div>
+                </div>
+
+                <QuizFailureModal
+                  show={failureModalShow}
+                  onHide={handleOnFailure}
+                />
+                <QuizSuccessModal
+                  show={successModalShow}
+                  onHide={handleOnSuccess}
+                />
+                <QuizAlreadySubmittedModal
+                  show={alreadySubmittedModal}
+                  onHide={handleOnAlreadySubmitted}
+                />
+                  <IsLoadingModal
+                    show={loadingModalShow}
+                    onHide={handleOnLoadingModal}
+                  />
+              </div>
+            </div>
 
           :
 
@@ -286,14 +294,20 @@ const Quiz = () => {
         <div className="app">
           {isConnected ?
               <div className="gray2">
-                <text className="white">Contesta correctamente para validar que eres de Querétaro</text>
                 <div>
-                  <div className="app">
+                  <div className="main">
+                  <div className="text-large"> Valida tu cuenta</div>
+                  <div className="big-icon">✔️</div>
+                  <div>
+                    <p>VoTARO se enfoca en la gobernanza de la ciudad de Querétaro, por lo que deberas<span className="yellow"> validar que eres ciudadan@ de Queréaro. para poder crear propuestas o votar el módulo de gobernanza.</span></p>
+                    <p>Para validar tu cuenta, es necesario contestar este cuestionario Al contestarlo coorrectamente el contrato validará tu dirección y recibiras de <span className="orange3">20 a 100 TARO</span>, dependiendo de las respuestas correctas.</p>
+                  </div>
                     <QuizContext.Provider  value={{userAnswers, setUserAnswers}}>
-                    <div className="orange-card2">{spanishQuestions}</div>
+                    {spanishQuestions}
                     </QuizContext.Provider>
 
-                    <div className="main"><Button className="alt2" onClick={handleOnSubmitAnswers}>Verificar respuestas</Button>
+                    <div className="floating">
+                      <Button className="alt" onClick={handleOnSubmitAnswers}> ✔️ Verificar respuestas</Button>
                     </div>
                   </div>
 

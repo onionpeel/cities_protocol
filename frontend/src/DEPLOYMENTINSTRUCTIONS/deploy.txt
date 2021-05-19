@@ -1,3 +1,10 @@
+Contract deployment to Skale:
+In the root of the project:
+npx hardhat run scripts/deployNewContracts.js --network skale
+
+
+
+Frontend deployment:
 To deploy using surge:
 npm install --global surge
 
@@ -22,3 +29,14 @@ npx hardhat clean
 
 When running the front end on the localhost after it has been using skale, it will be necessary to restart the front end server because the json files are all pointing to the addresses of contracts on skale.  The new deployment will set these for the localhost.
 But once this is set into production, the contracts cannot be redeployed.  So use the addresses of the contracts on Skale in the contracts folder in the src directory.  They will be in json files.
+
+
+If the browser has been running the app on Skale, and then you want to use localhost, there will be a problem that MetaMask is still signing messages for the Skale network.  This does not change when you select a different network in metamask.  Resetting metamask (the steps described above) does not work.  The only successful approach seems to be closing everything and restarting the computer.
+
+
+
+Once the contracts are in production, the addresses of the contracts needs to be recorded.  These addresses are in the frontend directory in the contracts folder.  But if this command is used:
+npx hardhat run scripts/deployNewContracts.js --network skale
+it will changed the addresses of the contracts that the front end uses.  So it is best to keep a back-up of those addresses, just in case of an accidental deployment.  The old contracts will still be on a network, so if necessary, their addresses could be hardcoded into the front end. But the best solution is to not redeploy to skale once the final contracts are in production.
+
+In order to develop locally, it will require deploying to a local network.  This will delete the artifacts (which is the contracts directory in the frontend directory).  Without this, it is not possible to connect to the production contracts.  Probably the best solution is to move the contracts directory to a different location, so that when the deployment happens and it creates a new contracts directory, it will not overwrite the contracts directory that is needed for production.  Maybe this production contracts directory should be stored in its own github repo.

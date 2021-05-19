@@ -2,10 +2,9 @@ import { useContext } from 'react';
 import { Alert } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { LanguageContext } from '../contexts/LanguageContext';
-import {ListGroup, Button} from 'react-bootstrap';
 
 const ValidationRequired = () => {
-  let [isEnglish, setLoc] = useContext(LanguageContext);
+  let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
@@ -16,7 +15,7 @@ const ValidationRequired = () => {
           <div className="title3">Get validated to vote</div>
           <div className="big-icon">⚠️</div>
           <div className="white">
-            Only validated Queretaro citizens can create new proposals or vote on the available
+            Only validated Queretaro citizens can create new proposals or vote on the available proposals
           </div>
         </div>
         <div className ="floating">

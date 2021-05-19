@@ -15,12 +15,11 @@ VoTARO implements SKALE Network, an ethereum layer 2 solution that reduces gas c
 
 
 # 🧰 What do I need to get $ TARO?
-You need to do 5 activities to get TARO.  
+You need to do 4 activities to get TARO.  
 1. 🦊 Download Metamask  
 2. 🧅 Switch to Skale Network  
 3. ✔️ Get Validated  
-4. 🗳️ Delegate TARO  
-5. 🦸🦸‍♂️ Create and Vote on proposals  
+5. 🗳️ Create and Vote on proposals  
 
 # Benefits for the city
 ⛓️ Urban governance on blockchain.  
@@ -28,4 +27,4 @@ You need to do 5 activities to get TARO.
 🤖 Automation and Decentralization of services.  
 🧙‍♂️ Citizens develop digital skills.  
 🤝 Transparent and decentralized urban consensus.  
-🧬 Predictive Economy and Urban Development.  
+🧬 Predictive Economy and Urban Development. 
