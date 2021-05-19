@@ -116,23 +116,23 @@ const PastProposals = () => {
 
             if(proposalCount > 0) {
               let pastProposals = [];
-              let proposal, currentBlockNumber;
+              let proposal, currentTimeInSeconds;
               for(let i = 1; i <= proposalCount; i++) {
                 proposal = await _governorAlpha.proposals(ethers.BigNumber.from(i));
-                currentBlockNumber = await _ethersProvider.getBlockNumber();
+                currentTimeInSeconds = Date.parse(new Date(Date.now())) / 1000;
+                // currentBlockNumber = await _ethersProvider.getBlockNumber();
                 // console.log('block number: ', currentBlockNumber)
                 // console.log('proposal:', proposal.endBlock.toNumber());
                 // console.log('forVotes: ', proposal.forVotes.toString());
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
                 // console.log('proposal: ', proposal);
+                // console.log('eb: ', proposal.endBlock.toNumber());
+                // console.log('currentBlockNumber: ', currentBlockNumber);
 
-                console.log('eb: ', proposal.endBlock.toNumber());
-                console.log('currentBlockNumber: ', currentBlockNumber);
 
-
-                if(proposal.endBlock.toNumber() <= currentBlockNumber) {
-                  let _proposalTime = proposal[9].proposalTime.toNumber();
-                  let dateObject = new Date(_proposalTime);
+                if(proposal.endBlock.toNumber() <= currentTimeInSeconds) {
+                  let _proposalTime = proposal.startBlock.toString();
+                  let dateObject = new Date(_proposalTime * 1000);
                   let year = dateObject.toLocaleString("en-US", {year: 'numeric'});
                   let month = dateObject.toLocaleString("en-US", {month: 'numeric'});
                   let day = dateObject.toLocaleString("en-US", {day: 'numeric'});
@@ -150,7 +150,9 @@ const PastProposals = () => {
                     againstVotes: proposal.againstVotes.toString(),
                     id: proposal.id.toString(),
                     proposer: proposal.proposer.toString(),
-                    proposalTimeFormatted: `${year}/${month}/${day}`
+                    proposalYear: year,
+                    proposalMonth: month,
+                    proposalDay: day
                   });
                 };
               };
@@ -198,7 +200,9 @@ const PastProposals = () => {
           againstVotes={proposal.againstVotes}
           id={proposal.id}
           proposer={proposal.proposer}
-          proposalTimeFormatted={proposal.proposalTimeFormatted}
+          proposalYear={proposal.proposalYear}
+          proposalMonth={proposal.proposalMonth}
+          proposalDay={proposal.proposalDay}
         />
       </div>
     )
@@ -220,7 +224,9 @@ const PastProposals = () => {
           againstVotes={proposal.againstVotes}
           id={proposal.id}
           proposer={proposal.proposer}
-          proposalTimeFormatted={proposal.proposalTimeFormatted}
+          proposalYear={proposal.proposalYear}
+          proposalMonth={proposal.proposalMonth}
+          proposalDay={proposal.proposalDay}
         />
       </div>
     )

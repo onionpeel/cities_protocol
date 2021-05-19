@@ -12,7 +12,7 @@ import { LanguageContext } from '../contexts/LanguageContext';
 // import GovernorAlpha from '../contracts/contracts/GovernorAlpha.sol/GovernorAlpha.json';
 // import governorAlphaAddress from '../contracts/contracts/GovernorAlpha/contract-address.json';
 
-const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalTimeFormatted}) => {
+const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, description, expiration, budget, requiredTaroToVote, forVotes, againstVotes, id, proposer, proposalYear, proposalMonth, proposalDay}) => {
   // let [governorAlpha, setGovernorAlpha] = useState();
   // let [taro, setTaro] = useState();
   // let [signerAddress, setSignerAddress] = useState();
@@ -128,7 +128,7 @@ const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, de
         </div>
         <div className="proposal-main">
             <div className="proposal-titles">⚙️Type of work: {typeOfAction}</div>
-            <div className="yellow-card">📅 Proposal time: <div>{proposalTimeFormatted}</div></div>
+            <div className="yellow-card">📅 Proposal time: <div>{proposalYear}/{proposalMonth}/{proposalDay}</div></div>
           </div>
         </Card.Body>
           <div className="proposal-description"><div className="white2">📑 Description:</div><p>{description}</p></div>
@@ -174,7 +174,7 @@ const ApprovedProposal = ({title, typeOfAction, neighborhood, personInCharge, de
         </div>
         <div className="proposal-main">
             <div className="proposal-titles">⚙️ Tipo de Trabajo: {typeOfAction}</div>
-            <div className="yellow-card">📅 Propuesta hecha el: <div>{proposalTimeFormatted}</div></div>
+            <div className="yellow-card">📅 Propuesta hecha el: <div>{proposalYear}/{proposalMonth}/{proposalDay}</div></div>
           </div>
         </Card.Body>
           <div className="proposal-description"><div className="white2">📑 Descripción:</div><p>{description}</p></div>

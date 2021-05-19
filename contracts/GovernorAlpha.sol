@@ -8,22 +8,22 @@ contract GovernorAlpha {
     string public constant name = "VoTaro Governor Alpha";
 
     /// @notice The number of votes required in order for a voter to become a proposer
-    function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of Taro
+    // function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of Taro
     //
     /// @notice The delay before voting on a proposal may take place, once proposed
     function votingDelay() public pure returns (uint) { return 1; } // 1 block
     //
     // /// @notice The duration of voting on a proposal, in blocks
-    function votingPeriod() public pure returns (uint) { return 8; } // ~3 days in blocks (assuming 15s blocks; 17280 blocks)
+    function votingPeriod() public pure returns (uint) { return 30; } // ~3 days in blocks (assuming 15s blocks; 17280 blocks)
     //
     // /// @notice The address of the Taro Protocol Timelock
-    TimelockInterface public timelock;
+    // TimelockInterface public timelock;
     //
     // /// @notice The address of the Taro governance token
     TaroInterface public taro;
     //
     // /// @notice The address of the Governor Guardian
-    address public guardian;
+    // address public guardian;
 
     /// @notice The total number of proposals
     uint public proposalCount;
@@ -108,10 +108,8 @@ contract GovernorAlpha {
     event ValidityStatus(uint timestamp);
 
 
-    constructor(address timelock_, address taro_, address guardian_) public {
-        timelock = TimelockInterface(timelock_);
+    constructor(address taro_) public {
         taro = TaroInterface(taro_);
-        guardian = guardian_;
     }
 
     struct UserInputFields {
@@ -135,7 +133,7 @@ contract GovernorAlpha {
           userProposals[msg.sender].count++;
         }
 
-        uint startBlock = add256(block.number, votingDelay());
+        uint startBlock = add256(block.timestamp, votingDelay());
         uint endBlock = add256(startBlock, votingPeriod());
         proposalCount++;
         Proposal memory newProposal = Proposal({
@@ -200,15 +198,21 @@ contract GovernorAlpha {
     }
 
 
+
+
     function castVote(uint proposalId, bool support) public {
         return _castVote(msg.sender, proposalId, support);
     }
 
     function _castVote(address voter, uint proposalId, bool support) internal {
-        require(isProposalActive[proposalId] == true, "GovernorAlpha::_castVote: voting is closed");
-
         Proposal storage proposal = proposals[proposalId];
         Receipt storage receipt = proposal.receipts[voter];
+
+        if(block.timestamp > proposal.endBlock) {
+          isProposalActive[proposalId] = false;
+        }
+
+        require(isProposalActive[proposalId] == true, "GovernorAlpha::_castVote: voting is closed");
 
         uint amountOfTaro = taro.balanceOf(msg.sender);
         uint96 amountOfT = uint96(amountOfTaro);
@@ -248,15 +252,15 @@ contract GovernorAlpha {
     }
 }
 
-interface TimelockInterface {
-    function delay() external view returns (uint);
-    function GRACE_PERIOD() external view returns (uint);
-    function acceptAdmin() external;
-    function queuedTransactions(bytes32 hash) external view returns (bool);
-    function queueTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external returns (bytes32);
-    function cancelTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external;
-    function executeTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external payable returns (bytes memory);
-}
+// interface TimelockInterface {
+//     function delay() external view returns (uint);
+//     function GRACE_PERIOD() external view returns (uint);
+//     function acceptAdmin() external;
+//     function queuedTransactions(bytes32 hash) external view returns (bool);
+//     function queueTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external returns (bytes32);
+//     function cancelTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external;
+//     function executeTransaction(address target, uint value, string calldata signature, bytes calldata data, uint eta) external payable returns (bytes memory);
+// }
 //
 interface TaroInterface {
     function getPriorVotes(address account, uint blockNumber) external view returns (uint96);

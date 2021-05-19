@@ -109,15 +109,15 @@ const ProposalList = () => {
             let currentBlockTimestamp = _isValidated[1].toNumber();
 
             if(userExpirationTime === 0) {
-              console.log('user is zero time; not validated');
+              // console.log('user is zero time; not validated');
               setIsValidated(false);
             } else if (currentBlockTimestamp > userExpirationTime){
-              console.log('user is past validity period; not validated');
+              // console.log('user is past validity period; not validated');
               setIsValidated(false);
             } else {
               setIsValidated(true);
-              console.log('user exp time: ', _isValidated[0].toNumber());
-              console.log('block.timestamp: ', _isValidated[1].toNumber());
+              // console.log('user exp time: ', _isValidated[0].toNumber());
+              // console.log('block.timestamp: ', _isValidated[1].toNumber());
             };
 
             let proposalCount = await _governorAlpha.proposalCount();
@@ -125,20 +125,25 @@ const ProposalList = () => {
 
             if(proposalCount > 0) {
               let activeProposals = [];
-              let proposal, currentBlockNumber, _hasVoted;
+              let proposal, currentTimeInSeconds, _hasVoted;
               for(let i = 1; i <= proposalCount; i++) {
                 proposal = await _governorAlpha.proposals(ethers.BigNumber.from(i));
                 _hasVoted = await _governorAlpha.checkHasVoted(_signerAddress, ethers.BigNumber.from(i));
-                currentBlockNumber = await _ethersProvider.getBlockNumber();
+                // currentBlockNumber = await _ethersProvider.getBlockNumber();
                 // console.log('block number: ', currentBlockNumber)
                 // console.log('proposal:', proposal.endBlock.toNumber());
                 // console.log('forVotes: ', proposal.forVotes.toString());
                 // console.log('againstVotes: ', proposal.againstVotes.toString());
-                console.log('proposal: ', proposal);
-                console.log('hasVoted: ', _hasVoted);
+                // console.log('proposal: ', proposal);
+                // console.log('hasVoted: ', _hasVoted);
 
-                if(proposal.endBlock.toNumber() > currentBlockNumber) {
-                  let blocksToExpiration = proposal.endBlock.toNumber() - currentBlockNumber;
+                currentTimeInSeconds = Date.parse(new Date(Date.now())) / 1000;
+
+                if(proposal.endBlock.toNumber() > currentTimeInSeconds) {
+                  let timeToExpiration = proposal.endBlock.toNumber() - currentTimeInSeconds;
+
+                  console.log('endBlock: ', proposal.endBlock.toNumber());
+                  console.log('currentTimeInSeconds: ', currentTimeInSeconds);
 
                   activeProposals.push({
                     title: proposal[9][0],
@@ -155,7 +160,7 @@ const ProposalList = () => {
                     proposer: proposal.proposer.toString(),
                     proposalTime: proposal[9].proposalTime.toNumber(),
                     hasVoted: _hasVoted,
-                    blocksToExpiration
+                    timeToExpiration
                   });
                 };
               };
@@ -192,7 +197,7 @@ const ProposalList = () => {
           proposer={proposal.proposer}
           proposalTime={proposal.proposalTime}
           hasVoted={proposal.hasVoted}
-          blocksToExpiration={proposal.blocksToExpiration}
+          timeToExpiration={proposal.timeToExpiration}
         />
       </div>
     )
@@ -226,7 +231,7 @@ const ProposalList = () => {
           {list.length > 0 ?
             <div className ="space">
               <div className= "yellowB">
-                <div className="text-large"> Proposals to vote </div>
+                <div className="text-large"> Vote on Proposals </div>
                 <div className="big-icon">🗳️</div>
                 <div className="text-large">1 TARO = 1 Vote</div>
                 <div className="main">Use your TARO to vote for or against available proposals. Your voting power depends on how many TARO tokens you hold in your wallet.</div>
@@ -239,12 +244,12 @@ const ProposalList = () => {
           :
             <div className="space">
               <div className= "yellowB">
-                <div className="text-large"> Proposals to vote </div>
+                <div className="text-large"> Vote on Proposals </div>
                 <div className="big-icon">🗳️</div>
                 <div className="text-large">1 TARO = 1 Vote</div>
                 <div className="main">Use your TARO to vote for or against available proposals. Your voting power depends on how many TARO tokens you hold in your wallet.</div>
                 <div className="floating">
-                <div className="title2">⛔There are no proposals yet.⛔</div>
+                <div className="title2">⛔There are no current proposals.⛔</div>
                 </div>
                 <div className="floating">
                   <Link className="alt2" to="/pastproposals">📅 See past proposals</Link>

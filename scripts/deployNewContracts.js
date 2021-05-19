@@ -8,17 +8,17 @@ async function main() {
     deployer.address
   );
 
-  const Timelock = await ethers.getContractFactory('Timelock');
-  const timelock = await Timelock.deploy(deployer.address, 259200);
-  await timelock.deployed();
-  console.log('Timelock address: ', timelock.address);
-  setAddressInCompiledContracts(timelock, 'Timelock');
+  // const Timelock = await ethers.getContractFactory('Timelock');
+  // const timelock = await Timelock.deploy(deployer.address, 259200);
+  // await timelock.deployed();
+  // console.log('Timelock address: ', timelock.address);
+  // setAddressInCompiledContracts(timelock, 'Timelock');
 
-  const SafeMath = await ethers.getContractFactory('SafeMath');
-  const safeMath = await SafeMath.deploy();
-  await safeMath.deployed();
-  console.log('SafeMath address: ', safeMath.address);
-  setAddressInCompiledContracts(safeMath, 'SafeMath');
+  // const SafeMath = await ethers.getContractFactory('SafeMath');
+  // const safeMath = await SafeMath.deploy();
+  // await safeMath.deployed();
+  // console.log('SafeMath address: ', safeMath.address);
+  // setAddressInCompiledContracts(safeMath, 'SafeMath');
 
   const Taro = await ethers.getContractFactory('Taro');
   let taro = await Taro.deploy(deployer.address);
@@ -27,7 +27,8 @@ async function main() {
   setAddressInCompiledContracts(taro, 'Taro');
 
   const GovernorAlpha = await ethers.getContractFactory('contracts/GovernorAlpha.sol:GovernorAlpha');
-  let governorAlpha = await GovernorAlpha.deploy(timelock.address, taro.address, deployer.address);
+  // let governorAlpha = await GovernorAlpha.deploy(timelock.address, taro.address, deployer.address);
+  let governorAlpha = await GovernorAlpha.deploy(taro.address);
   await governorAlpha.deployed();
   console.log('GovernorAlpha address: ', governorAlpha.address);
   setAddressInCompiledContracts(governorAlpha, 'GovernorAlpha');

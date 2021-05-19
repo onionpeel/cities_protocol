@@ -2,7 +2,7 @@ node_modules
 
 .env
 /project_direction
-
+/contracts_original
 
 #Hardhat files
 cache
