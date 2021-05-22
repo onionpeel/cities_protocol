@@ -150,7 +150,7 @@ function Home() {
   //Enable app to have SKALE among listed networks
   const listSkaleInMetamask = async () => {
     setIsConnectingToSkale(true);
-    let endpoint = "https://eth-global-10.skalenodes.com:10200";
+    let endpoint = "http://eth-global-11.skalenodes.com:10323";
     let chainId = "0x3ad0e149d0bf5";
 
     let switchToSKALE = {

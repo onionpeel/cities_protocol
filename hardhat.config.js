@@ -26,7 +26,8 @@ module.exports = {
       url: "http://localhost:8545",
     },
     skale: {
-      url: "https://eth-global-10.skalenodes.com:10200",
+      // url: "https://eth-global-10.skalenodes.com:10200",
+      url: 'http://eth-global-11.skalenodes.com:10323',
       accounts: [`0x${process.env.PRIVATE_KEY}`]
     },
     rinkeby: {
