@@ -10,45 +10,41 @@ const QuizFailureModal = (props) => {
     <div>
       {isEnglish === 'english' ?
 
-      <div className="modal">
+
         <Modal
           {...props}
+          size="md"
           centered
+          className="modal-2"
         >
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
-              You didn't pass the quiz
-            </Modal.Title>
-          </Modal.Header>
+
+      <div className="big-icon">😅<div className="modalheader">
+        You didn't pass the quiz</div>
+            </div>
+            <p className="white">Please learn more about Queretaro and take the quiz again</p>
           <Modal.Body>
-            <p>
-              Please learn more about Queretaro and take the quiz again.
-            </p>
-            <Link className="alt2" to="/home">TARO</Link>
+            <Link className="alt2" to="/home">Return to home</Link>
           </Modal.Body>
         </Modal>
-      </div>
+
 
       :
 
-      <div className="modal">
-        <Modal
-          {...props}
-          centered
-        >
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
-              No pasaste el cuestionario
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>
-              Aprende más sobre Querétaro e intentalo de nuevo
-            </p>
-            <Link className="alt2" to="/home">TARO</Link>
-          </Modal.Body>
-        </Modal>
-      </div>
+      <Modal
+      {...props}
+      size="md"
+      centered
+      className="modal-2"
+    >
+
+  <div className="big-icon">😅<div className="modalheader">
+  No pasaste el cuestionario</div>
+        </div>
+        <p className="white">Aprende más sobre Querétaro e intentalo de nuevo</p>
+      <Modal.Body>
+        <Link className="alt2" to="/home">Regresar al Inicio</Link>
+      </Modal.Body>
+    </Modal>
     }
     </div>
   );

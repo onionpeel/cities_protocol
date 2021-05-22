@@ -16,21 +16,27 @@ const CreateProposalErrorModal = (props) => {
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      className="modal-2"
     >
-    <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
-        ⚠️Your proposal was not submitted⚠️
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className="main">
-          Please be sure you are connected to MetaMask and that you entered your information correctly.
+
+      <div className="big-icon">🚫<div className="modalheader">
+        Your proposal was not submitted</div>
+      </div>
+      <Modal.Body className="main">
+        <div>
+        ⚠️ 1. Please be sure you are connected to MetaMask and that you entered your information correctly.
         </div>
-        <div className="main">
-          Also, make sure you have passed the quiz so that you are validated to make proposals.
+        <p/>
+        <div>
+        ⚠️ 2. Make sure you have passed the quiz so that you are validated to make proposals.
         </div>
-        <div className="main">
-          The cost of the proposal must be a number.
+        <p/>
+        <div>
+        ⚠️ 3. The cost of the proposal must be a number.
+        </div>
+        <p/>
+        <div className="modalheader">
+         Verify and try again
         </div>
       </Modal.Body>
     </Modal>
@@ -42,18 +48,26 @@ const CreateProposalErrorModal = (props) => {
         size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="modal-2"
       >
-      <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-          ⚠️No se envió tu propuesta⚠️
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="main">
-          Asegúrese de estar conectado a MetaMask y de haber ingresado su información correctamente.
+        <div className="big-icon">🚫<div className="modalheader">
+          No se envió tu propuesta</div>
+        </div>
+        <Modal.Body className="main">
+          <div>
+          ⚠️ 1. Asegúrese de estar conectado a MetaMask y de haber ingresado su información correctamente.
           </div>
-          <div className="main">
-          Además, asegurate de haber validado tu cuenta y haber llenado todos los campos.
+          <p/>
+          <div>
+          ⚠️ 2. Además, asegurate de haber validado tu cuenta y haber llenado todos los campos.
+          </div>
+          <p/>
+          <div>
+          ⚠️ 3. El costo deben ser solo números.
+          </div>
+          <p/>
+          <div className="modalheader">
+            Verifica e intenta de nuevo
           </div>
         </Modal.Body>
       </Modal>

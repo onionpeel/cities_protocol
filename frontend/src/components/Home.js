@@ -5,6 +5,9 @@ import {Card, Button} from 'react-bootstrap';
 import ConnectButton from './buttons/ConnectButton';
 import ConnectingButton from './buttons/ConnectingButton';
 import InstallMetamaskAlert from './InstallMetamaskAlert';
+import SkaleButton from './buttons/SkaleButton';
+import SkaleSwitch from './buttons/SkaleSwitch';
+import SwitchSkaleAlert from './SwitchSkaleAlert';
 import '../styles/Home.css';
 import { ValidationRequiredContext } from '../contexts/ValidationRequiredContext';
 import { TaroContext } from '../contexts/TaroContext';
@@ -24,6 +27,7 @@ function Home() {
   let [ethersProvider, setEthersProvider] = useState();
   let [isConnecting, setIsConnecting] = useState();
   let [isMetamastInstalled, setIsMetamaskInstalled] = useState();
+  let [isSkaleSwitched, setIsSkaleSwitched] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
 
@@ -250,7 +254,7 @@ function Home() {
             :<ConnectButton handleOnConnect={handleOnConnect}/>
             }
           </div>
-          <Button onClick={listSkaleInMetamask}>Select SKALE in MetaMask</Button>
+          <Button onClick={listSkaleInMetamask}>🧅 Switch to SKALE network</Button>
           {isConnected ?
           <div>
           <Card className="orange-unlock">
@@ -277,6 +281,7 @@ function Home() {
         <div>
           <Card className="gray">
             <Card.Title className="orange2">TARO Balance</Card.Title>
+            <Card.Title className="big-icon">🥇</Card.Title>
             <Card.Text className="text-large">Locked</Card.Text>
             <div>
               <Card.Body>
@@ -286,6 +291,7 @@ function Home() {
           </Card>
           <Card className="gray">
             <Card.Title className="orange2">Urban governance</Card.Title>
+            <Card.Title className="big-icon">🗳️</Card.Title>
             <Card.Text className="text-large">Locked</Card.Text>
             <div>
               <Card.Body>
@@ -298,15 +304,24 @@ function Home() {
       </div>
       :
         <div className="App">
-          <Card.Text>Protocolo para digitalizar la gobernanza urbana de la ciudad de Querétaro</Card.Text>
-          <div className="Wallet">
-            {!isMetamastInstalled ?
-            <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
-            <ConnectingButton />
-            :<ConnectButton handleOnConnect={handleOnConnect}/>
-            }
+          <Card.Text>Una DApp que recompenza por proponer, votar y resolver necesidades públicas en la ciudad de Querétaro.</Card.Text>
+
+            <div className="Wallet">
+              {!isMetamastInstalled ?
+              <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
+              <ConnectingButton />
+              :<ConnectButton handleOnConnect={handleOnConnect}/>
+              }
+
+              {!isSkaleSwitched ?
+              <SkaleButton handleOnConnect={listSkaleInMetamask}/>:isConnected ? '' : isConnecting?
+              <SkaleSwitch />
+              : <div>ahora estas conectado</div>
+              }
+
+
+
           </div>
-          <Button onClick={listSkaleInMetamask}>selecciona la red SKALE in MetaMask</Button>
           {isConnected ?
           <div>
             <Card className="orange-unlock">
@@ -333,6 +348,7 @@ function Home() {
           <div>
             <Card className="gray">
               <Card.Title className="orange2">Balance de TARO</Card.Title>
+              <Card.Title className="big-icon">🥇</Card.Title>
               <Card.Text className="text-large">Bloqueado</Card.Text>
               <div>
                 <Card.Body>
@@ -342,6 +358,7 @@ function Home() {
             </Card>
             <Card className="gray">
               <Card.Title className="orange2">Gobernanza Urbana</Card.Title>
+              <Card.Title className="big-icon">🗳️</Card.Title>
               <Card.Text className="text-large">Bloqueado</Card.Text>
               <div>
                 <Card.Body>

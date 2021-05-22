@@ -4,24 +4,25 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 import '../../styles/Home.css';
 
 
-const ConnectingButton = () => {
+const SkaleSwitch = () => {
   let [isEnglish] = useContext(LanguageContext);
 
   return (
     <div>
     {isEnglish === 'english' ?
     <Button variant="secondary" disabled>
-      Connecting...
-    <span animation="border"className="spinner-grow" role="status"></span>
+   🧅 Switching to SKALE...
+   <span animation="border"className="spinner-grow" role="status"></span>
   </Button>
     :
     <Button variant="secondary" disabled>
-     Conectando...
-     <span animation="border"className="spinner-grow" role="status"></span>
+   🧅 Cambiando a SKALE...
+   <span animation="border"className="spinner-grow" role="status"></span>
   </Button>
     }
     </div>
+
   );
 };
 
-export default ConnectingButton;
+export default SkaleSwitch;

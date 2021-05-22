@@ -15,36 +15,38 @@ const QuizAlreadySubmittedModal = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="modal-2"
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-            You have already submitted your quiz
-          </Modal.Title>
-        </Modal.Header>
+
+<div className="big-icon">🚫<div className="modalheader">
+You have already submitted your quiz</div>
+      </div>
+
         <Modal.Body>
           <p>
-            Learn more about <Link className="alt2" to="/about">TARO</Link> tokens
+            Now you can create and vote on proposals on the urban governance page<Link className="alt2" to="/proposalList">🗳️ See proposals</Link>
           </p>
         </Modal.Body>
       </Modal>
       :
       <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-          Ya has enviado tus respuestas
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            Conoce más sobre <Link className="alt2" to="/about">VoTARO</Link>
-          </p>
-        </Modal.Body>
-      </Modal>
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      className="modal-2"
+    >
+
+<div className="big-icon">🚫<div className="modalheader">
+Ya has respondido el cuestionario</div>
+    </div>
+
+      <Modal.Body>
+        <p>
+         Ahora puedes crear y votar propuestas en la gobernanza urbana<Link className="alt2" to="/proposalList">🗳️ Ver propuestas</Link>
+        </p>
+      </Modal.Body>
+    </Modal>
     }
     </div>
   );

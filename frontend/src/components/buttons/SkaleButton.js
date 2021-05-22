@@ -4,7 +4,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 import '../../styles/Home.css';
 
 
-const ConnectButton = ({handleOnConnect}) => {
+const SkaleButton = ({handleOnConnect}) => {
   let [isEnglish] = useContext(LanguageContext);
 
   return (
@@ -13,18 +13,17 @@ const ConnectButton = ({handleOnConnect}) => {
 
     <div>
       <div className="purple2">
-        <Card.Text >You need a Metamask wallet to use VoTARO</Card.Text>
-        <Button onClick={handleOnConnect}>🔌 Connect Wallet</Button>
+        <Card.Text >and switch your Metamask to the skale network</Card.Text>
+        <Button onClick={handleOnConnect}>🧅 Switch to SKALE network</Button>
       </div>
     </div>
     :
     <div>
-      <Card.Text className="purple2">Necesitas una wallet de Metamask para usar VoTARO</Card.Text>
-      <Button onClick={handleOnConnect}> 🔌Conectar Wallet</Button>
-
+      <Card.Text className="purple2">y cambiar tu Metamask a la red Skale </Card.Text>
+      <Button onClick={handleOnConnect}> 🧅 Cambiar a red SKALE</Button>
     </div>
 }</div>
   );
 };
 
-export default ConnectButton;
+export default SkaleButton;

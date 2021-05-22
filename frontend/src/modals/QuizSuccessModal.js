@@ -12,44 +12,43 @@ const QuizSuccessModal = (props) => {
 
       <Modal
         {...props}
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+        <div className="big-icon">🎉<div className="modalheader">
+        Congratulations! You passed the quiz!</div>
+            </div>
+            <p className="main">You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.</p>
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            Congratulations!  You passed the quiz!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            You have earned TARO tokens, and you can start participating in the community by making and voting on proposals.
-          </p>
-          <p>
-            <Link className="alt2" to="/ProposalList">Delegate and make your first proposal</Link>
-          </p>
+          <Link className="alt2" to="/ProposalList">🗳️ Create or vote on proposals</Link>
         </Modal.Body>
       </Modal>
       :
-      <div className="modal">
+
+
       <Modal
-        className="orange-modal"
         {...props}
+        size="md"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header >
-          <Modal.Title >
-          !Felicidades! pasaste el cuestionario!
+        <div className="big-icon">🎉<div className="modalheader">
+        !Felicidades! pasaste el cuestionario!</div>
+            </div>
+            <p className="main">Has ganado tokens TARO y ahora puedes participar en la gobernanza de la ciudad al crear o votar propuestas.</p>
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            Has ganado tokens TARO y ahora puedes participar en la gobernanza de la ciudad al crear o votar propuestas.
-          </p>
-          <p>
-            <Link className="alt2" to="/ProposalList">Delega tokens y crea tu primer propuesta</Link>
-          </p>
+          <Link className="alt2" to="/ProposalList">🗳️ Crea o vota propuestas</Link>
         </Modal.Body>
       </Modal>
-      </div>
     }
     </div>
   );

@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useContext} from 'react'
+import { LanguageContext } from '../contexts/LanguageContext';
+
 
 const CountdownClock = ({timeToExpiration}) => {
+  let [isEnglish, setLoc] = useContext(LanguageContext);
   let [days, setDays] = useState();
   let [hours, setHours] = useState();
   let [minutes, setMinutes] = useState();
@@ -54,25 +58,22 @@ const CountdownClock = ({timeToExpiration}) => {
 
   }, []);
 
+    return (
+      <div>
+        {isEnglish === 'english' ?
+        <div>
+          <div>
+             {days} days, {hours}:{minutes}:{seconds} left
+          </div>
+        </div>
+        :
+          <div>
+            {days} días, {hours}:{minutes}:{seconds} restantes
+          </div>
+        }
+      </div>
+    );
+  };
 
-
-
-  return (
-    <div>
-      <div>
-        days {days}
-      </div>
-      <div>
-        hours {hours}
-      </div>
-      <div>
-        minutes {minutes}
-      </div>
-      <div>
-        seconds {seconds}
-      </div>
-    </div>
-  )
-};
 
 export default CountdownClock;

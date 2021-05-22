@@ -15,15 +15,20 @@ const CreateProposalSuccessModal = (props) => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="main"
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Congratulations!  You have successfully submitted your proposal!
-          </Modal.Title>
-        </Modal.Header>
+
+        <div className="big-icon">🎉<div className="modalheader">
+            Proposal created!</div>
+            </div>
+            <p className="white">You have successfully submitted your proposal!</p>
         <Modal.Body>
+             <p>
+            Create more proposals to increase your voting power.
+            The first 5 proposals will give you 20 TARO each!
+          </p>
           <p>
-            <Link className="alt" to="/ProposalList">Take a look at your proposal</Link>
+            <Link className="alt2" to="/ProposalList">Take a look at your proposal</Link>
           </p>
         </Modal.Body>
       </Modal>
@@ -31,18 +36,19 @@ const CreateProposalSuccessModal = (props) => {
       <Modal
         {...props}
         size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="main"
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-          !Felicidades! Creaste una propuesta, ahora puedes votar por ella
-          </Modal.Title>
-        </Modal.Header>
+        <div className="big-icon">🎉<div className="modalheader">
+          ¡Creaste una propuesta!</div>
+        </div>
+         <p className="white">Ve a la siguiente pantalla para votar por ella</p>
+
         <Modal.Body>
-          <p>
-            Delega tus token TARO y comienza a votar las propuestas disponibles.
-            !Las primeras 5 propuestas que hagas te daran tokens TARO!
+
+          <p className="main">
+            Crea más propuestas para incrementar tu poder de voto.
+            ¡Las primeras 5 propuestas te daran 20 TARO cada una !
           </p>
           <p>
             <Link className="alt2" to="/ProposalList">Ver propuestas</Link>

@@ -394,6 +394,12 @@ a.dropdown-item:hover {
   margin-bottom: 5%;
 }
 
+.spinner-grow {
+  font-size: 50px !important;
+  height: 25px;
+  width: 25px;
+}
+
 .text-large {
   font-family: 'Lexend Deca', sans-serif !important;
   text-align: center;
@@ -496,7 +502,13 @@ a.dropdown-item:hover {
 
 .big-icon {
   font-size: 75px !important;
-  text-align: center;
+  text-align: center !important;
+  color: #ffffff;
+}
+
+.modalheader {
+  text-align: center !important;
+  font-size:30px !important;
   color: #ffffff;
 }
 
@@ -752,7 +764,24 @@ a.dropdown-item:hover {
   border-radius: 25px !important;
   background-image: linear-gradient(#FF9400, #ffc16b);
   font-family: 'Lexend Deca', sans-serif !important;
+  color: #ffffff !important;
+}
+
+.modal-content {
+  background-color: #FF9400 !important;
+  border-radius: 25px !important;
+  text-align: center !important;
+  background-image: linear-gradient(#FF9400, #ffc16b);
+  font-family: 'Lexend Deca', sans-serif !important;
   color: #3d386b !important;
+}
+
+.modal-2 .modal-content {
+  border-radius: 25px !important;
+  text-align: center !important;
+  background-image: linear-gradient(#dc3840, #e26c72);
+  font-family: 'Lexend Deca', sans-serif !important;
+  color: #ffffff !important;
 }
 
 .big-iconf {
