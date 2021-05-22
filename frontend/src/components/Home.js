@@ -30,6 +30,7 @@ function Home() {
   let [isSkaleSwitched, setIsSkaleSwitched] = useState();
   let [currentMetaMaskAccount, setCurrentMetaMaskAccount] = useState(null);
   let [userBalance, setUserBalance] = useState();
+  let [isConnectingToSkale, setIsConnectingToSkale] = useState();
 
   let {setIsValidated} = useContext(ValidationRequiredContext);
   let {setTaro} = useContext(TaroContext);
@@ -64,22 +65,26 @@ function Home() {
             return;
           };
 
-          //Check if a MetaMask account has permission to connect to app
-          let metamaskAccount;
-          let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
-            if (accounts.length > 0) {
-              metamaskAccount = accounts[0];
-              setCurrentMetaMaskAccount(accounts[0]);
-              setIsMetamaskInstalled(true);
-              setIsConnected(true);
-            } else {
-            };
-          console.log(`metamaskAccount ${metamaskAccount}`);
-
           //Force the browser to refresh whenever the network chain is changed
           let chainId = await _ethereumProvider.request({ method: 'eth_chainId' });
           _ethereumProvider.on('chainChanged', handleChainChanged);
           console.log('chainId: ', chainId);
+
+          if (chainId === '0x3ad0e149d0bf5') {
+            setIsSkaleSwitched(true);
+          };
+
+          //Check if a MetaMask account has permission to connect to app
+          let metamaskAccount;
+          let accounts = await _ethereumProvider.request({ method: 'eth_accounts' });
+
+          if (accounts.length > 0) {
+            metamaskAccount = accounts[0];
+            setCurrentMetaMaskAccount(accounts[0]);
+            setIsMetamaskInstalled(true);
+            setIsConnected(true);
+          };
+          console.log(`metamaskAccount ${metamaskAccount}`);
 
           //Create the Ethers.js provider and set it in state
           let _ethersProvider = await new ethers.providers.Web3Provider(_ethereumProvider);
@@ -144,6 +149,7 @@ function Home() {
 
   //Enable app to have SKALE among listed networks
   const listSkaleInMetamask = async () => {
+    setIsConnectingToSkale(true);
     let endpoint = "https://eth-global-10.skalenodes.com:10200";
     let chainId = "0x3ad0e149d0bf5";
 
@@ -173,10 +179,20 @@ function Home() {
     console.log(`metamaskAccount in Skale function: ${metamaskAccount}`);
 
     //Request change to SKALE network
-    await provider.request({
-      method: "wallet_addEthereumChain",
-      params: [switchToSKALE, accounts[0]]
-    });
+    try {
+      await provider.request({
+        method: "wallet_addEthereumChain",
+        params: [switchToSKALE, accounts[0]]
+      });
+
+      setIsConnectingToSkale(false);
+      setIsSkaleSwitched(true);
+
+      window.location.reload();
+    }catch (error) {
+      console.log(error);
+      window.location.reload();
+    };
   };
 
   const getAccounts = async () => {
@@ -248,13 +264,33 @@ function Home() {
         <div className="App">
           <Card.Text>Urban governance protocol for Queretaro City DAO</Card.Text>
           <div className="Wallet">
-            {!isMetamastInstalled ?
-            <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
-            <ConnectingButton />
-            :<ConnectButton handleOnConnect={handleOnConnect}/>
+            {!isMetamastInstalled
+              ?
+                <InstallMetamaskAlert />
+              :
+                isConnected
+                ?
+                  ''
+                :
+                  isConnecting
+                  ?
+                    <ConnectingButton />
+                  :
+                    <ConnectButton handleOnConnect={handleOnConnect}/>
             }
+
+            {isSkaleSwitched
+              ?
+                ''
+              :
+                isConnectingToSkale
+                ?
+                  <SkaleSwitch />
+                :
+                  <SkaleButton handleOnConnect={listSkaleInMetamask}/>
+            }
+
           </div>
-          <Button onClick={listSkaleInMetamask}>🧅 Switch to SKALE network</Button>
           {isConnected ?
           <div>
           <Card className="orange-unlock">
@@ -307,19 +343,31 @@ function Home() {
           <Card.Text>Una DApp que recompenza por proponer, votar y resolver necesidades públicas en la ciudad de Querétaro.</Card.Text>
 
             <div className="Wallet">
-              {!isMetamastInstalled ?
-              <InstallMetamaskAlert />:isConnected ? '' : isConnecting?
-              <ConnectingButton />
-              :<ConnectButton handleOnConnect={handleOnConnect}/>
+              {!isMetamastInstalled
+                ?
+                  <InstallMetamaskAlert />
+                :
+                  isConnected
+                  ?
+                    ''
+                  :
+                    isConnecting
+                    ?
+                      <ConnectingButton />
+                    :
+                      <ConnectButton handleOnConnect={handleOnConnect}/>
               }
 
-              {!isSkaleSwitched ?
-              <SkaleButton handleOnConnect={listSkaleInMetamask}/>:isConnected ? '' : isConnecting?
-              <SkaleSwitch />
-              : <div>ahora estas conectado</div>
+              {isSkaleSwitched
+                ?
+                  ''
+                :
+                  isConnectingToSkale
+                  ?
+                    <SkaleSwitch />
+                  :
+                    <SkaleButton handleOnConnect={listSkaleInMetamask}/>
               }
-
-
 
           </div>
           {isConnected ?
