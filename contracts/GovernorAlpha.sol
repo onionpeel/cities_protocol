@@ -11,10 +11,10 @@ contract GovernorAlpha {
     // function proposalThreshold() public pure returns (uint) { return 100000e18; } // 100,000 = 1% of Taro
     //
     /// @notice The delay before voting on a proposal may take place, once proposed
-    function votingDelay() public pure returns (uint) { return 1; } // 1 block
+    function votingDelay() public pure returns (uint) { return 1; } // 1 second
     //
     // /// @notice The duration of voting on a proposal, in blocks
-    function votingPeriod() public pure returns (uint) { return 604800; } // ~3 days in blocks (assuming 15s blocks; 17280 blocks)
+    function votingPeriod() public pure returns (uint) { return 2419200; } // voting period set to 4 weeks)
     //
     // /// @notice The address of the Taro Protocol Timelock
     // TimelockInterface public timelock;
