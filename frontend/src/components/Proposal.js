@@ -140,11 +140,11 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       </div>
     </div>
     <div className="proposal-main">
-      <div className="proposal-title3">✍🏼 Author: {proposer}</div>
-      <div className="orange-card2">🦸🦸‍♂️In charge: <p>{personInCharge}</p></div>
+      <div className="proposal-title3">✍🏼 Author: {proposer}<div className="proposal-titles">🦸🦸‍♂️In charge: {personInCharge}</div></div>
+      <div className="orange-card2">⚙️ Type: <p>{typeOfAction}</p></div>
     </div>
     <div className="proposal-main">
-        <div className="proposal-titles">⚙️Type of work: {typeOfAction}</div>
+        <div className="proposal-titles"></div>
         <div className="yellow-card">⏳ Expiration: <CountdownClock timeToExpiration={timeToExpiration}></CountdownClock></div>
       </div>
     </Card.Body>
@@ -161,7 +161,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
     <div className="proposal-main">
       <div className="proposal-favor">
         <div>
-          ✔️ Votes for:
+          ✔️ For:
         </div>
         <p className="big-iconf">{forVotes}
           {!hasVoted
@@ -176,7 +176,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
       </div>
       <div className="proposal-action">
         <div className="proposal-against">
-          ❌ Votes against:
+          ❌ Against:
         </div>
         <p className="big-icona">{againstVotes}
           {!hasVoted
@@ -204,11 +204,11 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
           </div>
         </div>
         <div className="proposal-main">
-          <div className="proposal-title3">✍🏼 Autor: {proposer}</div>
-          <div className="orange-card2">🦸🦸‍♂️Responsable: <p>{personInCharge}</p></div>
+          <div className="proposal-title3">✍🏼 Autor: {proposer}<div className="proposal-titles">🦸🦸‍♂️ Responsable: {personInCharge}</div></div>
+          <div className="orange-card2">⚙️Tipo de trabajo: <p>{typeOfAction}</p></div>
         </div>
         <div className="proposal-main">
-            <div className="proposal-titles">⚙️Tipo de trabajo: {typeOfAction}</div>
+            <div className="proposal-titles"></div>
             <div className="yellow-card">⏳ Expiración: <CountdownClock timeToExpiration={timeToExpiration}></CountdownClock></div>
           </div>
         </Card.Body>
@@ -225,7 +225,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
         <div className="proposal-main">
           <div className="proposal-favor">
             <div>
-              ✔️ Votos a favor:
+              ✔️ A favor:
             </div>
             <p className="big-iconf">{forVotes}
               {!hasVoted
@@ -240,7 +240,7 @@ const Proposal = ({title, typeOfAction, neighborhood, personInCharge, descriptio
           </div>
           <div className="proposal-action">
             <div className="proposal-against">
-              ❌ Votos en contra:
+              ❌ En contra:
             </div>
             <p className="big-icona">{againstVotes}
               {!hasVoted
