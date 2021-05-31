@@ -15,7 +15,7 @@
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#eee, rgb(204, 200, 200));
   font-family: 'Lexend Deca', sans-serif;
@@ -29,8 +29,8 @@
 .orange-unlock {
   border-radius: 25px;
   width:100%;
-  max-width: 50%;
-  min-width: 450px !important;
+  max-width: 40%;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#FF9400, #ffc16b);
   font-family: 'Lexend Deca', sans-serif;
@@ -45,7 +45,7 @@
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#3d386b, #554c9c);
   justify-content: center !important;
@@ -58,8 +58,8 @@
 .valert {
   border-radius: 25px;
   width:100%;
-  max-width: 50%;
-  min-width: 450px !important;
+  max-width: 40%;
+  min-width: 425px !important;
   margin: 1% auto;
   background-image: linear-gradient(#dc3840, #e26c72);
   font-family: 'Lexend Deca', sans-serif;
@@ -73,8 +73,8 @@
 .yellow-unlock {
   border-radius: 25px;
   width:100%;
-  max-width: 50%;
-  min-width: 450px !important;
+  max-width: 40%;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#FAC91A, #fde17c);
   font-family: 'Lexend Deca', sans-serif;
@@ -89,7 +89,7 @@
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: 3% auto;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -104,7 +104,7 @@
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: auto;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -118,8 +118,8 @@
 .past {
   border-radius: 25px;
   width:100%;
-  max-width: 50%;
-  min-width: 450px !important;
+  max-width: 40%;
+  min-width: 425px !important;
   margin: auto;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -134,7 +134,7 @@
   border-radius: 25px;
   width:100%;
   max-width: 50%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: auto;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -384,6 +384,11 @@ a.dropdown-item:hover {
   padding: 15px;
 }
 
+.placeholder {
+  font-size: 14px !important;
+
+}
+
 .text-medium-left {
   font-size: 1rem !important;
   text-align: center !important;
@@ -417,8 +422,8 @@ a.dropdown-item:hover {
 .floating {
   border-radius: 25px;
   width:100%;
-  max-width: 50%;
-  min-width: 450px !important;
+  max-width: 40%;
+  min-width: 425px !important;
   margin: 3% auto;
   font-family: 'Lexend Deca', sans-serif;
   display: flex !important;
@@ -482,6 +487,7 @@ a.dropdown-item:hover {
 }
 
 .orange3 {
+  font-size: 20px;
   margin-top: 3% !important;
   margin-bottom: 3% !important;
   color: #FF9400 !important;
@@ -556,8 +562,8 @@ a.dropdown-item:hover {
 
 .proposal {
   border-radius: 25px;
-  width:100%;
-  min-width: 450px !important;
+  width:auto;
+  min-width: 400px !important;
   margin: 3% auto;
   background-image: linear-gradient(#3d386b , #7770b4);
   font-family: 'Lexend Deca', sans-serif;
@@ -571,7 +577,7 @@ a.dropdown-item:hover {
 .proposala {
   border-radius: 25px;
   width:100%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#36a74e, #82bb8e)!important;
   font-family: 'Lexend Deca', sans-serif;
@@ -585,7 +591,7 @@ a.dropdown-item:hover {
 .proposalr {
   border-radius: 25px;
   width:100%;
-  min-width: 450px !important;
+  min-width: 425px !important;
   margin: 3% auto;
   background-image: linear-gradient(#dc3840, #da898d)!important;
   font-family: 'Lexend Deca', sans-serif;
@@ -630,7 +636,7 @@ a.dropdown-item:hover {
   margin-left: 2%;
   border-radius: 10px;
   text-align: center !important;
-  font-size: 14px !important;
+  font-size: 12px !important;
   color: #3d386b !important;
 }
 
@@ -639,7 +645,7 @@ a.dropdown-item:hover {
   text-align: center;
   margin-left: 2%;
   border-radius: 10px;
-  font-size: 14px !important;
+  font-size: 12px !important;
   color: #3d386b !important;
   background-image: linear-gradient(#FAC91A,#FAC91A);
 }
@@ -650,7 +656,7 @@ a.dropdown-item:hover {
   border-radius: 10px;
   background-image: linear-gradient(#ffffff,#e6e6e6);
   margin-top: 3% !important;;
-  font-size: 15px !important;
+  font-size: 12px !important;
   text-align: center !important;
   color: #3d386b !important;
 }
@@ -666,10 +672,10 @@ a.dropdown-item:hover {
 }
 
 .proposal-title {
-  width: 75%;
+  width: 70%;
   display: table-cell;
   text-align: left !important;
-  font-size: 23px !important;
+  font-size: 20px !important;
   color: #ffffff !important;
 }
 
@@ -678,15 +684,15 @@ a.dropdown-item:hover {
   width: 25%;
   display: table-cell;
   text-align: left !important;
-  font-size: 14px !important;
+  font-size: 12px !important;
   color: #FF9400 !important;
 }
 
 .proposal-titles {
-  width: 50%;
+  width: 40%;
   display: table-cell;
   text-align: left !important;
-  font-size: 14px !important;
+  font-size: 12px !important;
   color: #FAC91A !important;
 }
 
@@ -731,7 +737,7 @@ a.dropdown-item:hover {
 .proposal-subaction {
   display: table-cell;
   text-align: right !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   color: #3d386b !important;
 }
 
@@ -786,7 +792,6 @@ a.dropdown-item:hover {
 
 .big-iconf {
   border-radius: 20px;
-  background-color: #36a74e;
   background-image: linear-gradient(#36a74e, #82bb8e)!important;
   margin-right: 2% ;
   font-size: 65px !important;
